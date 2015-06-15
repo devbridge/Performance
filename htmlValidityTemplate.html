@@ -1,0 +1,16 @@
+<section class="popup popup-advices">
+	<header>
+		<h2>Html errors</h2>
+	</header>
+
+	<span ng-init="messages=firstCtrl.GetHtmlPageErrors()"></span>
+	<ul>
+		<li ng-repeat="message in messages">
+			<strong title="{{advices[adviceKey].summary.format}}">
+				{{message.message}}
+			</strong> <br>
+			Line: {{message.lastLine}}<br>
+			Column: {{message.lastColumn}}
+		</li>
+	</ul>
+</section>

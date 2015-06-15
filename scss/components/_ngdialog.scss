@@ -1,0 +1,41 @@
+body.ngdialog-open {
+	overflow: hidden;
+}
+
+.ngdialog {
+	@extend %layer-9;
+	background: rgba($color-black, .4);
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.ngdialog-content {
+	@extend %layer-2;
+	animation: flyin .5s;
+	margin: 0 auto;
+	position: relative;
+	width: 540px;
+	
+	.ngdialog-closing & {
+		animation: flyout .5s;
+	}
+}
+
+.ngdialog-overlay {
+	@extend %layer-1;
+	animation: fadein .5s;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 30px;
+	top: 0;
+	
+	
+	.ngdialog-closing & {
+		animation: fadeout .5s;
+	}
+}

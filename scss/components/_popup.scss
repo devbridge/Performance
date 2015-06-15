@@ -1,0 +1,39 @@
+.popup {
+	background: $color-white;
+	box-shadow: 0 0 10px 1px rgba($color-black, .2);
+	width: 420px;
+	
+	header {
+		padding: 20px;
+	}
+	
+	h2 {
+		color: $color-gray-dark;
+		display: inline-block;
+		font-size: 18px;
+		font-weight: normal;
+		margin: 0;
+	}
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	li {
+		border-bottom: 1px solid $color-lightgray;
+		padding: 12px 20px;
+	}
+}
+
+.popup-advices {
+	margin: 10vh auto 0;
+	max-height: 80vh;
+	overflow: auto;
+	
+	h3 {
+		margin: 0;
+		padding: 10px 20px;
+	}
+}

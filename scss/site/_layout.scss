@@ -1,0 +1,23 @@
+body {
+	box-sizing: border-box;
+	color: $color-gray-dark;
+	font: normal normal normal 14px/1.5 $font-primary;
+	margin: 0;
+	padding: 70px 0 0; //hader height
+	position: relative;
+	
+	//To prevent the iPhone and iPad from inflating fonts
+	@include respond-to(1024, max) {
+		-webkit-text-size-adjust: 100%;
+	}
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+a {
+	text-decoration: none;
+}

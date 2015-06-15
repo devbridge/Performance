@@ -1,0 +1,39 @@
+.data-table-filter {
+	@extend %layer-8;
+	display: none;
+	left: 416px;
+	position: fixed;
+	top: 18px;
+	
+	&.visible {
+		display: block;
+		
+	}
+	
+	button {
+		background-color: transparent;
+		border: 0;
+		color: $color-blue;
+		margin-left: 12px;
+		padding: 0;
+		text-decoration: underline;
+		transition: opacity .3s;
+		
+		&:hover {
+			opacity: .68;
+		}
+	}
+	
+	ul {
+		max-height: 60vh;
+		overflow: auto;
+	}
+	
+	li {
+		span {
+			display: inline-block;
+			vertical-align: top;
+			width: calc(100% - 40px);
+		}
+	}
+}

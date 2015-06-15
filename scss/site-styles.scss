@@ -1,0 +1,21 @@
+//Core files
+@import 'core/variables';
+@import 'core/mixins';
+@import 'core/functions';
+@import 'core/extenders';
+@import 'core/utility';
+
+//Components
+@import 'components/normalize';
+@import 'components/form-item';
+@import 'components/header';
+@import 'components/buttons';
+@import 'components/popup';
+@import 'components/data-table';
+@import 'components/data-table-filter';
+@import 'components/ngdialog';
+@import 'components/animations';
+
+//Project styles
+@import 'site/layout';
+@import 'site/pages/home';

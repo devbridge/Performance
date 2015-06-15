@@ -1,0 +1,35 @@
+<section class="popup popup-advices">
+	<header>
+		<h2>Advices</h2>
+	</header>
+
+	<div ng-if="firstCtrl.ShowMobile">
+		<h3>Mobile</h3>
+		<span ng-init="advices=firstCtrl.GetGoogleAdvices('mobile')"></span>
+		<p ng-if="firstCtrl.GetKeys(advices).length == 0">No data</p>
+		<ul ng-if="firstCtrl.GetKeys(advices).length > 0">
+			<li ng-repeat="adviceKey in firstCtrl.GetKeys(advices)">
+				<strong title="{{advices[adviceKey].summary.format}}">
+					{{advices[adviceKey].localizedRuleName}}
+				</strong> <br>
+				Impact: {{advices[adviceKey].ruleImpact}}<br>
+				Affects: {{advices[adviceKey].groups.join(', ')}}
+			</li>
+		</ul>
+	</div>
+
+	<div ng-if="firstCtrl.ShowDesktop">
+		<h3>Desktop</h3>
+		<span ng-init="advices=firstCtrl.GetGoogleAdvices('desktop')"></span>
+		<p ng-if="firstCtrl.GetKeys(advices).length == 0">No data</p>
+		<ul ng-if="firstCtrl.GetKeys(advices).length > 0">
+			<li ng-repeat="adviceKey in firstCtrl.GetKeys(advices)">
+				<strong title="{{advices[adviceKey].summary.format}}">
+					{{advices[adviceKey].localizedRuleName}}
+				</strong> <br>
+				Impact: {{advices[adviceKey].ruleImpact}} <br>
+				Affects: {{advices[adviceKey].groups.join(', ')}}
+			</li>
+		</ul>
+	</div>
+</section>

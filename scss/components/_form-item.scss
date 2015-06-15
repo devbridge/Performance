@@ -1,0 +1,111 @@
+$color-checkbox-background: #f7f7fa;
+$color-checkbox-border: #d9dce2;
+
+// Base
+.form-item {
+	position: relative;
+	
+	input[type=text],
+	textarea,
+	select {
+		background: $color-lightgray;
+		border: 0;
+		color: $color-gray-light;
+		display: block;
+		font-size: 14px;
+		width: 100%;
+	}
+	
+	input[type=text],
+	select {
+		height: 36px;
+		padding: 0 10px;
+	}
+	
+	textarea {
+		height: 130px;
+		padding: 10px;
+		resize: none;
+	}
+}
+
+// Placeholder
+.form-item input[type=text],
+.form-item textarea {
+	&::placeholder {
+		color: $color-gray-light;
+		opacity: 1;
+	}
+	
+	&:focus {
+		&::placeholder {
+			opacity: 0;
+		}
+	}
+}
+
+// Modifiers
+.form-item--search {
+	input[type=text] {
+		padding-left: 44px;
+	}
+	
+	.fa-search {
+		color: $color-gray-light;
+		font-size: 13px;
+		left: 18px;
+		position: absolute;
+		top: 11px;
+	}
+}
+
+.form-item--checkbox {
+	overflow: hidden;
+	
+	label {
+		cursor: pointer;
+		display: block;
+	}
+	
+	input {
+		left: -100%;
+		position: absolute;
+		visibility: hidden;
+	}
+	
+	i {
+		background: $color-checkbox-background;
+		border: 1px solid $color-checkbox-border;
+		border-radius: 4px;
+		color: $color-white;
+		display: inline-block;
+		font-family: FontAwesome;
+		font-size: 10px;
+		font-style: normal;
+		height: 18px;
+		line-height: 18px;
+		margin-right: 12px;
+		text-align: center;
+		vertical-align: middle;
+		width: 18px;
+		
+		&:before {
+			content: '\f00c';
+			opacity: 0;
+		}
+	}
+	
+	input:checked + i {
+		background: $color-blue;
+		border-color: $color-blue;
+		
+		&:before {
+			opacity: 1;
+		}
+	}
+	
+	label:hover i,
+	label:hover span {
+		opacity: .6;
+	}
+}

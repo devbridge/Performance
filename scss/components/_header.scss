@@ -1,0 +1,44 @@
+.header {
+	@extend %layer-8;
+	background: $color-gray;
+	color: $color-gray-light;
+	height: 70px;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+	
+	button {
+		margin-right: 12px;
+	}
+}
+
+.header-nav {
+	background: $color-gray-dark;
+	display: inline-block;
+	font-size: 0;
+	margin-right: 30px;
+	
+	a {
+		color: $color-gray-light;
+		display: inline-block;
+		font-size: 16px;
+		line-height: 70px;
+		padding: 0 22px;
+		transition: color .3s;
+		
+		&:first-child {
+			padding-left: 24px;
+		}
+		
+		&:last-child {
+			padding-right: 24px;
+		}
+		
+		&.active,
+		&:hover {
+			color: $color-blue;
+		}
+	}
+}

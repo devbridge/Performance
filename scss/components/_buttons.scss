@@ -1,0 +1,53 @@
+%button-template {
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.button-primary {
+	@extend %button-template;
+	background: $color-blue;
+	border: 0;
+	border-radius: 2px;
+	color: $color-white;
+	padding: 6px 16px;
+	transition: background .3s;
+	
+	&.active,
+	&:hover {
+		background: darken($color-blue, 6);
+	}
+	
+	.fa-plus {
+		font-size: 11px;
+		margin-right: 6px;
+	}
+}
+
+.button-link {
+	@extend %button-template;
+	background-color: transparent;
+	border: 0;
+	color: $color-gray-light;
+	padding: 6px 12px;
+	transition: color .3s;
+	
+	&.active,
+	&:hover {
+		color: $color-white;
+	}
+	
+	.fa {
+		margin-right: 12px;
+		vertical-align: middle;
+	}
+	
+	.fa-desktop {
+		font-size: 24px;
+	}
+	
+	.fa-mobile {
+		font-size: 32px;
+	}
+}

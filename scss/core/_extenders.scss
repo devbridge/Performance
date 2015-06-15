@@ -1,0 +1,29 @@
+@mixin clearfix($extend: true) {
+	@if $extend {
+		@extend %clearfix;
+	} @else {
+		&:after {
+			clear: both;
+			content: ‘’;
+			display: table;
+		}
+	}
+}
+
+%clearfix {
+	@include clearfix($extend: false);
+}
+
+@mixin box-sizing {
+	box-sizing: border-box;
+}
+
+%box-sizing {
+	@include box-sizing;
+}
+
+@for $i from 1 through 9 {
+	%layer-#{$i} {
+		z-index: $i * 100;
+	}
+}
