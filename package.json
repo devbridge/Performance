@@ -6,6 +6,10 @@
   "main": "gulpfile.js",
   "homepage": "https://www.devbridge.com/",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devbridge/Performance.git"
+    },
   "private": false,
   "keywords": [
     "tool",
