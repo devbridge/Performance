@@ -1,7 +1,7 @@
 angular.module('SpeedTestViewApp', ['SpeedTestViewModule', 'ngDialog'])
 
 .service('SpeedTestService', function(){
-    var translations = httpGet('/settings.txt');
+    var translations = httpGet('./settings.txt');
     this.Translations = translations.status == 200 ? JSON.parse(translations.responseText).translations : {};
     this.SiteUrl = translations.status == 200 ? JSON.parse(translations.responseText).siteURL : "";
     var result = httpGet('/speedtest.txt');
