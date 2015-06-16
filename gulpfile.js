@@ -80,7 +80,7 @@ function speedtest() {
                 if (response.status == 200) {
                     console.log(((100 / (getSitePages().length * strategies.length)) * (strategy * getSitePages().length + index + 1)).toFixed(2) + '% page speed test complete.');
                     var pageSpeedResults = JSON.parse(response.responseText);
-                    results.newresults[strategies[strategy]][pageSpeedResults.id] = pageSpeedResults;
+                    results.newresults[strategies[strategy]][currentValue] = pageSpeedResults;
                 } else {
                     errorOccured = true;
                     console.log('Failed speed test for: ' + currentValue + ' response code: ' + response.status + ' request url: ' + url + ' google response: ' + response.responseText);
