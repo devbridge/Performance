@@ -36,7 +36,7 @@ require('gulp').task('perf-tool', function () {
 	return require('devbridge-perf-tool').performance(options);
 });
 ```
-After running this task, launch browser and go to your hosted website with installed perf-tool by the folowing url: **```YourHost/node_modules/devbridge-perf-tool```** (example: ```localhost/node_modules/devbridge-perf-tool```)
+After running this task, launch browser and go to your hosted website with installed perf-tool by the folowing url: **```YourHost/node_modules/devbridge-perf-tool```** (example: ```localhost/node_modules/devbridge-perf-tool```)<br>
 **Available options:**<br>
 List of available options to configure and change behavior of perf-tool.<br><br>
 
