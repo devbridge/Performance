@@ -1,29 +1,59 @@
 var gulp = require('gulp'),
+    grunt = require('grunt'),
     fs = require('fs'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     w3cjs = require('w3cjs'),
 
-    settings = JSON.parse(fs.readFileSync("settings.txt", { encoding: 'Utf-8' })),
+    prefix = './node_modules/devbridge-perf-tool/',
+    // prefix = './', // uncomment this line if you will run this module straight from this folder
+    settings = JSON.parse(fs.readFileSync(prefix+"settings.txt", { encoding: 'Utf-8' })),
     logFile = settings.logFile,
     siteURL = settings.siteURL,
     sitePages = settings.sitePages,
     sitePagesUrls = null,
     htmlTestResults = [];
 
-    function getSitePages() {
-        if (sitePagesUrls == null) {
-            sitePagesUrls = [];
-            sitePages.forEach(
-                function (currentValue, index, array) {
-                    sitePagesUrls.push(siteURL + currentValue);
-                });
-        }
-        return sitePagesUrls;
+function getSitePages() {
+    if (sitePagesUrls == null) {
+        sitePagesUrls = [];
+        sitePages.forEach(
+            function (currentValue, index, array) {
+                sitePagesUrls.push(siteURL + currentValue);
+            });
     }
+    return sitePagesUrls;
+}
 
-gulp.task('speedtest', function () {
+function showError(error) {
+    console.log(error.toString());
+    this.emit('end');
+}
+
+gulp.task('sass', function() {
+    return gulp.src('scss/site-styles.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .on('error', showError)
+        .pipe(autoprefixer('last 2 version', 'ios 6', 'android 4'))
+        .pipe(gulp.dest('content/styles'));
+});
+
+gulp.task('watch', function() {
+    gulp.watch('scss/**/*.scss', ['sass']);
+});
+
+gulp.task('perf-tool', function(){
+    performance({
+        runDevPerf:true,
+        runGoogleSpeedTest:true,
+        runHtmlTest:true
+    });
+});
+
+gulp.task('default', ['perf-tool']);
+
+function speedtest() {
     var googleAPIURL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?filter_third_party_resources=false&locale=en_GB&screenshot=false&strategy={selected_strategy}&url=',
     strategies = ['desktop', 'mobile'],
 
@@ -66,11 +96,9 @@ gulp.task('speedtest', function () {
         xmlHttp.send(null);
         return xmlHttp;
     }
-});
+};
 
-gulp.task('perf-tool', ['speedtest', 'grunt:customdevperf', 'htmltest'], function(){});
-
-gulp.task('htmltest', function() {
+function htmltest() {
     getSitePages().forEach(
         function (currentValue, index, array) {
             w3cjs.validate({
@@ -101,30 +129,81 @@ gulp.task('htmltest', function() {
                 }
             });
         });
-});
+};
 
-function showError(error) {
-    console.log(error.toString());
-    this.emit('end');
+function performance(options) {
+    if (options !== undefined) {
+        for (var key in options) {
+            if (key != 'translations') {
+                settings[key] = options[key];
+            }
+        }
+        for (var key in options.translations) {
+            settings.translations[key] = options.translations[key];
+        }
+    }
+    if (settings.runDevPerf !== undefined && settings.runDevPerf) {
+        GruntTasks(grunt);
+        grunt.task.run('customdevperf');
+        grunt.task.start({asyncDone: true});
+    }
+    if (settings.runGoogleSpeedTest !== undefined && settings.runGoogleSpeedTest) {
+        speedtest();
+    }
+    if (settings.runHtmlTest !== undefined && settings.runHtmlTest) {
+        htmltest();
+    }
 }
 
-gulp.task('sass', function() {
-    return gulp.src('scss/site-styles.scss')
-        .pipe(sass({outputStyle: 'compressed'}))
-        .on('error', showError)
-        .pipe(autoprefixer('last 2 version', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('content/styles'));
-});
+var devbridgePerfTool = {
+    performance: performance
+};
 
-gulp.task('watch', function() {
-    gulp.watch('scss/**/*.scss', ['sass']);
-});
+if (typeof exports !== 'undefined') {
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = devbridgePerfTool;
+  }
+  exports.devbridgePerfTool = devbridgePerfTool;
+} else {
+  root['devbridgePerfTool'] = devbridgePerfTool;
+}
 
-require('gulp-grunt')(gulp, {
-    // bug: when base is set then whole gulp is set to base path
-    base: 'grunt/',
-    prefix: 'grunt:',
-    verbose: false
-});
+function GruntTasks (grunt) {
+    grunt.initConfig({
+        devperf: {
+            options: {
+                urls: getSitePages(),
+                openResults: false,
+                resultsFolder: settings.devperfResultsFolder
+            }
+        }
+    });
 
-gulp.task('default', ['fullpagespeedtest', 'sass']);
+    grunt.registerTask('customdevperf', 'devperf runner', function() {
+        grunt.task.run('devperf')
+        .then('Finishing after devperf.', function(){
+            if (this.errorCount == 0) {
+                var devperfResultsFile = settings.devperfResultsFile,
+                    results = { oldresults: {}, newresults: {} },
+                    devperfResults = {};
+
+                if (grunt.file.exists(logFile)) {
+                    results = grunt.file.readJSON(logFile);
+                    results.oldresults.devperf = results.newresults.devperf;
+                }
+                devperfResults = grunt.file.readJSON(devperfResultsFile);
+                results.newresults.devperf = {};
+                devperfResults.pages.forEach(
+                    function (currentValue, index, array) {
+                        results.newresults.devperf[currentValue.url] = currentValue;
+                    });
+                grunt.file.write(logFile, JSON.stringify(results));
+            }
+        });
+    });
+
+    grunt.loadNpmTasks('grunt-devperf');
+    grunt.loadNpmTasks("grunt-then");
+
+    grunt.registerTask('default', ['devperf']);
+}
