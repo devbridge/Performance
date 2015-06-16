@@ -1,15 +1,13 @@
 {
-	"runDevPerf":true,
+    "siteURL":"",
+    "sitePages":["www.google.com/", "www.google.com/voice"],
 	"runGoogleSpeedTest":true,
+	"runDevPerf":true,
 	"runHtmlTest":true,
 	"googleAPIKey":null,
 	"devperfResultsFolder":"./devperf",
 	"devperfResultsFile":"./devperf/results.json",
 	"logFilterKeys":false,
-    "siteURL":"https://test.net",
-    "sitePages":["/", "/products", "/products/details?poNumber=11051&dupId=51&categoryId=19", "/dressing-room",
-	    "/policies", "/size-guide/", "/cafe/", "/about/", "/careers/", "/appointments/", "/designers", "/products?DesignerIds=3510",
-	    "/search?Query=Black"],
     "logFile":"./speedtest.txt",
 	"translations":{
 		"desktop.formattedResults.locale":"Locale",
