@@ -12,11 +12,11 @@ var gulp = require('gulp'),
     logFile = settings.logFile,
     siteURL = settings.siteURL,
     sitePages = settings.sitePages,
-    sitePagesUrls = null,
+    sitePagesUrls = [],
     htmlTestResults = [];
 
 function getSitePages() {
-    if (sitePagesUrls == null) {
+    if (sitePagesUrls.length == 0) {
         sitePagesUrls = [];
         sitePages.forEach(
             function (currentValue, index, array) {
@@ -45,9 +45,11 @@ gulp.task('watch', function() {
 
 gulp.task('perf-tool', function(){
     performance({
+        siteURL:'http://www.youtube.com',
+        sitePages: ['/'],
         runDevPerf:true,
-        runGoogleSpeedTest:true,
-        runHtmlTest:true
+        runHtmlTest:true,
+        runGoogleSpeedTest:true
     });
 });
 
@@ -142,6 +144,8 @@ function performance(options) {
             settings.translations[key] = options.translations[key];
         }
     }
+    siteURL = settings.siteURL;
+    sitePages = settings.sitePages;
     if (settings.runDevPerf !== undefined && settings.runDevPerf) {
         GruntTasks(grunt);
         grunt.task.run('customdevperf');
