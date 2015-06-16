@@ -1,6 +1,6 @@
 {
   "name": "devbridge-perf-tool",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Tool to test your web pages performance.",
   "author": "Gediminas Stanaitis <gedas@devbridge.com>",
   "main": "gulpfile.js",
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/devbridge/Performance.git"
-    },
+  },
   "private": false,
   "keywords": [
     "tool",
