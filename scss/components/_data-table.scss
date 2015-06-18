@@ -33,32 +33,39 @@ $color-table-zebra: #f7f7fa;
 		vertical-align: top;
 		
 		&:first-child {
-			font-weight: bold;
-			min-width: 600px;
+			min-width: 400px;
 			padding-left: 48px;
-		}
-		
-		&:first-child:before {
-			color: $color-gray-light;
-			content: counter(table-row);
-			display: inline-block;
-			font-weight: normal;
-			text-indent: -28px;
+
+			&:before {
+				color: $color-black;
+				content: counter(table-row)'.';
+				display: inline-block;
+				font-weight: normal;
+				text-indent: -28px;
+			}
 		}
 	}
 }
 
 .data-table--zebra {
-	tr:nth-child(even) td {
+	tr:nth-child(odd) td {
 		background: $color-table-zebra;
 	}
 }
 
 .data-table--chart {
-	
-	th:last-child,
-	td:last-child {
-		width: 62%;
+	th,
+	td {
+		width: 100%;
+
+		&:first-child {
+			width: 400px;
+		}
+
+		&:last-child {
+			width: 100px;
+			vertical-align: middle;
+		}
 	}
 }
 
@@ -86,12 +93,12 @@ $color-table-zebra: #f7f7fa;
 	}
 	
 	&:first-child {
-		background: $color-blue-light;
+		background: $color-neutral;
 		color: $color-gray;
 	}
 	
 	&:last-child {
-		background: $color-blue;
+		background: $color-red;
 		color: $color-white;
 		margin-bottom: 1px;
 		
@@ -103,7 +110,21 @@ $color-table-zebra: #f7f7fa;
 		
 		&[style*='width: 8%;'],
 		&[style*='width: 9%;'] {
-			background: $color-blue;
+			background: $color-red;
+		}
+	}
+
+	&.mobile {
+		&:last-child {
+			&[style*='width: 6'],
+			&[style*='width: 7'] {
+				background: $color-green;
+			}
+
+			&[style*='width: 6%;'],
+			&[style*='width: 7%;'] {
+				background: $color-red;
+			}
 		}
 	}
 }

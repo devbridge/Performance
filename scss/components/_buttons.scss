@@ -2,6 +2,7 @@
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
+	transition: .3s;
 	vertical-align: middle;
 }
 
@@ -25,17 +26,48 @@
 	}
 }
 
+.button-ghost {
+	@extend %button-template;
+	border: 1px solid #3f3f3f;
+	border-radius: 2px;
+	color: $color-white;
+	padding: 6px 16px;
+	background: none;
+
+	&:hover {
+		color: $color-blue-light;
+	}
+
+	.fa-plus {
+		font-size: 11px;
+		margin-right: 6px;
+	}
+
+	&.blue {
+		border-color: $color-blue;
+		color: $color-blue;
+
+		&:hover {
+			border-color: darken($color-blue, 10%);
+			color: darken($color-blue, 10%);
+		}
+	}
+}
+
 .button-link {
 	@extend %button-template;
 	background-color: transparent;
 	border: 0;
-	color: $color-gray-light;
+	color: $color-white;
 	padding: 6px 12px;
 	transition: color .3s;
-	
-	&.active,
+
 	&:hover {
-		color: $color-white;
+		color: $color-blue-light;
+	}
+
+	&.active {
+		color: $color-blue;
 	}
 	
 	.fa {
@@ -49,5 +81,9 @@
 	
 	.fa-mobile {
 		font-size: 32px;
+	}
+
+	.fa-signal {
+		font-size: 24px;
 	}
 }
