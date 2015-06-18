@@ -96,5 +96,3 @@ options.translations = {
     "html.context.old":false
 };
 ```
-<br>
-***Marked** options are currently under development and should be soon implemented (around this week).

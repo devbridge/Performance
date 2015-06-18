@@ -17,9 +17,16 @@
 	<body ng-cloak>
 		<header class="header">
 			<nav class="header-nav">
-				<a href="#performance" class="active">Performance</a>
-				<a href="#main-table">Main Table</a>
-				<a href="#count-table">Count Table</a>
+				<a
+					ng-class="{active: firstCtrl.ShowPerfChart}"
+					ng-click="firstCtrl.Page('performance-chart')">
+						Performance
+				</a>
+				<a
+					ng-class="{active: firstCtrl.ShowMainTable}"
+					ng-click="firstCtrl.Page('main-table')">
+						Main Table
+				</a>
 			</nav>
 
 			<button class="button-primary js-open-filter" type="button"><i class="fa fa-plus"></i>Add/Remove Columns</button>
@@ -65,76 +72,77 @@
 			</ul>
 		</section>
 
-		<div class="js-performance-tables-begining" id="performance"></div>
-		<section class="data-table data-table--chart" ng-if="firstCtrl.ShowDesktop">
-			<h2>Desktop</h2>
-			<h2 ng-if="firstCtrl.ChartData.desktop.data.length == 0" class="text-center">No data</h2>
+		<div class="js-performance-tables-begining" ng-if="firstCtrl.ShowPerfChart">
+			<section class="data-table data-table--chart" ng-if="firstCtrl.ShowDesktop">
+				<h2>Desktop</h2>
+				<h2 ng-if="firstCtrl.ChartData.desktop.data.length == 0" class="text-center">No data</h2>
 
-			<table ng-if="firstCtrl.ChartData.desktop.data.length > 0">
-				<thead>
-					<tr>
-						<th>
-							Name
-						</th>
-						<th>
-							Old/New
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="page in firstCtrl.ChartData.desktop.data">
-						<td>
-							<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
-						</td>
-						<td>
-							<div class="data-table-bar" style="width: {{page.scores.old}}%;">
-								{{page.scores.old ? page.scores.old : "No data"}}
-							</div>
-							<div class="data-table-bar" style="width: {{page.scores.new}}%;">
-								{{page.scores.new ? page.scores.new : "No data"}}
-								<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');" title="Google Speed Insights Advices"></button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
+				<table ng-if="firstCtrl.ChartData.desktop.data.length > 0">
+					<thead>
+						<tr>
+							<th>
+								Name
+							</th>
+							<th>
+								Old/New
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="page in firstCtrl.ChartData.desktop.data">
+							<td>
+								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
+							</td>
+							<td>
+								<div class="data-table-bar" style="width: {{page.scores.old}}%;">
+									{{page.scores.old ? page.scores.old : "No data"}}
+								</div>
+								<div class="data-table-bar" style="width: {{page.scores.new}}%;">
+									{{page.scores.new ? page.scores.new : "No data"}}
+									<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');" title="Google Speed Insights Advices"></button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 
-		<section class="data-table data-table--chart" ng-if="firstCtrl.ShowMobile">
-			<h2>Mobile</h2>
-			<h2 ng-if="firstCtrl.ChartData.mobile.data.length == 0" class="text-center">No data</h2>
+			<section class="data-table data-table--chart" ng-if="firstCtrl.ShowMobile">
+				<h2>Mobile</h2>
+				<h2 ng-if="firstCtrl.ChartData.mobile.data.length == 0" class="text-center">No data</h2>
 
-			<table ng-if="firstCtrl.ChartData.mobile.data.length > 0">
-				<thead>
-					<tr>
-						<th>
-							Name
-						</th>
-						<th>
-							Old/New
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="page in firstCtrl.ChartData.mobile.data">
-						<td>
-							{{page.Name}}
-						</td>
-						<td>
-							<div class="data-table-bar" style="width: {{page.scores.old}}%;">
-								{{page.scores.old ? page.scores.old : "No data"}}
-							</div>
-							<div class="data-table-bar" style="width: {{page.scores.new}}%;">
-								{{page.scores.new ? page.scores.new : "No data"}}
-								<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');" title="Google Speed Insights Advices"></button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
+				<table ng-if="firstCtrl.ChartData.mobile.data.length > 0">
+					<thead>
+						<tr>
+							<th>
+								Name
+							</th>
+							<th>
+								Old/New
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="page in firstCtrl.ChartData.mobile.data">
+							<td>
+								{{page.Name}}
+							</td>
+							<td>
+								<div class="data-table-bar" style="width: {{page.scores.old}}%;">
+									{{page.scores.old ? page.scores.old : "No data"}}
+								</div>
+								<div class="data-table-bar" style="width: {{page.scores.new}}%;">
+									{{page.scores.new ? page.scores.new : "No data"}}
+									<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');" title="Google Speed Insights Advices"></button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</div>
 
-		<section class="data-table data-table--zebra" id="main-table">
+		<section class="data-table data-table--zebra" id="main-table" ng-if="firstCtrl.ShowMainTable">
 			<h2 ng-if="firstCtrl.TableData.length == 0" class="text-center">No data</h2>
 
 			<table ng-if="firstCtrl.TableData.length > 0">

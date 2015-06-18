@@ -1,10 +1,12 @@
-angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controller('SpeedTestResultsControler', ['$scope', 'SpeedTestService', 'ngDialog', '$sce', '$compile',
-            function SpeedTestResultsControler($scope, SpeedTestService, ngDialog, $sce, $compile) {
+angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controller('SpeedTestResultsControler', ['$scope', 'SpeedTestService', 'ngDialog', '$sce', '$compile', '$location',
+            function SpeedTestResultsControler($scope, SpeedTestService, ngDialog, $sce, $compile, $location) {
               this.SearchFilter ='';
               this.OrderBy ='';
               this.MinimumPassScore =80;
               this.ShowDesktop = true;
               this.ShowMobile = false;
+              this.ShowPerfChart = true;
+              this.ShowMainTable = false;
               this.SpeedTests = {};
               this.SiteUrl = SpeedTestService.SiteUrl;
               this.SpeedTests.oldResults = SpeedTestService.SpeedTestResults.oldresults;
@@ -352,6 +354,21 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 return true;
               };
 
+              this.Page = function(page){
+                if (page !== undefined) {
+                  $location.search('page', page);
+                }
+                if ($location.$$search['page']=='performance-chart') {
+                  this.ShowPerfChart = true;
+                  this.ShowMainTable = false;
+                }
+                if ($location.$$search['page']=='main-table') {
+                  this.ShowPerfChart = false;
+                  this.ShowMainTable = true;
+                }
+              };
+
+              this.Page();
               this.SetChartData();
               this.LoadFilters();
               // seting sizes table data
