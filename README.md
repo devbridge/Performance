@@ -30,7 +30,7 @@ And add it to your gulpfile.js:
 ```javascript
 require('gulp').task('perf-tool', function () {
 	var options = {
-    	siteURL:'www.google.com',
+    	siteURL:'http://www.google.com',
         sitePages: ['/', '/voice']
 	};
 	return require('devbridge-perf-tool').performance(options);
@@ -48,7 +48,7 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **options.sitePages** <br>
 **Type:** ```string [ ]```<br>
 **Default value:** ```[ ]``` (Empty array)<br>
-**Description:** Used to generate site map with **options.siteURL** (example: ```options.siteURL + options.sitePages[i]``` ). You can use full urls (example: ```options.sitePages = ['www.google.com/voice']```) by leaving options.siteURL empty or set options.siteURL and pages (example: ```options.siteURL='www.google.com'; options.sitePages = ['/','/voice'];``` ).<br><br>
+**Description:** Used to generate site map with **options.siteURL** (example: ```options.siteURL + options.sitePages[i]``` ). You can use full urls (example: ```options.sitePages = ['http://www.google.com/voice']```) by leaving options.siteURL empty or set options.siteURL and pages (example: ```options.siteURL='http://www.google.com'; options.sitePages = ['/','/voice'];``` ).<br><br>
 
 **options.runDevPerf** <br>
 **Type:** ```bool```<br>
