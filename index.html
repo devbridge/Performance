@@ -141,23 +141,20 @@
 				<thead>
 					<tr>
 						<th
-						ng-click="firstCtrl.Sort(firstCtrl.TableData, label.Name)"
-						ng-repeat="label in firstCtrl.TableLabels"
-						ng-if="firstCtrl.ShowTableElement(label.Name)">
-							{{label.PrettyName}}
+							ng-click="firstCtrl.Sort(firstCtrl.TableData, label.Name)"
+							ng-repeat="label in firstCtrl.TableLabels"
+							ng-if="firstCtrl.ShowTableElement(label.Name)">
+								{{label.PrettyName}}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="page in firstCtrl.TableData">
-						<!-- <td><button ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button">Page Errors</button></td> -->
 						<td
-						ng-class="{notPassed: firstCtrl.ScorePassed(page[label.Name], label)}"
-						ng-repeat="label in firstCtrl.TableLabels"
-						ng-if="firstCtrl.ShowTableElement(label.Name)"
-						compile-html="{{firstCtrl.HandleTableValues(page, label)}}">
-							<!-- <span ng-bind-html="firstCtrl.HandleTableValues(page, label)"></span> -->
-							<!-- {{firstCtrl.HandleTableValues(page, label)}} -->
+							ng-class="{notPassed: firstCtrl.ScorePassed(page[label.Name], label)}"
+							ng-repeat="label in firstCtrl.TableLabels"
+							ng-if="firstCtrl.ShowTableElement(label.Name)"
+							compile-html="{{firstCtrl.HandleTableValues(page, label)}}">
 						</td>
 					</tr>
 				</tbody>
@@ -171,16 +168,16 @@
 				<thead>
 					<tr>
 						<th
-						ng-repeat="label in firstCtrl.SizesTableLabels">
-							{{label.PrettyName}}
+							ng-repeat="label in firstCtrl.SizesTableLabels">
+								{{label.PrettyName}}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="page in firstCtrl.SizesTableData">
 						<td
-						ng-repeat="label in firstCtrl.SizesTableLabels">
-							{{page[label.Name]}}
+							ng-repeat="label in firstCtrl.SizesTableLabels">
+								{{page[label.Name]}}
 						</td>
 					</tr>
 				</tbody>
