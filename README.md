@@ -20,11 +20,6 @@ Firstly install this package locally to your project:
 npm install devbridge-perf-tool --save-dev
 ```
 
-Also assure that you have it installed globally:
-```
-npm install devbridge-perf-tool -g
-```
-
 And add it to your gulpfile.js:
 
 ```javascript
@@ -102,4 +97,4 @@ options.translations = {
 };
 ```
 <br>
-***Marked** options are currently under development and should be soon inmplemented (around this week).
+***Marked** options are currently under development and should be soon implemented (around this week).
