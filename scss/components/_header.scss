@@ -2,43 +2,86 @@
 	@extend %layer-8;
 	background: $color-gray;
 	color: $color-gray-light;
-	height: 70px;
+	height: 125px;
 	left: 0;
 	overflow: hidden;
 	position: fixed;
 	right: 0;
 	top: 0;
-	
-	button {
-		margin-right: 12px;
+}
+
+.header-info-wrapper {
+	background: #fff;
+	height: 55px;
+	overflow: hidden;
+
+	.header-info {
+		@include clearfix;
+	}
+
+	.header-website {
+		color: $color-blue;
+		font-size: 1.5em;
+		font-style: italic;
+		line-height: 55px;
+		margin-left: 30px;
+
+		&:hover {
+			color: darken($color-blue, 5);
+		}
+	}
+
+	.header-files-statistics {
+		float: right;
+		height: 55px;
+		line-height: 55px;
+		white-space: nowrap;
+	}
+
+	.header-group {
+		color: $color-black;
+		display: inline-block;
+		height: 55px;
+		margin-right: 30px;
+	}
+
+	.header-group-number {
+		font-size: 1.5em;
+	}
+
+	.header-group-divider {
+		border-right: 1px solid #ccc;
+		display: inline-block;
+		height: 30px;
+		margin-right: 10px;
+		padding-left: 15px;
+		transform: rotate(20deg);
+		width: 1px;
+	}
+
+	@include respond-to(1024, 'max') {
+		font-size: 11px;
 	}
 }
 
 .header-nav {
-	background: $color-gray-dark;
+	box-sizing: border-box;
 	display: inline-block;
-	font-size: 0;
-	margin-right: 30px;
-	
-	a {
-		color: $color-gray-light;
+	font-size: 16px;
+	vertical-align: middle;
+	height: 70px;
+
+	.header-nav-group {
+		border-right: 1px solid #3f3f3f;
 		display: inline-block;
-		font-size: 16px;
-		line-height: 70px;
-		padding: 0 22px;
-		transition: color .3s;
-		
+		padding: 14px 20px;
+
 		&:first-child {
-			padding-left: 24px;
+			padding-left: 30px;
 		}
-		
-		&:last-child {
-			padding-right: 24px;
-		}
-		
-		&.active,
-		&:hover {
-			color: $color-blue;
-		}
+	}
+
+	button {
+		display: inline-block;
 	}
 }

@@ -16,34 +16,59 @@
 	</head>
 	<body ng-cloak>
 		<header class="header">
-			<nav class="header-nav">
-				<a
-					ng-class="{active: firstCtrl.ShowPerfChart}"
-					ng-click="firstCtrl.Page('performance-chart')">
-						Performance
-				</a>
-				<a
-					ng-class="{active: firstCtrl.ShowMainTable}"
-					ng-click="firstCtrl.Page('main-table')">
-						Main Table
-				</a>
-			</nav>
+			<div class="header-info-wrapper">
+				<div class="header-info" ng-if="firstCtrl.SizesTableData.length > 0">
+					<a class="header-website" href="{{firstCtrl.SizesTableData[0]['Name']}}">
+						{{firstCtrl.SizesTableData[0]['Name']}}
+					</a>
+					<div class="header-files-statistics">
+						<div class="header-group">
+							<span class="header-group-number">{{firstCtrl.SizesTableData[0]['devperf.cssCount.new']}}</span>
+							CSS resources
+							<span class="header-group-divider"></span>
+							<span class="header-group-number">{{firstCtrl.SizesTableData[0]['devperf.cssSize.new']/1024 | number : 1}}</span>
+							kb total CSS size
+						</div>
+						<div class="header-group">
+							<span class="header-group-number">{{firstCtrl.SizesTableData[0]['devperf.jsCount.new']}}</span>
+							JS resources
+							<span class="header-group-divider"></span>
+							<span class="header-group-number">{{firstCtrl.SizesTableData[0]['devperf.jsSize.new']/1024 | number : 1}}</span>
+							kb total JS size
+						</div>
+					</div>
+				</div>
+			</div>
 
-			<button class="button-primary js-open-filter" type="button"><i class="fa fa-plus"></i>Add/Remove Columns</button>
-			<button
-				class="button-link"
-				ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true;"
-				ng-class="{active: firstCtrl.ShowDesktop}"
-				type="button">
-					<i class="fa fa-desktop"></i>Desktop
-			</button>
-			<button
-				class="button-link"
-				ng-click="firstCtrl.ShowMobile=true; firstCtrl.ShowDesktop=false;"
-				ng-class="{active: firstCtrl.ShowMobile}"
-				type="button">
-					<i class="fa fa-mobile"></i>Mobile
-			</button>
+			<nav class="header-nav">
+				<div class="header-nav-group">
+					PageSpeed Insights
+					<button
+							class="button-link"
+							ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true;firstCtrl.Page('performance-chart')"
+							ng-class="{active: firstCtrl.ShowDesktop && firstCtrl.ShowPerfChart}"
+							type="button">
+						<i class="fa fa-desktop"></i>Desktop
+					</button>
+					<button
+							class="button-link"
+							ng-click="firstCtrl.ShowMobile=true; firstCtrl.ShowDesktop=false;firstCtrl.Page('performance-chart')"
+							ng-class="{active: firstCtrl.ShowMobile && firstCtrl.ShowPerfChart}"
+							type="button">
+						<i class="fa fa-mobile"></i>Mobile
+					</button>
+				</div>
+				<div class="header-nav-group">
+					<button
+						class="button-link"
+						ng-class="{active: firstCtrl.ShowMainTable}"
+						ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true;firstCtrl.Page('main-table')"
+						type="button">
+						<i class="fa fa-signal"></i>Statistics
+					</button>
+					<button class="button-ghost js-open-filter" type="button"><i class="fa fa-plus"></i>Add/Remove Columns</button>
+					</div>
+			</nav>
 		</header>
 
 		<section class="popup data-table-filter js-data-table-filter">
@@ -74,20 +99,10 @@
 
 		<div class="js-performance-tables-begining" ng-if="firstCtrl.ShowPerfChart">
 			<section class="data-table data-table--chart" ng-if="firstCtrl.ShowDesktop">
-				<h2>Desktop</h2>
+				<h2>Google PageSpeed Insights - Desktop</h2>
 				<h2 ng-if="firstCtrl.ChartData.desktop.data.length == 0" class="text-center">No data</h2>
 
 				<table ng-if="firstCtrl.ChartData.desktop.data.length > 0">
-					<thead>
-						<tr>
-							<th>
-								Name
-							</th>
-							<th>
-								Old/New
-							</th>
-						</tr>
-					</thead>
 					<tbody>
 						<tr ng-repeat="page in firstCtrl.ChartData.desktop.data">
 							<td>
@@ -99,8 +114,10 @@
 								</div>
 								<div class="data-table-bar" style="width: {{page.scores.new}}%;">
 									{{page.scores.new ? page.scores.new : "No data"}}
-									<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');" title="Google Speed Insights Advices"></button>
 								</div>
+							</td>
+							<td>
+								<button class="button-ghost blue" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');" title="Google Speed Insights Advices">Details</button>
 							</td>
 						</tr>
 					</tbody>
@@ -108,33 +125,25 @@
 			</section>
 
 			<section class="data-table data-table--chart" ng-if="firstCtrl.ShowMobile">
-				<h2>Mobile</h2>
+				<h2>Google PageSpeed Insights - Mobile</h2>
 				<h2 ng-if="firstCtrl.ChartData.mobile.data.length == 0" class="text-center">No data</h2>
 
 				<table ng-if="firstCtrl.ChartData.mobile.data.length > 0">
-					<thead>
-						<tr>
-							<th>
-								Name
-							</th>
-							<th>
-								Old/New
-							</th>
-						</tr>
-					</thead>
 					<tbody>
 						<tr ng-repeat="page in firstCtrl.ChartData.mobile.data">
 							<td>
-								{{page.Name}}
+								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
 							</td>
 							<td>
-								<div class="data-table-bar" style="width: {{page.scores.old}}%;">
+								<div class="data-table-bar mobile" style="width: {{page.scores.old}}%;">
 									{{page.scores.old ? page.scores.old : "No data"}}
 								</div>
-								<div class="data-table-bar" style="width: {{page.scores.new}}%;">
+								<div class="data-table-bar mobile" style="width: {{page.scores.new}}%;">
 									{{page.scores.new ? page.scores.new : "No data"}}
-									<button class="fa fa-info-circle" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');" title="Google Speed Insights Advices"></button>
 								</div>
+							</td>
+							<td>
+								<button class="button-ghost blue" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');" title="Google Speed Insights Advices">Details</button>
 							</td>
 						</tr>
 					</tbody>
@@ -143,6 +152,7 @@
 		</div>
 
 		<section class="data-table data-table--zebra" id="main-table" ng-if="firstCtrl.ShowMainTable">
+			<h2>Statistics</h2>
 			<h2 ng-if="firstCtrl.TableData.length == 0" class="text-center">No data</h2>
 
 			<table ng-if="firstCtrl.TableData.length > 0">
@@ -163,29 +173,6 @@
 							ng-repeat="label in firstCtrl.TableLabels"
 							ng-if="firstCtrl.ShowTableElement(label.Name)"
 							compile-html="{{firstCtrl.HandleTableValues(page, label)}}">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-
-		<section class="data-table data-table--zebra" id="count-table">
-			<h2 ng-if="firstCtrl.SizesTableData.length == 0" class="text-center">No data</h2>
-
-			<table ng-if="firstCtrl.SizesTableData.length > 0">
-				<thead>
-					<tr>
-						<th
-							ng-repeat="label in firstCtrl.SizesTableLabels">
-								{{label.PrettyName}}
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="page in firstCtrl.SizesTableData">
-						<td
-							ng-repeat="label in firstCtrl.SizesTableLabels">
-								{{page[label.Name]}}
 						</td>
 					</tr>
 				</tbody>
