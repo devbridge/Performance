@@ -310,7 +310,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 if (label.Name == 'html.context') {
                   var report = this.SpeedTests.newResults.html[SpeedTestService.SiteUrl+page.Name];
                   if (report) {
-                    return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors</button>';
+                    return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors ('+report.messages.length+')</button>';
                   } else if (report && report.messages.length == 0) {
                     return '<span class="no-html-errors status-new">No Errors</span>'
                   } else if (!report) {
