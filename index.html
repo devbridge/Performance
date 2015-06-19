@@ -152,7 +152,13 @@
 		</div>
 
 		<section class="data-table data-table--zebra" id="main-table" ng-if="firstCtrl.ShowMainTable">
-			<h2>Statistics</h2>
+			<div class="header-with-explanation">
+				<h2>Statistics</h2>
+				<div class="explanation">
+					<span class="status-old">Old</span>
+					<span class="status-new">/ New</span>
+				</div>
+			</div>
 			<h2 ng-if="firstCtrl.TableData.length == 0" class="text-center">No data</h2>
 
 			<table ng-if="firstCtrl.TableData.length > 0">

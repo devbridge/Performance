@@ -1,5 +1,6 @@
-$color-table-border: #f0f0f2;
-$color-table-zebra: #f7f7fa;
+$color-table-border: #d2d2d2;
+$color-th-border: #ccc;
+$color-table-zebra: #f2f2f2;
 
 .data-table {
 	counter-reset: table-row;
@@ -8,6 +9,7 @@ $color-table-zebra: #f7f7fa;
 	table {
 		border: 1px solid $color-table-border;
 		min-width: 100%;
+		position: relative;
 		text-align: left;
 	}
 	
@@ -21,11 +23,11 @@ $color-table-zebra: #f7f7fa;
 	}
 	
 	th {
-		color: $color-gray-light;
+		color: $color-gray-dark;
 		font-size: 13px;
 		font-weight: normal;
-		
 		vertical-align: middle;
+		min-width: 100px;
 	}
 	
 	td {
@@ -48,6 +50,25 @@ $color-table-zebra: #f7f7fa;
 }
 
 .data-table--zebra {
+	table {
+		&:before { //30px padding after long(width) table
+			background: transparent;
+			content: '';
+			height: 1px;
+			left: 100%;
+			position: absolute;
+			width: 30px;
+			top: 1px;
+		}
+	}
+
+	th {
+		border-bottom: 1px solid $color-th-border;
+	}
+
+	td {
+		border-top: 0;
+	}
 	tr:nth-child(odd) td {
 		background: $color-table-zebra;
 	}

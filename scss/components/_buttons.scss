@@ -86,4 +86,20 @@
 	.fa-signal {
 		font-size: 24px;
 	}
+
+	&.has-html-errors {
+		color: $color-red;
+		font-weight: 600;
+		padding: 0;
+		white-space: nowrap;
+
+		.fa {
+			margin-right: 5px;
+		}
+
+		&:hover {
+			color: darken($color-red, 10%);
+		}
+	}
 }
+

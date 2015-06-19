@@ -1,9 +1,9 @@
 .data-table-filter {
 	@extend %layer-8;
 	display: none;
-	left: 416px;
+	left: 415px;
 	position: fixed;
-	top: 18px;
+	top: 70px;
 	
 	&.visible {
 		display: block;

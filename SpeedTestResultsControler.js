@@ -322,15 +322,23 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 if (label.Name == 'html.context.new') {
                   var report = this.SpeedTests.newResults.html[SpeedTestService.SiteUrl+page.Name];
                   if (report) {
-                    return '<button class="has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button">Page Errors</button>';
+                    return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors</button>';
                   } else if (report && report.messages.length == 0) {
-                    return '<span class="no-html-errors">Page valid</span>'
+                    return '<span class="no-html-errors status-new">No Errors</span>'
                   } else if (!report) {
                     return '<span>No data</span>'
                   }
                 }
                 if (label.Name == 'Name') {
                   return '<a href="'+this.SiteUrl+page.Name+'" target="_blank">'+page.Name+'</a>';
+                }
+                if (label.Name == 'desktop.ruleGroups.SPEED.score.new') {
+                  var score = page['desktop.ruleGroups.SPEED.score.new'];
+                  if(score >= this.MinimumPassScore) {
+                    return '<span class="status-positive">' + page['desktop.ruleGroups.SPEED.score.new'] + '</span>';
+                  } else {
+                    return '<span class="status-negative">' + page['desktop.ruleGroups.SPEED.score.new'] + '</span>';
+                  }
                 }
                 var content = page[label.Name];
                 return content !== undefined ? '<span>'+content+'</span>' : '<span></span>';

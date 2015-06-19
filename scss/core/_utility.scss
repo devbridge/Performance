@@ -1,3 +1,25 @@
 .text-center {
 	text-align: center;
 }
+
+.status-positive {
+	color: $color-green;
+	font-weight: 600;
+}
+
+.status-negative {
+	color: $color-red;
+	font-weight: 600;
+}
+
+.status-old {
+	color: $color-old;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.status-new {
+	color: $color-black;
+	font-weight: 700;
+	font-size: 16px;
+}
