@@ -60,7 +60,7 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **Default value:** ```true```<br>
 **Description:** You can disable [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights) if it's information is not needed for you but it is **not recommended**.<br><br>
 
-**options.googleAPIKey*** <br>
+**options.googleAPIKey** <br>
 **Type:** ```string```<br>
 **Default value:** ```""``` (Empty string)<br>
 **Description:** To test this app you can not set it, but latter on for live envirioments please set it.<br><br>
@@ -80,7 +80,7 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **Default value:** ```"./speedtest.txt"```<br>
 **Description:** Where to put results collected, formated by this task.<br><br>
 
-**options.logFilterKeys*** <br>
+**options.logFilterKeys** <br>
 **Type:** ```bool```<br>
 **Default value:** ```false```<br>
 **Description:** Whether or not webpage will log **filter keys** (explanaition on next option) to console.<br><br>
