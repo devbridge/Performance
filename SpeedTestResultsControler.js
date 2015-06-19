@@ -176,7 +176,11 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   arr.reverse();
                 } else {
                   arr.sort(function(a,b){
-                    return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
+                    if (label == 'Name') {
+                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label]>b[label] ? 1:-1);
+                    } else {
+                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
+                    }
                   });
                 }
                 this.OrderBy = label;
