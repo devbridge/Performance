@@ -376,6 +376,23 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 }
               };
 
+              this.uiStickyElements = function () {
+                $(window).on('scroll resize', function (event) {
+                  var scrollTop = $(window).scrollTop();
+                  $(".js-keep-in-right").css("left", $(window).scrollLeft() + $(window).outerWidth());
+
+                  if(scrollTop < 55) {
+                    $(".js-sticky-header")
+                        .css("margin-top", "-" + scrollTop + "px")
+                        .removeClass("sticky");
+                  } else {
+                    $(".js-sticky-header")
+                        .css("margin-top", -55)
+                        .addClass("sticky");
+                  }
+                })
+              };
+
               this.Page();
               this.SetChartData();
               this.LoadFilters();
@@ -391,6 +408,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.LoadConfig(localStorage === undefined || localStorage.getItem(localStorageSettingsKey) == null ? defaultConfig : JSON.parse(localStorage.getItem(localStorageSettingsKey)));
               this.TableData = this.SetCustomTableData(this.Fillters);
               this.TableLabels = this.GetTableLabels(this.TableData);
+              this.uiStickyElements();
 
               this.GetKeys = SpeedTestService.GetKeys;
             }]).directive('compileHtml', ['$compile', function($compile) {
