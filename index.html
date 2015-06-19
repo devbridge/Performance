@@ -45,15 +45,15 @@
 					PageSpeed Insights
 					<button
 							class="button-link"
-							ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true;firstCtrl.Page('performance-chart')"
-							ng-class="{active: firstCtrl.ShowDesktop && firstCtrl.ShowPerfChart}"
+							ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true"
+							ng-class="{active: firstCtrl.ShowDesktop}"
 							type="button">
 						<i class="fa fa-desktop"></i>Desktop
 					</button>
 					<button
 							class="button-link"
-							ng-click="firstCtrl.ShowMobile=true; firstCtrl.ShowDesktop=false;firstCtrl.Page('performance-chart')"
-							ng-class="{active: firstCtrl.ShowMobile && firstCtrl.ShowPerfChart}"
+							ng-click="firstCtrl.ShowMobile=true; firstCtrl.ShowDesktop=false"
+							ng-class="{active: firstCtrl.ShowMobile}"
 							type="button">
 						<i class="fa fa-mobile"></i>Mobile
 					</button>
@@ -61,8 +61,15 @@
 				<div class="header-nav-group">
 					<button
 						class="button-link"
+						ng-class="{active: firstCtrl.ShowPerfChart}"
+						ng-click="firstCtrl.Page('performance-chart')"
+						type="button">
+						<i class="fa fa-signal"></i>Chart
+					</button>
+					<button
+						class="button-link"
 						ng-class="{active: firstCtrl.ShowMainTable}"
-						ng-click="firstCtrl.ShowMobile=false; firstCtrl.ShowDesktop=true;firstCtrl.Page('main-table')"
+						ng-click="firstCtrl.Page('main-table')"
 						type="button">
 						<i class="fa fa-signal"></i>Statistics
 					</button>
