@@ -62,8 +62,6 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               function MakeNamePretty(name){
                 if (SpeedTestService.Translations[name] !== undefined) {
                   return name, SpeedTestService.Translations[name];
-                } else if (SpeedTestService.Translations[name.substring(0,name.length-4)] !== undefined){
-                  return AddOldOrNew(name, SpeedTestService.Translations[name.substring(0,name.length-4)]);
                 } else {
                   var splittedName = name.split('.');
                   return AddNames(splittedName, HandleWords(splittedName.shift()), 2);
@@ -77,17 +75,6 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
 
                   function HandleWords(word) {
                     return word[0].toUpperCase()+word.substring(1);
-                  }
-                }
-
-                function AddOldOrNew(name, newName) {
-                  console
-                  if (name.indexOf('.old') == name.length-4) {
-                    return newName + ' Old';
-                  } else if (name.indexOf('.new') == name.length-4) {
-                    return newName + ' New';
-                  } else {
-                    return newName;
                   }
                 }
               }
@@ -115,16 +102,17 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   // resultsToGet - example desktop.speed.result.score, devperf.fastestResponse
                   for (var j = 0; j < resultsToGet.length; j++) {
                     var path = resultsToGet[j].Name.split('.');
+                    tableItem[resultsToGet[j].Name] = {};
                     if (this.SpeedTests.oldResults !== null &&
                       this.SpeedTests.oldResults[path[0]] &&
                       this.SpeedTests.oldResults[path[0]][webSites[i]] !== undefined){
-                      tableItem[resultsToGet[j].Name+'.old'] = GetValue(this.SpeedTests.oldResults[path.shift()][webSites[i]], path);
+                      tableItem[resultsToGet[j].Name].old = GetValue(this.SpeedTests.oldResults[path.shift()][webSites[i]], path);
                     }
                     path = resultsToGet[j].Name.split('.');
                     if (this.SpeedTests.newResults !== null &&
                       this.SpeedTests.newResults[path[0]] &&
                       this.SpeedTests.newResults[path[0]][webSites[i]] !== undefined){
-                      tableItem[resultsToGet[j].Name+'.new'] = GetValue(this.SpeedTests.newResults[path.shift()][webSites[i]], path);
+                      tableItem[resultsToGet[j].Name].new = GetValue(this.SpeedTests.newResults[path.shift()][webSites[i]], path);
                     }
                   };
                   customTableData.push(tableItem);
@@ -188,7 +176,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   arr.reverse();
                 } else {
                   arr.sort(function(a,b){
-                    return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label]>b[label] ? 1:-1);
+                    return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
                   });
                 }
                 this.OrderBy = label;
@@ -207,9 +195,9 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   if (SpeedTestService.Translations[labels[i]] !== false) {
                     prettyLabels.push({Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
                   }
-                  if (labels[i].indexOf('.ruleGroups.SPEED.score.new')>0 && labels.indexOf('html.context.new')>-1) {
-                    labels[labels.indexOf('html.context.new')] = ' ';
-                    prettyLabels.push({Name:'html.context.new', PrettyName:MakeNamePretty('html.context.new')});
+                  if (labels[i].indexOf('.ruleGroups.SPEED.score')>0 && labels.indexOf('html.context')>-1) {
+                    labels[labels.indexOf('html.context')] = ' ';
+                    prettyLabels.push({Name:'html.context', PrettyName:MakeNamePretty('html.context')});
                   }
                 };
                 return prettyLabels;
@@ -254,7 +242,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               };
 
               this.ScorePassed = function(score, label){
-                return label.Name.indexOf('ruleGroups.SPEED.score') > -1 && score < this.MinimumPassScore;
+                return label.Name.indexOf('ruleGroups.SPEED.score.new') > -1 && score < this.MinimumPassScore;
               };
 
               this.UpdateData = function() {
@@ -319,7 +307,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
 
               // must return some kind of html cause it is rendered later on as html
               this.HandleTableValues = function(page, label) {
-                if (label.Name == 'html.context.new') {
+                if (label.Name == 'html.context') {
                   var report = this.SpeedTests.newResults.html[SpeedTestService.SiteUrl+page.Name];
                   if (report) {
                     return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors</button>';
@@ -330,18 +318,30 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   }
                 }
                 if (label.Name == 'Name') {
-                  return '<a href="'+this.SiteUrl+page.Name+'" target="_blank">'+page.Name+'</a>';
+                  return '<a href="'+this.SiteUrl+page.Name+'" target="_blank">'+page.Name.replace(this.SiteUrl, '')+'</a>';
                 }
-                if (label.Name == 'desktop.ruleGroups.SPEED.score.new') {
-                  var score = page['desktop.ruleGroups.SPEED.score.new'];
-                  if(score >= this.MinimumPassScore) {
-                    return '<span class="status-positive">' + page['desktop.ruleGroups.SPEED.score.new'] + '</span>';
+                if (label.Name == 'desktop.ruleGroups.SPEED.score') {
+                  var score = page['desktop.ruleGroups.SPEED.score'];
+                  if(score.new >= this.MinimumPassScore) {
+                    return '<span class="status-positive">' + page['desktop.ruleGroups.SPEED.score'].new + '</span>';
                   } else {
-                    return '<span class="status-negative">' + page['desktop.ruleGroups.SPEED.score.new'] + '</span>';
+                    return '<span class="status-negative">' + page['desktop.ruleGroups.SPEED.score'].new + '</span>';
                   }
                 }
-                var content = page[label.Name];
-                return content !== undefined ? '<span>'+content+'</span>' : '<span></span>';
+                var content = page[label.Name],
+                  tableLine = '<span></span>';
+                if (content) {
+                  if (content.old !== undefined) {
+                    tableLine += '<span class="status-old">'+content.old+'</span>';
+                  }
+                  if (content.old !== undefined && content.new !== undefined) {
+                    tableLine += '<br>';
+                  }
+                  if (content.new !== undefined) {
+                    tableLine += '<span class="status-new">'+content.new+'</span>';
+                  }
+                }
+                return tableLine;
               };
 
               this.ShowTableElement = function(label){
@@ -386,7 +386,6 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.Sort(this.SizesTableData, 'Name');
               this.SizesTableData = [this.SizesTableData.pop()]
               this.SizesTableLabels = this.GetTableLabels(this.SizesTableData);
-              this.SizesTableLabels = this.SizesTableLabels.filter(function (label) { return label.Name.indexOf('.old') != label.Name.length-4; });
               this.ClearFilters();
               // seting main table data
               this.LoadConfig(localStorage === undefined || localStorage.getItem(localStorageSettingsKey) == null ? defaultConfig : JSON.parse(localStorage.getItem(localStorageSettingsKey)));
