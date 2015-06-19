@@ -37,6 +37,7 @@ $color-table-zebra: #f2f2f2;
 		&:first-child {
 			min-width: 400px;
 			padding-left: 48px;
+			vertical-align: middle;
 
 			&:before {
 				color: $color-black;

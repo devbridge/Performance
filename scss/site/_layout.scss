@@ -28,13 +28,20 @@ h2 {
 }
 
 .header-with-explanation {
+	margin: 0 -30px;
+	position: relative;
+	padding: 0 30px;
+
 	h2 {
 		display: inline-block;
 	}
 
 	.explanation {
-		float: right;
+		left: 100%;
 		line-height: 30px;
-		margin: 3em 0 0;
+		margin: 0 0 0 -102px;
+		position: absolute;
+		top: 40px;
+		white-space: nowrap;
 	}
 }

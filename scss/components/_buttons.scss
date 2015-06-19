@@ -35,7 +35,7 @@
 	background: none;
 
 	&:hover {
-		color: $color-blue-light;
+		color: $color-blue-washed;
 	}
 
 	.fa-plus {
@@ -44,11 +44,14 @@
 	}
 
 	&.blue {
-		border-color: $color-blue;
+		border-color: $color-blue-light;
+		border-width: 2px;
+		border-radius: 4px;
 		color: $color-blue;
+		font-weight: 700;
 
 		&:hover {
-			border-color: darken($color-blue, 10%);
+			border-color: $color-blue;
 			color: darken($color-blue, 10%);
 		}
 	}
@@ -60,10 +63,9 @@
 	border: 0;
 	color: $color-white;
 	padding: 6px 12px;
-	transition: color .3s;
 
 	&:hover {
-		color: $color-blue-light;
+		color: $color-blue-washed;
 	}
 
 	&.active {
@@ -76,15 +78,15 @@
 	}
 	
 	.fa-desktop {
-		font-size: 24px;
+		font-size: 1.5em;
 	}
 	
 	.fa-mobile {
-		font-size: 32px;
+		font-size: 2em;
 	}
 
 	.fa-signal {
-		font-size: 24px;
+		font-size: 1.5em;
 	}
 
 	&.has-html-errors {
@@ -103,3 +105,20 @@
 	}
 }
 
+button {
+	&:focus {
+		outline: 1px dashed $color-blue-washed;
+	}
+
+	.data-table & {
+		&:focus {
+			outline: 1px dashed $color-blue-light;
+		}
+	}
+}
+
+a {
+	&:focus {
+		outline: 1px dashed $color-blue-light;
+	}
+}

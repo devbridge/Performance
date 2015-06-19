@@ -8,6 +8,23 @@
 	position: fixed;
 	right: 0;
 	top: 0;
+
+	&.sticky {
+		height: 105px;
+
+		.header-nav {
+			font-size: 12px;
+			height: 50px;
+
+			.header-nav-group {
+				padding: 7px 10px;
+
+				&:first-child {
+					padding-left: 30px;
+				}
+			}
+		}
+	}
 }
 
 .header-info-wrapper {
@@ -69,8 +86,8 @@
 	box-sizing: border-box;
 	display: inline-block;
 	font-size: 16px;
-	vertical-align: middle;
 	height: 70px;
+	vertical-align: middle;
 
 	.header-nav-group {
 		border-right: 1px solid #3f3f3f;
