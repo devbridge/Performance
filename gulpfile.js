@@ -61,6 +61,9 @@ function speedtest() {
 
     results = { oldresults: { mobile: null, desktop: null }, newresults: {} },
     errorOccured = false;
+    if (settings.googleAPIKey) {
+        googleAPIURL += '&key='+settings.googleAPIKey;
+    }
 
     if (fs.existsSync(logFile)) {
         results = JSON.parse(fs.readFileSync(logFile, { encoding: 'Utf-8' }));
