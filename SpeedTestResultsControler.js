@@ -203,6 +203,9 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                     prettyLabels.push({Name:'html.context', PrettyName:MakeNamePretty('html.context')});
                   }
                 };
+                if (SpeedTestService.Settings.logFilterKeys) {
+                  console.log(labels);
+                }
                 return prettyLabels;
               };
 
