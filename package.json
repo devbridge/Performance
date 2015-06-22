@@ -1,6 +1,6 @@
 {
   "name": "devbridge-perf-tool",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Tool to test your web pages performance.",
   "author": "Gediminas Stanaitis <gedas@devbridge.com>",
   "main": "gulpfile.js",
@@ -21,8 +21,7 @@
     "front-end checklist",
     "devbridge"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-devperf": "^0.2.13",
