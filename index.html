@@ -110,10 +110,15 @@
 								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
 							</td>
 							<td>
-								<div class="data-table-bar" style="width: {{page.scores.old}}%;">
+								<div
+									class="data-table-bar"
+									style="width: {{page.scores.old}}%;">
 									{{page.scores.old ? page.scores.old : "No data"}}
 								</div>
-								<div class="data-table-bar" style="width: {{page.scores.new}}%;">
+								<div
+									class="data-table-bar"
+									ng-class="{failed: page.scores.new < firstCtrl.MinimumPassScore,passed: page.scores.new >= firstCtrl.MinimumPassScore}"
+									style="width: {{page.scores.new}}%;">
 									{{page.scores.new ? page.scores.new : "No data"}}
 								</div>
 							</td>
@@ -136,10 +141,15 @@
 								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
 							</td>
 							<td>
-								<div class="data-table-bar mobile" style="width: {{page.scores.old}}%;">
+								<div
+									class="data-table-bar mobile"
+									style="width: {{page.scores.old}}%;">
 									{{page.scores.old ? page.scores.old : "No data"}}
 								</div>
-								<div class="data-table-bar mobile" style="width: {{page.scores.new}}%;">
+								<div
+								class="data-table-bar mobile"
+								ng-class="{failed: page.scores.new < firstCtrl.MinimumPassScore,passed: page.scores.new >= firstCtrl.MinimumPassScore}"
+								style="width: {{page.scores.new}}%;">
 									{{page.scores.new ? page.scores.new : "No data"}}
 								</div>
 							</td>
