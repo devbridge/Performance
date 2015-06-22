@@ -22,6 +22,8 @@
     "devbridge"
   ],
   "dependencies": {
+  },
+  "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-devperf": "^0.2.13",
     "grunt-then": "^1.0.0",
@@ -31,7 +33,6 @@
     "w3cjs": "^0.3.0",
     "xmlhttprequest": "^1.7.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
