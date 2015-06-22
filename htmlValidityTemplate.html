@@ -1,16 +1,19 @@
 <section class="popup popup-advices">
 	<header>
-		<h2>Html errors</h2>
+		<h2>Html Errors</h2>
+		<a class="modal-link" href="{{firstCtrl.ModalWebPageKey}}" target="_blank">{{firstCtrl.ModalWebPageKey}}</a>
+		<button class="button-close" ng-click="closeThisDialog()"><i class="fa fa-close"></i></button>
 	</header>
-
 	<span ng-init="messages=firstCtrl.GetHtmlPageErrors()"></span>
 	<ul>
 		<li ng-repeat="message in messages">
-			<strong title="{{advices[adviceKey].summary.format}}">
+			<div class="error-title" title="{{advices[adviceKey].summary.format}}">
 				{{message.message}}
-			</strong> <br>
-			Line: {{message.lastLine}}<br>
-			Column: {{message.lastColumn}}
+			</div>
+			<div class="error-position">
+				Line: <strong>{{message.lastLine}}</strong><br>
+				Column: <strong>{{message.lastColumn}}</strong>
+			</div>
 		</li>
 	</ul>
 </section>

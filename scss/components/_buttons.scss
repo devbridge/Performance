@@ -105,6 +105,33 @@
 	}
 }
 
+.button-close {
+	background: $color-black;
+	border-radius: 50%;
+	border: 0;
+	color: $color-white;
+	height: 20px;
+	line-height: 20px;
+	padding: 0;
+	position: absolute;
+	right: 5px;
+	text-align: center;
+	top: 5px;
+	vertical-align: middle;
+	width: 20px;
+	transition: .3s;
+
+	.fa-close {
+		display: block;
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	&:hover {
+		background: $color-gray-light;
+	}
+}
+
 button {
 	&:focus {
 		outline: 1px dashed $color-blue-washed;

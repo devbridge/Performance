@@ -32,12 +32,11 @@ $color-table-zebra: #f2f2f2;
 	
 	td {
 		border-top: 1px solid $color-table-border;
-		vertical-align: top;
+		vertical-align: middle;
 		
 		&:first-child {
 			min-width: 400px;
 			padding-left: 48px;
-			vertical-align: middle;
 
 			&:before {
 				color: $color-black;
@@ -86,7 +85,6 @@ $color-table-zebra: #f2f2f2;
 
 		&:last-child {
 			width: 100px;
-			vertical-align: middle;
 		}
 	}
 }
@@ -120,33 +118,16 @@ $color-table-zebra: #f2f2f2;
 	}
 	
 	&:last-child {
-		background: $color-red;
+		background: $color-black;
 		color: $color-white;
 		margin-bottom: 1px;
-		
-		&[style*='width: 8'],
-		&[style*='width: 9'],
-		&[style*='width: 100%;'] {
-			background: $color-green;
-		}
-		
-		&[style*='width: 8%;'],
-		&[style*='width: 9%;'] {
-			background: $color-red;
-		}
 	}
 
-	&.mobile {
-		&:last-child {
-			&[style*='width: 6'],
-			&[style*='width: 7'] {
-				background: $color-green;
-			}
+	&.passed {
+		background: $color-green;
+	}
 
-			&[style*='width: 6%;'],
-			&[style*='width: 7%;'] {
-				background: $color-red;
-			}
-		}
+	&.failed {
+		background: $color-red;
 	}
 }

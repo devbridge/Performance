@@ -64,8 +64,9 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   return name, SpeedTestService.Translations[name];
                 } else {
                   var splittedName = name.split('.');
-                  return AddNames(splittedName, HandleWords(splittedName.shift()), 2);
-
+                  function HandleWords(word) {
+                    return word[0].toUpperCase()+word.substring(1);
+                  }
                   function AddNames(arr, name, depth) {
                     if (arr.length == 0 || depth < 1) {
                       return name;
@@ -73,9 +74,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                     return AddNames(arr, name+' '+HandleWords(arr.pop()), --depth);
                   }
 
-                  function HandleWords(word) {
-                    return word[0].toUpperCase()+word.substring(1);
-                  }
+                  return AddNames(splittedName, HandleWords(splittedName.shift()), 2);
                 }
               }
 

@@ -1,29 +1,46 @@
+$color-border: #ccc;
+$color-zebra: #f2f2f2;
+
 .popup {
 	background: $color-white;
 	box-shadow: 0 0 10px 1px rgba($color-black, .2);
-	width: 420px;
+	font-size: 16px;
 	
 	header {
-		padding: 20px;
+		padding: 20px 30px;
 	}
 	
 	h2 {
 		color: $color-gray-dark;
 		display: inline-block;
-		font-size: 18px;
-		font-weight: normal;
+		line-height: 1;
 		margin: 0;
 	}
 	
 	ul {
+		border-top: 1px solid $color-border;
 		list-style-type: none;
 		margin: 0;
+		overflow: auto;
 		padding: 0;
 	}
 	
 	li {
-		border-bottom: 1px solid $color-lightgray;
-		padding: 12px 20px;
+		@include clearfix;
+		border-bottom: 1px solid $color-border;
+		padding: 12px 30px;
+		position: relative;
+	}
+
+	.error-title {
+		float: left;
+		width: 400px;
+	}
+
+	.error-position {
+		float: right;
+		width: 130px;
+		text-align: right;
 	}
 }
 
@@ -31,7 +48,49 @@
 	margin: 10vh auto 0;
 	max-height: 80vh;
 	overflow: auto;
-	
+	height: 80vh;
+	width: 640px;
+
+	ul {
+		position: absolute;
+		right: 0;
+		top: 100px;
+		bottom: 0;
+		left: 0;
+
+		li {
+			&:nth-child(odd) {
+				background: $color-zebra;
+			}
+		}
+	}
+
+	h2 {
+		display: block;
+		margin-bottom: .5em;
+	}
+
+	.modal-link {
+		@include ellipsis;
+		display: block;
+
+		&.near-score {
+			float: left;
+			width: 350px;
+			margin-right: 20px;
+		}
+	}
+
+	.modal-score {
+		float: right;
+		margin-top: -18px;
+
+		.modal-score-number {
+			margin-left: 10px;
+			font-size: 2em;
+		}
+	}
+
 	h3 {
 		margin: 0;
 		padding: 10px 20px;
