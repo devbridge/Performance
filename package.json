@@ -1,6 +1,6 @@
 {
   "name": "devbridge-perf-tool",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "Tool to test your web pages performance.",
   "author": "Gediminas Stanaitis <gedas@devbridge.com>",
   "main": "gulpfile.js",
@@ -31,8 +31,7 @@
     "w3cjs": "^0.3.0",
     "xmlhttprequest": "^1.7.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
