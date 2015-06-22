@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
     prefix = './node_modules/devbridge-perf-tool/',
     // prefix = './', // uncomment this line if you will run this module straight from this folder
-    settings = JSON.parse(fs.readFileSync(prefix+"settings.txt", { encoding: 'Utf-8' })),
+    settings = JSON.parse(fs.readFileSync(prefix+"defaultSettings.txt", { encoding: 'Utf-8' })),
     logFile = settings.logFile,
     siteURL = settings.siteURL,
     sitePages = settings.sitePages,
@@ -146,6 +146,7 @@ function performance(options) {
     }
     siteURL = settings.siteURL;
     sitePages = settings.sitePages;
+    fs.writeFile(settingsFile, JSON.stringify("./settings.txt"), function (err) {if (err) console.log(err);});
     if (settings.runDevPerf !== undefined && settings.runDevPerf) {
         GruntTasks(grunt);
         grunt.task.run('customdevperf');
