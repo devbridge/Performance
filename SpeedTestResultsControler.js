@@ -60,8 +60,8 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.SizesTableLabels = [];
 
               function MakeNamePretty(name){
-                if (SpeedTestService.Translations[name] !== undefined) {
-                  return name, SpeedTestService.Translations[name];
+                if (SpeedTestService.Settings.translations[name] !== undefined) {
+                  return SpeedTestService.Settings.translations[name];
                 } else {
                   var splittedName = name.split('.');
                   function HandleWords(word) {
@@ -195,7 +195,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 labels = labels.filter(function (value, index, self) { return self.indexOf(value) === index; });
                 var prettyLabels = [];
                 for (var i = 0; i < labels.length; i++) {
-                  if (SpeedTestService.Translations[labels[i]] !== false) {
+                  if (SpeedTestService.Settings.translations[labels[i]] !== false) {
                     prettyLabels.push({Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
                   }
                   if (labels[i].indexOf('.ruleGroups.SPEED.score')>0 && labels.indexOf('html.context')>-1) {
@@ -229,7 +229,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 arr = arr.filter(function (value, index, self) { return self.indexOf(value) === index; });
                 this.Fillters = [];
                 for (var i = 0; i < arr.length; i++) {
-                  if (SpeedTestService.Translations[arr[i]] !== false) {
+                  if (SpeedTestService.Settings.translations[arr[i]] !== false) {
                     mainScope.Fillters.push({Name:arr[i], PrettyName:MakeNamePretty(arr[i]),Value:false});
                   }
                 };

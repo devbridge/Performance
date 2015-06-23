@@ -233,6 +233,7 @@
 		"Name":"Url",
 		"html.context":"Page errors",
 		"html.context.new":"Page errors",
-		"html.context.old":false
+		"html.context.old":false,
+		"mobile.ruleGroups.USABILITY.score":false
 	}
 }
