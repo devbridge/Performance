@@ -1,8 +1,6 @@
 var gulp = require('gulp'),
     grunt = require('grunt'),
     fs = require('fs'),
-    sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     w3cjs = require('w3cjs'),
 
@@ -33,9 +31,9 @@ function showError(error) {
 
 gulp.task('sass', function() {
     return gulp.src('scss/site-styles.scss')
-        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(require('gulp-sass')({outputStyle: 'compressed'}))
         .on('error', showError)
-        .pipe(autoprefixer('last 2 version', 'ios 6', 'android 4'))
+        .pipe(require('gulp-autoprefixer')('last 2 version', 'ios 6', 'android 4'))
         .pipe(gulp.dest('content/styles'));
 });
 
@@ -149,7 +147,7 @@ function performance(options) {
     }
     siteURL = settings.siteURL;
     sitePages = settings.sitePages;
-    fs.writeFile(settingsFile, JSON.stringify("./settings.txt"), function (err) {if (err) console.log(err);});
+    fs.writeFile("./settings.txt", JSON.stringify(settings), function (err) {if (err) console.log(err);});
     if (settings.runDevPerf !== undefined && settings.runDevPerf) {
         GruntTasks(grunt);
         grunt.task.run('customdevperf');

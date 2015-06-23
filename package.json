@@ -21,16 +21,17 @@
     "front-end checklist",
     "devbridge"
   ],
-  "dependencies": {},
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-devperf": "^0.2.13",
-    "grunt-then": "^1.0.0",
+  "dependencies": {
     "gulp": "^3.9.0",
+    "grunt": "~0.4.5",
+    "xmlhttprequest": "~1.7.0",
+    "w3cjs": "~0.3.0",
+    "grunt-devperf": "~0.2.13",
+    "grunt-then": "~1.0.0"
+  },
+  "devDependencies": {
     "gulp-autoprefixer": "^2.3.1",
-    "gulp-sass": "^2.0.1",
-    "w3cjs": "^0.3.0",
-    "xmlhttprequest": "^1.7.0"
+    "gulp-sass": "^2.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
