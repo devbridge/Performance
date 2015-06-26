@@ -9,6 +9,7 @@
 	"devperfResultsFile":"./devperf/results.json",
 	"logFilterKeys":false,
     "logFile":"./speedtest.txt",
+    "minimumPassScore":80,
 	"translations":{
 		"desktop.formattedResults.locale":"Locale",
 		"desktop.formattedResults.ruleResults.AvoidLandingPageRedirects.localizedRuleName":"Avoid Landing Page Redirects",

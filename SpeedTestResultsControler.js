@@ -2,7 +2,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
             function SpeedTestResultsControler($scope, SpeedTestService, ngDialog, $sce, $compile, $location) {
               this.SearchFilter ='';
               this.OrderBy ='';
-              this.MinimumPassScore =80;
+              this.MinimumPassScore = SpeedTestService.Settings.minimumPassScore && SpeedTestService.Settings.minimumPassScore >= 0 && SpeedTestService.Settings.minimumPassScore <= 100 ? SpeedTestService.Settings.minimumPassScore : 80;
               this.ShowDesktop = true;
               this.ShowMobile = false;
               this.ShowPerfChart = true;
