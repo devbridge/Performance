@@ -19,7 +19,7 @@
 		<header class="header js-sticky-header">
 			<div class="header-info-wrapper">
 				<div class="header-info" ng-if="firstCtrl.SizesTableData.length > 0">
-					<a class="header-website" target="_blank" href="{{firstCtrl.SizesTableData[0]['Name']}}">
+					<a class="header-website" target="_blank" href="{{firstCtrl.SiteUrl+firstCtrl.SizesTableData[0]['Name']}}">
 						{{firstCtrl.SiteUrl+firstCtrl.SizesTableData[0]['Name']}}
 					</a>
 					<div class="header-files-statistics">
@@ -123,7 +123,13 @@
 								</div>
 							</td>
 							<td>
-								<button class="button-ghost blue" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');" title="Google Speed Insights Advices">Details</button>
+								<button
+									class="button-ghost blue"
+									ng-if="firstCtrl.HasGoogleSpeedInsightsAdvices(page.Name, 'desktop');"
+									ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'desktop');"
+									title="Google Speed Insights Advices">
+										Details
+								</button>
 							</td>
 						</tr>
 					</tbody>
@@ -154,7 +160,13 @@
 								</div>
 							</td>
 							<td>
-								<button class="button-ghost blue" ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');" title="Google Speed Insights Advices">Details</button>
+								<button
+									class="button-ghost blue"
+									ng-if="firstCtrl.HasGoogleSpeedInsightsAdvices(page.Name, 'mobile');"
+									ng-click="firstCtrl.OpenGoogleSpeedInsightsAdvicesModal(page.Name, 'mobile');"
+									title="Google Speed Insights Advices">
+										Details
+								</button>
 							</td>
 						</tr>
 					</tbody>

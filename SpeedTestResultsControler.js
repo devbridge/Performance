@@ -285,10 +285,21 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 return {};
               };
 
+              this.HasGoogleSpeedInsightsAdvices = function(page, type) {
+                if (this.SpeedTests.newResults !== undefined) {
+                  if (this.SpeedTests.newResults[type] !== undefined) {
+                    if (this.SpeedTests.newResults[type][(this.SiteUrl||'')+page] !== undefined) {
+                      return Object.keys(this.SpeedTests.newResults[type][(this.SiteUrl||'')+page].formattedResults.ruleResults).length > 0;
+                    }
+                  }
+                }
+                return false;
+              };
+
               this.OpenGoogleSpeedInsightsAdvicesModal = function(page, type) {
                 this.ShowDesktop = type == 'desktop';
                 this.ShowMobile = type == 'mobile';
-                this.ModalWebPageKey = SpeedTestService.SiteUrl+page;
+                this.ModalWebPageKey = (this.SiteUrl||'')+page;
                 ngDialog.open({
                   template: 'dialogTemplate.html',
                   scope: $scope
@@ -296,7 +307,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               };
 
               this.OpenHtmlValidityModal = function(page) {
-                this.ModalWebPageKey = SpeedTestService.SiteUrl+page;
+                this.ModalWebPageKey = (this.SiteUrl||'')+page;
                 ngDialog.open({
                   template: 'htmlValidityTemplate.html',
                   scope: $scope
@@ -314,7 +325,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               // must return some kind of html cause it is rendered later on as html
               this.HandleTableValues = function(page, label) {
                 if (label.Name == 'html.context') {
-                  var report = this.SpeedTests.newResults.html[SpeedTestService.SiteUrl+page.Name];
+                  var report = this.SpeedTests.newResults.html[this.SiteUrl+page.Name];
                   if (report) {
                     return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors ('+report.messages.length+')</button>';
                   } else if (report && report.messages.length == 0) {
