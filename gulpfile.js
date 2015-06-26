@@ -54,6 +54,7 @@ gulp.task('perf-tool', function(){
 gulp.task('default', ['perf-tool']);
 
 function speedtest() {
+    console.log('(Google page speed) Job started.');
     var googleAPIURL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?filter_third_party_resources=false&locale=en_GB&screenshot=false&strategy={selected_strategy}&url=',
     strategies = ['desktop', 'mobile'],
 
@@ -76,21 +77,26 @@ function speedtest() {
         }
         getSitePages().forEach(
             function (currentValue, index, array) {
-                var url = googleAPIURL.replace('{selected_strategy}', strategies[strategy]) + encodeURIComponent(currentValue);
-                var response = httpGet(url);
-                if (response.status == 200) {
-                    console.log(((100 / (getSitePages().length * strategies.length)) * (strategy * getSitePages().length + index + 1)).toFixed(2) + '% page speed test complete.');
-                    var pageSpeedResults = JSON.parse(response.responseText);
-                    results.newresults[strategies[strategy]][currentValue] = pageSpeedResults;
-                } else {
-                    errorOccured = true;
-                    console.log('Failed speed test for: ' + currentValue + ' response code: ' + response.status + ' request url: ' + url + ' google response: ' + response.responseText);
-                    return false;
-                }
+                        var selectedStrategy = strategies[strategy];
+                setTimeout(function(){
+                    var url = googleAPIURL.replace('{selected_strategy}', selectedStrategy) + encodeURIComponent(currentValue);
+                    var response = httpGet(url);
+                    if (response.status == 200) {
+                        var pageSpeedResults = JSON.parse(response.responseText);
+                        results.newresults[selectedStrategy][currentValue] = pageSpeedResults;
+                    } else {
+                        errorOccured = true;
+                        console.log('Failed speed test for: ' + currentValue + ' response code: ' + response.status + ' request url: ' + url + ' google response: ' + response.responseText);
+                        return false;
+                    }
+                    if (!errorOccured &&
+                        array.length == Object.keys(results.newresults[strategies[0]]).length &&
+                        array.length == Object.keys(results.newresults[strategies[1]]).length) {
+                        console.log('(Google page speed) Job finished! Writing results.');
+                        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err);});
+                    }
+                }, 1);
             });
-    }
-    if (!errorOccured) {
-        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err);});
     }
 
     function httpGet(theUrl) {
