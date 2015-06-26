@@ -8,7 +8,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.ShowPerfChart = true;
               this.ShowMainTable = false;
               this.SpeedTests = {};
-              this.SiteUrl = SpeedTestService.SiteUrl;
+              this.SiteUrl = SpeedTestService.Settings.siteURL || '';
               this.SpeedTests.oldResults = SpeedTestService.SpeedTestResults.oldresults;
               this.SpeedTests.newResults = SpeedTestService.SpeedTestResults.newresults;
               var mainScope = this,
@@ -97,7 +97,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 var webSites = this.ReturnWebsiteKeys();
                 // websites - /, /products...
                 for (var i = 0; i < webSites.length; i++) {
-                  var tableItem = {Name:webSites[i].replace(SpeedTestService.SiteUrl, "")};
+                  var tableItem = {Name:webSites[i].replace(this.SiteUrl, "")};
                   // resultsToGet - example desktop.speed.result.score, devperf.fastestResponse
                   for (var j = 0; j < resultsToGet.length; j++) {
                     var path = resultsToGet[j].Name.split('.');
@@ -152,7 +152,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   num = 0;
                   for (var j = 0; j < webSites.length; j++) {
                     var page = {scores:{}};
-                    page.Name = webSites[j].replace(SpeedTestService.SiteUrl, "");
+                    page.Name = webSites[j].replace(this.SiteUrl, "");
                     if (this.SpeedTests.newResults[types[i]] !== null &&
                       this.SpeedTests.newResults[types[i]][webSites[j]] !== undefined) {
                       page.scores.new = this.SpeedTests.newResults[types[i]][webSites[j]].ruleGroups.SPEED.score;
