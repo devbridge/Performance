@@ -43,6 +43,7 @@
 		line-height: 55px;
 		margin-left: 30px;
 
+		&:focus,
 		&:hover {
 			color: darken($color-blue, 5);
 		}
