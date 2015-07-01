@@ -170,21 +170,6 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 }
               };
 
-              this.Sort = function(arr, label) {
-                if (this.OrderBy == label) {
-                  arr.reverse();
-                } else {
-                  arr.sort(function(a,b){
-                    if (label == 'Name') {
-                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label]>b[label] ? 1:-1);
-                    } else {
-                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
-                    }
-                  });
-                }
-                this.OrderBy = label;
-              };
-
               this.GetTableLabels = function(tableData) {
                 var labels=[];
                 for(var line in tableData) {
@@ -314,12 +299,29 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 });
               };
 
-              this.GetHtmlPageErrors = function() {
-                var report = this.SpeedTests.newResults.html[this.ModalWebPageKey];
+              this.GetHtmlPageErrors = function(page) {
+                var report = this.SpeedTests.newResults.html[page || this.ModalWebPageKey];
                 if (report) {
                   return report.messages;
                 }
-                return null;
+                return [];
+              };
+
+              this.Sort = function(arr, label) {
+                if (this.OrderBy == label) {
+                  arr.reverse();
+                } else {
+                  arr.sort(function(a,b){
+                    if (label == 'Name') {
+                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label]>b[label] ? 1:-1);
+                    } else if (label == 'html.context') {
+                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : mainScope.GetHtmlPageErrors(a[label].new || a[label].old).length-mainScope.GetHtmlPageErrors(b[label].new || b[label].old).length);
+                    } else {
+                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
+                    }
+                  });
+                }
+                this.OrderBy = label;
               };
 
               // must return some kind of html cause it is rendered later on as html
