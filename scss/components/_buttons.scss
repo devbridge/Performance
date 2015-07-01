@@ -1,3 +1,10 @@
+button,
+a {
+	&:focus {
+		outline: 0;
+	}
+}
+
 %button-template {
 	display: inline-block;
 	text-align: center;
@@ -34,6 +41,7 @@
 	padding: 6px 16px;
 	background: none;
 
+	&:focus,
 	&:hover {
 		color: $color-blue-washed;
 	}
@@ -50,6 +58,7 @@
 		color: $color-blue;
 		font-weight: 700;
 
+		&:focus,
 		&:hover {
 			border-color: $color-blue;
 			color: darken($color-blue, 10%);
@@ -64,6 +73,7 @@
 	color: $color-white;
 	padding: 6px 12px;
 
+	&:focus,
 	&:hover {
 		color: $color-blue-washed;
 	}
@@ -99,6 +109,7 @@
 			margin-right: 5px;
 		}
 
+		&:focus,
 		&:hover {
 			color: darken($color-red, 10%);
 		}
@@ -106,46 +117,19 @@
 }
 
 .button-close {
-	background: $color-black;
+	background: none;
 	border-radius: 50%;
 	border: 0;
-	color: $color-white;
-	height: 20px;
-	line-height: 20px;
+	color: $color-black;
+	font-size: 37px;
+	height: 30px;
+	line-height: 30px;
 	padding: 0;
 	position: absolute;
 	right: 5px;
 	text-align: center;
 	top: 5px;
-	vertical-align: middle;
-	width: 20px;
 	transition: .3s;
-
-	.fa-close {
-		display: block;
-		font-size: 12px;
-		line-height: 20px;
-	}
-
-	&:hover {
-		background: $color-gray-light;
-	}
-}
-
-button {
-	&:focus {
-		outline: 1px dashed $color-blue-washed;
-	}
-
-	.data-table & {
-		&:focus {
-			outline: 1px dashed $color-blue-light;
-		}
-	}
-}
-
-a {
-	&:focus {
-		outline: 1px dashed $color-blue-light;
-	}
+	vertical-align: middle;
+	width: 30px;
 }

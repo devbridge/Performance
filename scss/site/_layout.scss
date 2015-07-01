@@ -3,7 +3,8 @@ body {
 	color: $color-gray-dark;
 	font: normal normal normal 14px/1.5 $font-primary;
 	margin: 0;
-	padding: 125px 0 0; //hader height
+	min-width: 1024px;
+	padding: 125px 0 0; //header height
 	position: relative;
 	
 	//To prevent the iPhone and iPad from inflating fonts
@@ -21,6 +22,11 @@ body {
 a {
 	color: $color-blue;
 	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		color: darken($color-blue, 6);
+	}
 }
 
 h2 {

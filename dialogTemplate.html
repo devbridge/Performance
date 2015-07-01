@@ -2,7 +2,7 @@
 	<header>
 		<h2>Info</h2>
 		<a class="modal-link near-score" href="{{firstCtrl.ModalWebPageKey}}" target="_blank">{{firstCtrl.ModalWebPageKey}}</a>
-		<button class="button-close" ng-click="closeThisDialog()"><i class="fa fa-close"></i></button>
+		<button class="button-close" ng-click="closeThisDialog()">&times;</button>
 
 		<div class="modal-score" ng-if="firstCtrl.ShowMobile" ng-init="scoreMobile=firstCtrl.SpeedTests.newResults.mobile[firstCtrl.ModalWebPageKey].ruleGroups.SPEED.score">
 			Mobile Score:

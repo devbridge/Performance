@@ -109,12 +109,17 @@
 							<td>
 								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
 							</td>
-							<td>
+							<td class="data-table-td--benchmark">
 								<div
 									class="data-table-bar"
 									style="width: {{page.scores.old}}%;">
 									{{page.scores.old ? page.scores.old : "No data"}}
 								</div>
+								<span
+									ng-attr-data-score="{{firstCtrl.MinimumPassScore}}"
+									class="benchmark-line"
+									style="left: calc((100% - 36px) * {{firstCtrl.MinimumPassScore}} / 100);">
+								</span>
 								<div
 									class="data-table-bar"
 									ng-class="{failed: page.scores.new < firstCtrl.MinimumPassScore,passed: page.scores.new >= firstCtrl.MinimumPassScore}"
@@ -146,12 +151,17 @@
 							<td>
 								<a href="{{firstCtrl.SiteUrl+page.Name}}" target="_blank">{{page.Name}}</a>
 							</td>
-							<td>
+							<td class="data-table-td--benchmark">
 								<div
 									class="data-table-bar mobile"
 									style="width: {{page.scores.old}}%;">
 									{{page.scores.old ? page.scores.old : "No data"}}
 								</div>
+								<span
+									ng-attr-data-score="{{firstCtrl.MinimumPassScore}}"
+									class="benchmark-line"
+									style="left: calc((100% - 36px) * {{firstCtrl.MinimumPassScore}} / 100);">
+								</span>
 								<div
 								class="data-table-bar mobile"
 								ng-class="{failed: page.scores.new < firstCtrl.MinimumPassScore,passed: page.scores.new >= firstCtrl.MinimumPassScore}"

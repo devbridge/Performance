@@ -87,6 +87,44 @@ $color-table-zebra: #f2f2f2;
 			width: 100px;
 		}
 	}
+
+	table {
+		border-top: 0;
+	}
+
+	tr {
+		&:first-child {
+			.benchmark-line {
+				&:before {
+					border-bottom: 3px solid $color-gray-dark;
+					bottom: 100%;
+					content: attr(data-score);
+					font-size: 16px;
+					font-weight: 700;
+					left: 0;
+					margin-bottom: -1px;
+					margin-left: -10px;
+					position: absolute;
+					text-align: center;
+					width: 21px;
+				}
+			}
+		}
+	}
+
+	.data-table-td--benchmark {
+		position: relative;
+
+		.benchmark-line {
+			background: $color-gray-dark;
+			bottom: -1px;
+			margin-left: 17px;
+			position: absolute;
+			top: -1px;
+			width: 1px;
+			z-index: 0;
+		}
+	}
 }
 
 .data-table-bar {
@@ -95,6 +133,7 @@ $color-table-zebra: #f2f2f2;
 	line-height: 26px;
 	padding: 0 10px;
 	position: relative;
+	z-index: 1;
 	
 	button {
 		background-color: transparent;
