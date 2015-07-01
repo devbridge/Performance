@@ -117,29 +117,19 @@ a {
 }
 
 .button-close {
-	background: $color-black;
+	background: none;
 	border-radius: 50%;
 	border: 0;
-	color: $color-white;
-	height: 20px;
-	line-height: 20px;
+	color: $color-black;
+	font-size: 37px;
+	height: 30px;
+	line-height: 30px;
 	padding: 0;
 	position: absolute;
 	right: 5px;
 	text-align: center;
 	top: 5px;
-	vertical-align: middle;
-	width: 20px;
 	transition: .3s;
-
-	.fa-close {
-		display: block;
-		font-size: 12px;
-		line-height: 20px;
-	}
-
-	&:focus,
-	&:hover {
-		background: $color-gray-light;
-	}
+	vertical-align: middle;
+	width: 30px;
 }
