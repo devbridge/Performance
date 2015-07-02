@@ -13,6 +13,9 @@ var gulp = require('gulp'),
     sitePagesUrls = [],
     htmlTestResults = [];
 
+if (!fs.existsSync('./node_modules/grunt-then')) { fs.renameSync(prefix+'node_modules/grunt-then','./node_modules/grunt-then'); }
+if (!fs.existsSync('./node_modules/grunt-devperf')) { fs.renameSync(prefix+'node_modules/grunt-devperf','./node_modules/grunt-devperf'); }
+
 function getSitePages() {
     if (sitePagesUrls.length == 0) {
         sitePagesUrls = [];
