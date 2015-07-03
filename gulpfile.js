@@ -46,8 +46,8 @@ gulp.task('watch', function() {
 
 gulp.task('perf-tool', function(){
     performance({
-        siteURL:'http://www.youtube.com',
-        sitePages: ['/'],
+        siteURL:"https://www.google.com",
+        sitePages: ["/", "/voice"],
         runDevPerf:true,
         runHtmlTest:true,
         runGoogleSpeedTest:true

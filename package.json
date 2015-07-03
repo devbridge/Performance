@@ -3,6 +3,9 @@
   "version": "0.1.32",
   "description": "Tool to test your web pages performance.",
   "author": "Gediminas Stanaitis <gedas@devbridge.com>",
+  "contributors": [
+    "Julius Senkus <julius.senkus@devbridge.com>"
+  ],
   "main": "gulpfile.js",
   "homepage": "https://www.devbridge.com/",
   "license": "MIT",

@@ -14,33 +14,10 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               var mainScope = this,
                   webPages = null,
                   localStorageSettingsKey = 'Speed test page local storage key',
-                  defaultConfig = ['desktop.ruleGroups.SPEED.score',
-                                    'mobile.ruleGroups.SPEED.score',
-                                    'desktop.ruleGroups.SPEED.score',
-                                    'mobile.ruleGroups.SPEED.score',
-                                    'devperf.notFound',
-                                    'devperf.imageSize',
-                                    'devperf.imageCount',
-                                    'devperf.jsErrors',
-                                    'devperf.DOMqueries',
-                                    'devperf.jQuerySizzleCalls',
-                                    'devperf.timeFrontend',
-                                    'devperf.timeToLastByte',
-                                    'devperf.notFound',
-                                    'devperf.imageSize',
-                                    'devperf.imageCount',
-                                    'devperf.jsErrors',
-                                    'devperf.DOMqueries',
-                                    'devperf.jQuerySizzleCalls',
-                                    'devperf.timeFrontend',
-                                    'devperf.timeToLastByte',
-                                    'html.context'],
-                  sizesTableConfig = ["devperf.cssCount",
-                                      "devperf.cssSize",
-                                      "devperf.jsCount",
-                                      "devperf.jsSize",
-                                      "devperf.webfontCount",
-                                      "devperf.webfontSize"];
+                  defaultConfig = SpeedTestService.Settings.defaultConfig,
+                  sizesTableConfig = SpeedTestService.Settings.sizesTableConfig,
+                  valuesInKb = SpeedTestService.Settings.valuesInKb,
+                  valuesInmS = SpeedTestService.Settings.valuesInmS;
 
               this.ChartData = {
                 desktop:{
@@ -59,6 +36,15 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.SizesTableData = [];
               this.SizesTableLabels = [];
 
+              Array.prototype.contains = function(elem) {
+                for (var i in this) {
+                  if (this[i] == elem) {
+                    return true;
+                  }
+                }
+                return false;
+              };
+
               function MakeNamePretty(name){
                 if (SpeedTestService.Settings.translations[name] !== undefined) {
                   return SpeedTestService.Settings.translations[name];
@@ -76,7 +62,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
 
                   return AddNames(splittedName, HandleWords(splittedName.shift()), 2);
                 }
-              }
+              };
 
               function SaveConfiguration() {
                 var cfg = [],
@@ -89,7 +75,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   };
                   localStorage.setItem(localStorageSettingsKey, JSON.stringify(cfg));
                 }
-              }
+              };
 
               this.SetCustomTableData = function (filters) {
                 var customTableData = [];
@@ -273,8 +259,8 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.HasGoogleSpeedInsightsAdvices = function(page, type) {
                 if (this.SpeedTests.newResults !== undefined) {
                   if (this.SpeedTests.newResults[type] !== undefined) {
-                    if (this.SpeedTests.newResults[type][(this.SiteUrl||'')+page] !== undefined) {
-                      return Object.keys(this.SpeedTests.newResults[type][(this.SiteUrl||'')+page].formattedResults.ruleResults).length > 0;
+                    if (this.SpeedTests.newResults[type][HandleAddress((this.SiteUrl||''),page)] !== undefined) {
+                      return Object.keys(this.SpeedTests.newResults[type][HandleAddress((this.SiteUrl||''),page)].formattedResults.ruleResults).length > 0;
                     }
                   }
                 }
@@ -284,7 +270,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.OpenGoogleSpeedInsightsAdvicesModal = function(page, type) {
                 this.ShowDesktop = type == 'desktop';
                 this.ShowMobile = type == 'mobile';
-                this.ModalWebPageKey = (this.SiteUrl||'')+page;
+                this.ModalWebPageKey = HandleAddress((this.SiteUrl||''), page);
                 ngDialog.open({
                   template: 'dialogTemplate.html',
                   scope: $scope
@@ -292,7 +278,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               };
 
               this.OpenHtmlValidityModal = function(page) {
-                this.ModalWebPageKey = (this.SiteUrl||'')+page;
+                this.ModalWebPageKey = HandleAddress((this.SiteUrl||''), page);
                 ngDialog.open({
                   template: 'htmlValidityTemplate.html',
                   scope: $scope
@@ -315,9 +301,12 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                     if (label == 'Name') {
                       return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label]>b[label] ? 1:-1);
                     } else if (label == 'html.context') {
-                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : mainScope.GetHtmlPageErrors(a[label].new || a[label].old).length-mainScope.GetHtmlPageErrors(b[label].new || b[label].old).length);
+                      return -1*(a[label].new === undefined ? -1 : b[label].new === undefined ? 1 : mainScope.GetHtmlPageErrors(a[label].new || a[label].old).length-mainScope.GetHtmlPageErrors(b[label].new || b[label].old).length);
                     } else {
-                      return -1*(a[label] === undefined ? -1 : b[label] === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
+                      // sorts only by new values
+                      // return -1*(a[label].new === undefined ? -1 : b[label].new === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
+                      // sorts by new and old values if there are no new values
+                      return -1*(a[label].new === undefined ? b[label].new === undefined ? (a[label].old === undefined ? -1 : b[label].old === undefined ? 1 : a[label].old>b[label].old ? 1:-1) : -1 : b[label].new === undefined ? 1 : a[label].new>b[label].new ? 1:-1);
                     }
                   });
                 }
@@ -327,7 +316,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               // must return some kind of html cause it is rendered later on as html
               this.HandleTableValues = function(page, label) {
                 if (label.Name == 'html.context') {
-                  var report = this.SpeedTests.newResults.html[this.SiteUrl+page.Name];
+                  var report = this.SpeedTests.newResults.html[HandleAddress(this.SiteUrl, page.Name)];
                   if (report) {
                     return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors ('+report.messages.length+')</button>';
                   } else if (report && report.messages.length == 0) {
@@ -337,10 +326,13 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   }
                 }
                 if (label.Name == 'Name') {
-                  return '<a href="'+this.SiteUrl+page.Name+'" target="_blank">'+page.Name.replace(this.SiteUrl, '')+'</a>';
+                  return '<a href="'+HandleAddress(this.SiteUrl, page.Name)+'" target="_blank">'+page.Name.replace(this.SiteUrl, '')+'</a>';
                 }
                 if (label.Name == 'desktop.ruleGroups.SPEED.score') {
                   var score = page['desktop.ruleGroups.SPEED.score'];
+                  if (score.new === undefined) {
+                    return '<span class="status-old">' + page['desktop.ruleGroups.SPEED.score'].old + '</span>';
+                  }
                   if(score.new >= this.MinimumPassScore) {
                     return '<span class="status-positive">' + page['desktop.ruleGroups.SPEED.score'].new + '</span>';
                   } else {
@@ -348,16 +340,16 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   }
                 }
                 var content = page[label.Name],
-                  tableLine = '<span></span>';
+                    tableLine = '<span></span>';
                 if (content) {
                   if (content.old !== undefined) {
-                    tableLine += '<span class="status-old">'+content.old+'</span>';
+                    tableLine += '<span class="status-old">'+HandleTableRenderedValues(content.old, label.Name)+'</span>';
                   }
                   if (content.old !== undefined && content.new !== undefined) {
                     tableLine += '<br>';
                   }
                   if (content.new !== undefined) {
-                    tableLine += '<span class="status-new">'+content.new+'</span>';
+                    tableLine += '<span class="status-new">'+HandleTableRenderedValues(content.new, label.Name)+'</span>';
                   }
                 }
                 return tableLine;
@@ -381,6 +373,10 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 return true;
               };
 
+              this.GetMainPageUrl = function() {
+                return this.SizesTableData[0]['Name'] && this.SizesTableData[0]['Name'].length > 1 ? this.SizesTableData[0]['Name'] : HandleAddress(this.SiteUrl,this.SizesTableData[0]['Name']);
+              };
+
               this.Page = function(page){
                 if (page !== undefined) {
                   $location.search('page', page);
@@ -394,6 +390,43 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                   this.ShowMainTable = true;
                 }
               };
+
+              function HandleTableRenderedValues(value, valueName){
+                if (valuesInKb.contains(valueName)) {
+                  if (value < 1024) {
+                    return value + ' b';
+                  } else if (value < 1024*1024) {
+                    return (value/1024).toFixed(2) + ' Kb';
+                  } else {
+                    return (value/(1024*1024)).toFixed(2) + ' Mb';
+                  }
+                }
+                if (valuesInmS.contains(valueName)) {
+                  if (value < 1000) {
+                    return value + ' ms';
+                  } else {
+                    return (value/1000).toFixed(2) + ' s';
+                  }
+                }
+                return value;
+              }
+
+              function HandleAddress(siteUrl, page) {
+                page = page || '';
+                return page.indexOf('http') == 0 ? page : siteUrl + page;
+              }
+
+              this.HandleAddress = HandleAddress;
+
+              function HandleSizesTableData() {
+                mainScope.LoadConfig(sizesTableConfig);
+                mainScope.SizesTableData = mainScope.SetCustomTableData(mainScope.Fillters);
+                // seting first elemetn and showing only new results
+                mainScope.Sort(mainScope.SizesTableData, 'Name');
+                mainScope.SizesTableData = [mainScope.SizesTableData.pop()]
+                mainScope.SizesTableLabels = mainScope.GetTableLabels(mainScope.SizesTableData);
+                mainScope.ClearFilters();
+              }
 
               this.uiStickyElements = function () {
                 $(window).on('scroll resize', function (event) {
@@ -416,13 +449,7 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.SetChartData();
               this.LoadFilters();
               // seting sizes table data
-              this.LoadConfig(sizesTableConfig);
-              this.SizesTableData = this.SetCustomTableData(this.Fillters);
-              // seting first elemetn and showing only new results
-              this.Sort(this.SizesTableData, 'Name');
-              this.SizesTableData = [this.SizesTableData.pop()]
-              this.SizesTableLabels = this.GetTableLabels(this.SizesTableData);
-              this.ClearFilters();
+              HandleSizesTableData();
               // seting main table data
               this.LoadConfig(localStorage === undefined || localStorage.getItem(localStorageSettingsKey) == null ? defaultConfig : JSON.parse(localStorage.getItem(localStorageSettingsKey)));
               this.TableData = this.SetCustomTableData(this.Fillters);
