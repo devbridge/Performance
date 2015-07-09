@@ -1,10 +1,10 @@
 angular.module('SpeedTestViewApp', ['SpeedTestViewModule', 'ngDialog'])
 
 .service('SpeedTestService', function(){
-    var settings = httpGet('./settings.txt');
+    var settings = httpGet('./settings.txt?'+Date.now());
     this.Settings = settings.status == 200 ? JSON.parse(settings.responseText) : {};
     this.Translations = this.Settings.translations || {};
-    var result = httpGet('/speedtest.txt');
+    var result = httpGet('./speedtest.txt?'+Date.now());
 	if (result.status == 200) {
         var speedResults = JSON.parse(result.responseText);
     	this.SpeedTestResults = SortRuleResultsByImpact(speedResults);

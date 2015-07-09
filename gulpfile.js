@@ -4,17 +4,27 @@ var gulp = require('gulp'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     w3cjs = require('w3cjs'),
 
-    prefix = './node_modules/devbridge-perf-tool/',
-    // prefix = './', // uncomment this line if you will run this module straight from this folder
-    settings = JSON.parse(fs.readFileSync(prefix+"defaultSettings.txt", { encoding: 'Utf-8' })),
-    logFile = settings.logFile,
+    prefix = './node_modules/devbridge-perf-tool',
+    // prefix = '.', // uncomment this line if you will run this module straight from this folder
+    settings = JSON.parse(fs.readFileSync(prefix+"/defaultSettings.txt", { encoding: 'Utf-8' })),
+    logFile = '/speedtest.txt',
     siteURL = settings.siteURL,
     sitePages = settings.sitePages,
+    resultsFolder = settings.resultsFolder,
     sitePagesUrls = [],
-    htmlTestResults = [];
+    htmlTestResults = [],
+    folders = ['/content', '/content/images', '/content/styles'],
+    htmlFiles = ['/content/images/logo-footer.png',
+                '/content/styles/site-styles.css',
+                '/dialogTemplate.html',
+                '/favicon.ico',
+                '/htmlValidityTemplate.html',
+                '/index.html',
+                '/SpeedTestResultsControler.js',
+                '/SpeedTestViewApp.js'];
 
-if (!fs.existsSync('./node_modules/grunt-then')) { fs.renameSync(prefix+'node_modules/grunt-then','./node_modules/grunt-then'); }
-if (!fs.existsSync('./node_modules/grunt-devperf')) { fs.renameSync(prefix+'node_modules/grunt-devperf','./node_modules/grunt-devperf'); }
+if (!fs.existsSync('./node_modules/grunt-then')) { fs.renameSync(prefix+'/node_modules/grunt-then','./node_modules/grunt-then'); }
+if (!fs.existsSync('./node_modules/grunt-devperf')) { fs.renameSync(prefix+'/node_modules/grunt-devperf','./node_modules/grunt-devperf'); }
 
 function getSitePages() {
     if (sitePagesUrls.length == 0) {
@@ -62,7 +72,8 @@ function speedtest() {
     strategies = ['desktop', 'mobile'],
 
     results = { oldresults: { mobile: null, desktop: null }, newresults: {} },
-    errorOccured = false;
+    errorOccured = false,
+    finishedCount = 0;
     if (settings.googleAPIKey) {
         googleAPIURL += '&key='+settings.googleAPIKey;
     }
@@ -92,11 +103,12 @@ function speedtest() {
                         console.log('Failed speed test for: ' + currentValue + ' response code: ' + response.status + ' request url: ' + url + ' google response: ' + response.responseText);
                         return false;
                     }
+                    console.log('(Google page speed) Done ' + (++finishedCount) + ' out of ' + array.length*strategies.length);
                     if (!errorOccured &&
                         array.length == Object.keys(results.newresults[strategies[0]]).length &&
                         array.length == Object.keys(results.newresults[strategies[1]]).length) {
                         console.log('(Google page speed) Job finished! Writing results.');
-                        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err);});
+                        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err); copyResultsToResultsFolder();});
                     }
                 }, 1);
             });
@@ -117,6 +129,7 @@ function htmltest() {
                 file: currentValue,
                 proxy: null,//'http://proxy:8080', // Default to null
                 callback: function (res) {
+                    console.log('(Html test) Done ' + (htmlTestResults.length+1) + ' out of ' + array.length);
                     htmlTestResults.push(res);
                     // if all elements handle results
                     if (htmlTestResults.length == array.length) {
@@ -133,15 +146,27 @@ function htmltest() {
                         if (fs.existsSync(logFile)) {
                             results = JSON.parse(fs.readFileSync(logFile, { encoding: 'Utf-8' }));
                             results.oldresults.html = results.newresults.html;
+                            results.oldresults.html = results.newresults.html;
                         }
                         results.newresults.html = formatedResults;
-                        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err);});
+                        fs.writeFile(logFile, JSON.stringify(results), function (err) {if (err) console.log(err); copyResultsToResultsFolder();});
                         console.log('(Html test) Job completed.');
                     }
                 }
             });
         });
 };
+
+function copyResultsToResultsFolder() {
+    if (!fs.existsSync(resultsFolder)) { fs.mkdirSync(resultsFolder); }
+    folders.forEach(function(folder, index, array){
+        if (!fs.existsSync(resultsFolder+folder)) { fs.mkdirSync(resultsFolder+folder); }
+    });
+    htmlFiles.forEach(function(file, index, array){
+        if (fs.existsSync(file)) { fs.unlinkSync(resultsFolder+file); }
+        fs.writeFileSync(resultsFolder+file, fs.readFileSync(prefix+file));
+    });
+}
 
 function performance(options) {
     if (options !== undefined) {
@@ -156,16 +181,24 @@ function performance(options) {
     }
     siteURL = settings.siteURL;
     sitePages = settings.sitePages;
-    fs.writeFile("./settings.txt", JSON.stringify(settings), function (err) {if (err) console.log(err);});
-    if (settings.runDevPerf !== undefined && settings.runDevPerf) {
+    copyResultsToResultsFolder();
+    logFile = resultsFolder+'/speedtest.txt';
+    fs.writeFile(resultsFolder+'/settings.txt', JSON.stringify(settings), function (err) {if (err) console.log(err);});
+    if (settings.runDevPerf) {
         GruntTasks(grunt);
         grunt.task.run('customdevperf');
-        grunt.task.start({asyncDone: true});
+        // mute all grunt output
+        // grunt.log.muted = true;
+        if (settings.smallerDevperfOutput) {
+            grunt.log.subhead = function (){};
+            grunt.log.ok = function (){};
+        }
+        grunt.task.start({asyncDone: false});
     }
-    if (settings.runGoogleSpeedTest !== undefined && settings.runGoogleSpeedTest) {
+    if (settings.runGoogleSpeedTest) {
         speedtest();
     }
-    if (settings.runHtmlTest !== undefined && settings.runHtmlTest) {
+    if (settings.runHtmlTest) {
         htmltest();
     }
 }
@@ -189,7 +222,7 @@ function GruntTasks (grunt) {
             options: {
                 urls: getSitePages(),
                 openResults: false,
-                resultsFolder: settings.devperfResultsFolder
+                resultsFolder: prefix+'/devperf'
             }
         }
     });
@@ -198,21 +231,21 @@ function GruntTasks (grunt) {
         grunt.task.run('devperf')
         .then('Finishing after devperf.', function(){
             if (this.errorCount == 0) {
-                var devperfResultsFile = settings.devperfResultsFile,
-                    results = { oldresults: {}, newresults: {} },
+                var results = { oldresults: {}, newresults: {} },
                     devperfResults = {};
 
                 if (grunt.file.exists(logFile)) {
                     results = grunt.file.readJSON(logFile);
                     results.oldresults.devperf = results.newresults.devperf;
                 }
-                devperfResults = grunt.file.readJSON(devperfResultsFile);
+                devperfResults = grunt.file.readJSON(prefix+'/devperf/results.json');
                 results.newresults.devperf = {};
                 devperfResults.pages.forEach(
                     function (currentValue, index, array) {
                         results.newresults.devperf[currentValue.url] = currentValue;
                     });
                 grunt.file.write(logFile, JSON.stringify(results));
+                copyResultsToResultsFolder();
             }
         });
     });

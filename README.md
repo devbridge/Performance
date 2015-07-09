@@ -31,7 +31,7 @@ require('gulp').task('perf-tool', function () {
 	return require('devbridge-perf-tool').performance(options);
 });
 ```
-After running this task, launch browser and go to your hosted website with installed perf-tool by the folowing url: **```YourHost/node_modules/devbridge-perf-tool```** (example: ```localhost/node_modules/devbridge-perf-tool```)<br>
+After running this task, launch browser and go to your hosted website with installed perf-tool by the folowing url: **```YourHost/perf-tool```** (example: ```localhost/perf-tool```, you can change directory ```perf-tool``` by changing property ```options.resultsFolder```)<br>
 **Available options:**<br>
 List of available options to configure and change behavior of perf-tool.<br><br>
 
@@ -65,20 +65,15 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **Default value:** ```""``` (Empty string)<br>
 **Description:** To test this app you can not set it, but latter on for live envirioments please set it.<br><br>
 
-**options.devperfResultsFolder** <br>
+**options.resultsFolder** <br>
 **Type:** ```string```<br>
-**Default value:** ```"./devperf"```<br>
-**Description:** Directory where [dev-perf](https://github.com/gmetais/grunt-devperf) will output it's results.<br><br>
+**Default value:** ```"./perf-tool"```<br>
+**Description:** Folder where collected results formated by this task are put (if folder does not exist it will be created, but path where it is created is not checked).<br><br>
 
-**options.devperfResultsFile** <br>
-**Type:** ```string```<br>
-**Default value:** ```"./devperf/results.json"```<br>
-**Description:** File where [dev-perf](https://github.com/gmetais/grunt-devperf) will output it's results.<br><br>
-
-**options.logFile** <br>
-**Type:** ```string```<br>
-**Default value:** ```"./speedtest.txt"```<br>
-**Description:** Where to put results collected, formated by this task.<br><br>
+**options.smallerDevperfOutput** <br>
+**Type:** ```bool```<br>
+**Default value:** ```true```<br>
+**Description:** Whether or not make devperf output smaller (while runing task and [dev-perf](https://github.com/gmetais/grunt-devperf) writes to console).<br><br>
 
 **options.logFilterKeys** <br>
 **Type:** ```bool```<br>
