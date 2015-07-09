@@ -54,17 +54,17 @@ gulp.task('watch', function() {
     gulp.watch('scss/**/*.scss', ['sass']);
 });
 
-gulp.task('perf-tool', function(){
-    performance({
-        siteURL:"https://www.google.com",
-        sitePages: ["/", "/voice"],
-        runDevPerf:true,
-        runHtmlTest:true,
-        runGoogleSpeedTest:true
-    });
-});
+// gulp.task('perf-tool', function(){
+//     performance({
+//         siteURL:"https://www.google.com",
+//         sitePages: ["/", "/voice"],
+//         runDevPerf:true,
+//         runHtmlTest:true,
+//         runGoogleSpeedTest:true
+//     });
+// });
 
-gulp.task('default', ['perf-tool']);
+// gulp.task('default', ['perf-tool']);
 
 function speedtest() {
     console.log('(Google page speed) Job started.');
