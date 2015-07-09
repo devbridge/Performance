@@ -1,6 +1,6 @@
 {
   "name": "devbridge-perf-tool",
-  "version": "0.1.34",
+  "version": "0.1.35",
   "description": "Tool to test your web pages performance.",
   "author": "Gediminas Stanaitis <gedas@devbridge.com>",
   "contributors": [
