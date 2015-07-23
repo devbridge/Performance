@@ -45,6 +45,10 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 return false;
               };
 
+              Array.prototype.insert = function (index, item) {
+                this.splice(index, 0, item);
+              };
+
               function MakeNamePretty(name){
                 if (SpeedTestService.Settings.translations[name] !== undefined) {
                   return SpeedTestService.Settings.translations[name];
