@@ -23,8 +23,8 @@
 					{{advices[adviceKey].localizedRuleName}}
 				</div>
 				<div class="error-position">
-					<div class="one-line">
-						Impact: <strong>{{advices[adviceKey].ruleImpact}}</strong>
+					<div class="one-line" ng-init="advices[adviceKey].style = advices[adviceKey].ruleImpact >= 10 ? {'color':'#db5880'} : advices[adviceKey].ruleImpact > 0 ? {'color':'rgb(226, 215, 0)'} : {'color':'#5fc187'}">
+						Impact: <strong ng-style="advices[adviceKey].style">{{advices[adviceKey].ruleImpact}}</strong>
 					</div>
 					<div class="one-line">
 						Affects: <strong>{{advices[adviceKey].groups.join(', ')}}</strong>
@@ -43,8 +43,8 @@
 					{{advices[adviceKey].localizedRuleName}}
 				</div>
 				<div class="error-position">
-					<div class="one-line">
-						Impact: <strong>{{advices[adviceKey].ruleImpact}}</strong>
+					<div class="one-line" ng-init="advices[adviceKey].style = advices[adviceKey].ruleImpact >= 10 ? {'color':'#db5880'} : advices[adviceKey].ruleImpact > 0 ? {'color':'rgb(226, 215, 0)'} : {'color':'#5fc187'}">
+						Impact: <strong ng-style="advices[adviceKey].style">{{advices[adviceKey].ruleImpact}}</strong>
 					</div>
 					<div class="one-line">
 						Affects: <strong>{{advices[adviceKey].groups.join(', ')}}</strong>
