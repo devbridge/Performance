@@ -167,11 +167,13 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
                 var prettyLabels = [];
                 for (var i = 0; i < labels.length; i++) {
                   if (SpeedTestService.Settings.translations[labels[i]] !== false) {
-                    prettyLabels.push({Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
-                  }
-                  if (labels[i].indexOf('.ruleGroups.SPEED.score')>0 && labels.indexOf('html.context')>-1) {
-                    labels[labels.indexOf('html.context')] = ' ';
-                    prettyLabels.push({Name:'html.context', PrettyName:MakeNamePretty('html.context')});
+                    if (labels[i].indexOf('.ruleGroups.SPEED.score')>0) {
+                      prettyLabels.insert(1, {Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
+                    } else if (labels[i] =='html.context') {
+                      prettyLabels.insert(2, {Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
+                    } else {
+                      prettyLabels.push({Name:labels[i], PrettyName:MakeNamePretty(labels[i])});
+                    }
                   }
                 };
                 if (SpeedTestService.Settings.logFilterKeys) {
