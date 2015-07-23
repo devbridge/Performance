@@ -323,10 +323,10 @@ angular.module('SpeedTestViewModule', ['angularCharts', 'ngSanitize']).controlle
               this.HandleTableValues = function(page, label) {
                 if (label.Name == 'html.context') {
                   var report = this.SpeedTests.newResults.html[HandleAddress(this.SiteUrl, page.Name)];
-                  if (report) {
-                    return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors ('+report.messages.length+')</button>';
-                  } else if (report && report.messages.length == 0) {
+                  if (report && report.messages.length == 0) {
                     return '<span class="no-html-errors status-new">No Errors</span>'
+                  } else if (report) {
+                    return '<button class="button-link has-html-errors" ng-click="firstCtrl.OpenHtmlValidityModal(page.Name)" type="button"><i class="fa fa-exclamation-triangle"></i> Errors ('+report.messages.length+')</button>';
                   } else if (!report) {
                     return '<span>No data</span>'
                   }
