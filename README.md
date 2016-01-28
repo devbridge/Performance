@@ -96,3 +96,6 @@ options.translations = {
     "html.context.old":false
 };
 ```
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-73039601-3/Performance/readme)](https://github.com/igrigorik/ga-beacon)
