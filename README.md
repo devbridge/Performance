@@ -1,6 +1,10 @@
 perf-tool
 ===
 What is this:<br>
+Demo:<br>
+[**http://performance.devbproto.com/**](http://performance.devbproto.com/)
+User: staging
+Pass: staging
 ---
 **In short about:**<br>
 This is a npm package to display statistics about your web pages, information such as css resources count, Google PageSpeed Insights score, information how to fix performace issues, html errors and many more in one custom web page.
