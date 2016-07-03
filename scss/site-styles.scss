@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+@import 'core/config'; // Framework configuration or other settings
+
+// Frameworks
+@import 'bourbon';
+@import 'neat';
+
+// Dependencies
+@import 'core/colors', // Only color variables.
+		'core/assets', // Variables for image urls, local web fonts or other assets your might have.
+		'core/variables', // All other variables, including typography, measurements and etc.
+		'core/mixins', // Mixins, functions, extenders.
+		'core/normalize', // Contains CSS output to fix cross-browser inconsistencies.
+		'core/notifications',
+		'core/svg-sprite';
+
+// Plugins - Styles of third party plugins
+//@import 'plugins/slick';
+
+// Global modules - modules shared between multiple projects (e.g. admin and public sites)
+@import 'modules/forms';
+		//'global/tables',
+		//'global/modal';
+
+// Local modules
+@import 'modules/typography',
+		'modules/buttons';
+
+// Styles for project pages or similar views - styles that are connected by content
+@import 'print',
+		'pages/home';
+
+// Structure
+@import 'modules/layout/layout',
+		'modules/layout/header',
+		'modules/layout/footer';

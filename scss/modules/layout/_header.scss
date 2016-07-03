@@ -1,0 +1,68 @@
+.page-header {
+    background-color: $color-gray;
+
+    img {
+        width: 36px;
+        margin-top: 12px;
+    }
+
+    a {
+        float: left;
+        margin-right: 30px;
+
+        &:last-child {
+            float: right;
+        }
+    }
+
+    &__content {
+        padding: 4em 0;
+    }
+
+    h1 {
+        color: $color-orange;
+        @include span-columns(6);
+
+        img {
+            display: inline-block;
+            vertical-align: middle;
+            width: 58px;
+            margin: -15px 25px 0 0;
+        }
+    }
+
+    .btn-primary {
+        margin-top: 35px;
+        color: $color-gray;
+    }
+
+    span {
+        display: block;
+        font-size: 18px;
+        letter-spacing: 0;
+    }
+
+    .btn-primary {
+        font-size: 18px;
+    }
+}
+
+.header-navigation {
+    background-color: $black;
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+
+    a {
+        color: $white;
+    }
+
+    &__github {
+        img {
+            max-width: 22px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 0 0 15px;
+        }
+    }
+}

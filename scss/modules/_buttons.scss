@@ -1,0 +1,49 @@
+.btn {
+    &-primary {
+        @include transition(background .3s);
+        background: $color-orange;
+        border: 0;
+        border-radius: $border-radius;
+        color: $white;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $font-primary;
+        font-size: 14px;
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration: none;
+        -webkit-appearance: none;
+
+        &:hover {
+            background: $button-default-color-hover;
+        }
+    }
+
+    &-secondary {
+        @include transition(background .3s);
+        background: $white;
+        border: 0;
+        border-radius: $border-radius;
+        color: $color-orange;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $font-primary;
+        font-size: 14px;
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration: none;
+        -webkit-appearance: none;
+
+        &:hover {
+            background-color: #fefbf8;
+        }
+    }
+}
