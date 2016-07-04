@@ -381,6 +381,9 @@ code {
   .header-navigation a:last-child {
     float: right; }
 
+.header-navigation .twitter-share-button {
+  vertical-align: middle; }
+
 .hero-image {
   bottom: 0;
   position: absolute;
