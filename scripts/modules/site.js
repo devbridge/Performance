@@ -89,8 +89,21 @@ define(['jquery', 'slickSlider', 'modal'], function ($) {
         });
     };
 
+    module.analyticsCustom = function(){
+        $('.js-event-xx').on('click', function() {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Demo landing',
+                eventAction: 'Button demo',
+                eventLabel: 'Go to demo landing',
+                transport: 'beacon'
+            });
+        });
+    };
+
     module.init = function () {
         module.initScrollTo();
+        module.analyticsCustom();
     };
 
     return module;
