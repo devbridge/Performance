@@ -69,13 +69,28 @@ define(['jquery', 'slickSlider', 'modal'], function ($) {
         });
     };
 
+    // Scrolls to specific section when clicked navigation's link
+    module.initScrollTo = function () {
+        var triggerContainer = ('.js-scroll-nav'),
+            spaceTop,
+            targetElement,
+            self;
+
+        $('a', triggerContainer).on('click', function (event) {
+            self = $(this);
+            if(!self.hasClass('js-outside-link')) {
+                event.preventDefault();
+                targetElement = $(self.attr('href'));
+
+                $('html, body').animate({
+                    scrollTop: targetElement.offset().top
+                }, 800);
+            }
+        });
+    };
+
     module.init = function () {
-        module.sample();
-        // uncomment these default modules or remove them
-        /*
-        module.modal();
-        module.prototypeValidation();
-        */
+        module.initScrollTo();
     };
 
     return module;

@@ -30,6 +30,16 @@ img {
 
 a {
     text-decoration: none;
+    color: $color-orange;
+
+    &:hover {
+        color: #e59b27;
+    }
+}
+
+code {
+    display: block;
+    white-space: pre;
 }
 
 .clearfix {
@@ -57,8 +67,8 @@ a {
         }
 
         .btn-secondary {
-            display: block;
             margin-top: 2em;
+            margin-left: 1.5em;
         }
     }
 
@@ -67,6 +77,10 @@ a {
 
         .page-section__code {
             @include span-columns(7);
+
+            code {
+                white-space: pre;
+            }
         }
 
         .page-section__content {

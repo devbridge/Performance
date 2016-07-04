@@ -167,7 +167,16 @@ th {
 h1,
 .heading1 {
   font-size: 72px;
-  margin: 0; }
+  margin: 0;
+  font-family: "Avenir Next W01", sans-serif;
+  font-weight: 600; }
+
+h2,
+.heading2 {
+  font-size: 22px;
+  margin: 0 0 8px 0;
+  font-family: "Avenir Next W01", sans-serif;
+  font-weight: 600; }
 
 img {
   max-width: 100%; }
@@ -277,7 +286,14 @@ img {
   max-width: 100%; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #fbb03b; }
+  a:hover {
+    color: #e59b27; }
+
+code {
+  display: block;
+  white-space: pre; }
 
 .page-frame {
   max-width: 1024px;
@@ -298,8 +314,8 @@ a {
       padding-left: 50px;
       box-sizing: border-box; }
     .page-section--features .btn-secondary {
-      display: block;
-      margin-top: 2em; }
+      margin-top: 2em;
+      margin-left: 1.5em; }
   .page-section--installation {
     background-color: #fbb03b; }
     .page-section--installation .page-section__code {
@@ -309,6 +325,8 @@ a {
       width: 57.35098%; }
       .page-section--installation .page-section__code:last-child {
         margin-right: 0; }
+      .page-section--installation .page-section__code code {
+        white-space: pre; }
     .page-section--installation .page-section__content {
       float: left;
       display: block;
@@ -326,7 +344,8 @@ a {
       margin: 3em auto 0 auto; }
 
 .page-header {
-  background-color: #333; }
+  background-color: #333;
+  border-bottom: 5px solid #fbb03b; }
   .page-header img {
     width: 36px;
     margin-top: 12px; }
@@ -372,5 +391,69 @@ a {
     display: inline-block;
     vertical-align: middle;
     margin: 0 0 0 15px; }
+
+.page-footer .page-frame {
+  position: relative; }
+
+.page-footer__description {
+  box-sizing: border-box;
+  position: relative;
+  padding: 40px 43% 40px 115px; }
+  .page-footer__description img {
+    left: 0;
+    width: 82px;
+    position: absolute;
+    top: 40px; }
+  .page-footer__description h2 {
+    margin-bottom: 8px; }
+  .page-footer__description p {
+    color: #666;
+    margin: 0; }
+
+.page-footer__credit-wrapper {
+  height: 42px;
+  background-color: #1e1e1e;
+  overflow: hidden; }
+
+.page-footer__decoration {
+  bottom: 0;
+  max-width: 40%;
+  position: absolute;
+  right: 0; }
+  .page-footer__decoration table {
+    color: #fff;
+    height: 135px;
+    max-width: 437px;
+    table-layout: fixed;
+    text-align: center;
+    width: 100%; }
+  .page-footer__decoration td {
+    border-right: 15px solid #fff;
+    font-size: 12px;
+    vertical-align: top;
+    padding-top: 8px; }
+
+.page-footer__credits-menu {
+  float: right;
+  font-size: 14px;
+  vertical-align: middle;
+  line-height: 42px; }
+  .page-footer__credits-menu a + a {
+    margin-left: 17px; }
+
+.page-footer__credits {
+  color: #fff;
+  float: left;
+  font-size: 14px; }
+  .page-footer__credits img {
+    display: inline-block;
+    margin-right: 15px;
+    max-width: 42px;
+    vertical-align: middle; }
+
+.page-footer a {
+  color: #fff; }
+  .page-footer a:hover {
+    color: #efeeea; }
 
 /*# sourceMappingURL=site-styles.css.map */

@@ -4,11 +4,16 @@ h1,
 .heading1 {
     font-size: 72px;
     margin: 0;
+    font-family: $font-primary;
+    font-weight: 600;
 }
 
 h2,
 .heading2 {
-
+    font-size: 22px;
+    margin: 0 0 8px 0;
+    font-family: $font-primary;
+    font-weight: 600;
 }
 
 h3,
