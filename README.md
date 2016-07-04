@@ -3,8 +3,7 @@ perf-tool
 What is this:<br>
 Demo:<br>
 [**http://performance.devbproto.com/**](http://performance.devbproto.com/)<br>
-User: staging<br>
-Pass: staging
+[**Landing page**](http://devbridge.github.io/Performance/)<br>
 
 ---
 **In short about:**<br>
