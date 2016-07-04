@@ -414,6 +414,10 @@ code {
   height: 42px;
   background-color: #1e1e1e;
   overflow: hidden; }
+  .page-footer__credit-wrapper a {
+    color: #fff; }
+    .page-footer__credit-wrapper a:hover {
+      color: #efeeea; }
 
 .page-footer__decoration {
   bottom: 0;
@@ -450,10 +454,5 @@ code {
     margin-right: 15px;
     max-width: 42px;
     vertical-align: middle; }
-
-.page-footer a {
-  color: #fff; }
-  .page-footer a:hover {
-    color: #efeeea; }
 
 /*# sourceMappingURL=site-styles.css.map */

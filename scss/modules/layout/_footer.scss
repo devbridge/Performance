@@ -28,6 +28,14 @@
         height: 42px;
         background-color: $black;
         overflow: hidden;
+
+        a {
+            color: $white;
+
+            &:hover {
+                color: $color-body;
+            }
+        }
     }
 
     &__decoration {
@@ -74,14 +82,6 @@
             margin-right: 15px;
             max-width: 42px;
             vertical-align: middle;
-        }
-    }
-
-    a {
-        color: $white;
-
-        &:hover {
-            color: $color-body;
         }
     }
 }
