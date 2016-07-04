@@ -349,11 +349,6 @@ code {
   .page-header img {
     width: 36px;
     margin-top: 12px; }
-  .page-header a {
-    float: left;
-    margin-right: 30px; }
-    .page-header a:last-child {
-      float: right; }
   .page-header__content {
     padding: 4em 0;
     position: relative; }
@@ -379,6 +374,12 @@ code {
     letter-spacing: 0; }
   .page-header .btn-primary {
     font-size: 18px; }
+
+.header-navigation a {
+  float: left;
+  margin-right: 30px; }
+  .header-navigation a:last-child {
+    float: right; }
 
 .hero-image {
   bottom: 0;

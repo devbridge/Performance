@@ -7,15 +7,6 @@
         margin-top: 12px;
     }
 
-    a {
-        float: left;
-        margin-right: 30px;
-
-        &:last-child {
-            float: right;
-        }
-    }
-
     &__content {
         padding: 4em 0;
         position: relative;
@@ -46,6 +37,17 @@
 
     .btn-primary {
         font-size: 18px;
+    }
+}
+
+.header-navigation {
+    a {
+        float: left;
+        margin-right: 30px;
+
+        &:last-child {
+            float: right;
+        }
     }
 }
 
