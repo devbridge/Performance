@@ -7,10 +7,10 @@ Demo:<br>
 
 ---
 **In short about:**<br>
-This is a npm package to display statistics about your web pages, information such as css resources count, Google PageSpeed Insights score, information how to fix performace issues, html errors and many more in one custom web page.
+This is an `npm` package to display statistics about your web pages, information such as CSS resources count, Google PageSpeed Insights score, information on how to fix performance issues, HTML errors and more in one custom web page.
 
 **Tech details:**<br>
-This package mainly uses three plugins [**w3cjs**](https://www.npmjs.com/package/w3cjs) (html test errors, warnings ect), [**Google PageSpeed Insights**](https://developers.google.com/speed/pagespeed/insights) (a lot information, for example: how to fix main load/performance issues, load times...) and [**dev-perf**](https://github.com/gmetais/grunt-devperf) (number of 404 errors, number of images without dimensions ect). Then colected that information is displayed in angular js based web page.
+This package mainly uses three plugins [**w3cjs**](https://www.npmjs.com/package/w3cjs) (HTML test errors, warnings etc), [**Google PageSpeed Insights**](https://developers.google.com/speed/pagespeed/insights) (a lot information, for example: how to fix main load/performance issues, load times...) and [**dev-perf**](https://github.com/gmetais/grunt-devperf) (number of 404 errors, number of images without dimensions etc), The information collected is then displayed in an AngularJS based webpage.
 
 ---
 Usage:
@@ -19,7 +19,7 @@ Usage:
 
 **Setting up:**
 
-Firstly install this package locally to your project:
+First install this package locally to your project:
 ```
 npm install devbridge-perf-tool --save-dev
 ```
@@ -42,7 +42,7 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **options.siteURL** <br>
 **Type:** ```string```<br>
 **Default value:** ```""``` (Empty string)<br>
-**Description:** Used for site base url. You can change it depending by envirioment (dev, staging, live this is recommended) or leave empty and use full urls in **options.sitePages** (next option), urls must start with protocol (example: ```http://```).<br><br>
+**Description:** Used for site base URL. You can change it depending by environment (dev, staging, live this is recommended) or leave empty and use full urls in **options.sitePages** (next option), URLs must start with protocol (example: ```http://```).<br><br>
 
 **options.sitePages** <br>
 **Type:** ```string [ ]```<br>
@@ -52,22 +52,22 @@ List of available options to configure and change behavior of perf-tool.<br><br>
 **options.runDevPerf** <br>
 **Type:** ```bool```<br>
 **Default value:** ```true```<br>
-**Description:** You can disable [dev-perf](https://github.com/gmetais/grunt-devperf) if it's information is not needed for you.<br><br>
+**Description:** You can disable [dev-perf](https://github.com/gmetais/grunt-devperf) if its information is not needed for you.<br><br>
 
 **options.runHtmlTest** <br>
 **Type:** ```bool```<br>
 **Default value:** ```true```<br>
-**Description:** You can disable [w3cjs](https://www.npmjs.com/package/w3cjs) if it's information is not needed for you.<br><br>
+**Description:** You can disable [w3cjs](https://www.npmjs.com/package/w3cjs) if its information is not needed for you.<br><br>
 
 **options.runGoogleSpeedTest** <br>
 **Type:** ```bool```<br>
 **Default value:** ```true```<br>
-**Description:** You can disable [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights) if it's information is not needed for you but it is **not recommended**.<br><br>
+**Description:** You can disable [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights) if its information is not needed for you but it is **not recommended**.<br><br>
 
 **options.googleAPIKey** <br>
 **Type:** ```string```<br>
 **Default value:** ```""``` (Empty string)<br>
-**Description:** To test this app you can not set it, but latter on for live envirioments please set it.<br><br>
+**Description:** To test this app you can choose not to set it, but later on for live envirioments please set it.<br><br>
 
 **options.resultsFolder** <br>
 **Type:** ```string```<br>
