@@ -18,6 +18,7 @@
 
     &__content {
         padding: 4em 0;
+        position: relative;
     }
 
     h1 {
@@ -45,6 +46,17 @@
 
     .btn-primary {
         font-size: 18px;
+    }
+}
+
+.hero-image {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+
+    img {
+        max-width: 436px;
+        width: auto;
     }
 }
 
