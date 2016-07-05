@@ -10,7 +10,6 @@ var gulp = require('gulp'),
     logFile = '/speedtest.txt',
     siteURL = settings.siteURL,
     sitePages = settings.sitePages,
-    resultsFolder = settings.resultsFolder,
     sitePagesUrls = [],
     htmlTestResults = [],
     folders = ['/content', '/content/images', '/content/styles'],
@@ -158,13 +157,13 @@ function htmltest() {
 };
 
 function copyResultsToResultsFolder() {
-    if (!fs.existsSync(resultsFolder)) { fs.mkdirSync(resultsFolder); }
+    if (!fs.existsSync(settings.resultsFolder)) { fs.mkdirSync(settings.resultsFolder); }
     folders.forEach(function(folder, index, array){
-        if (!fs.existsSync(resultsFolder+folder)) { fs.mkdirSync(resultsFolder+folder); }
+        if (!fs.existsSync(settings.resultsFolder+folder)) { fs.mkdirSync(settings.resultsFolder+folder); }
     });
     htmlFiles.forEach(function(file, index, array){
-        if (fs.existsSync(file)) { fs.unlinkSync(resultsFolder+file); }
-        fs.writeFileSync(resultsFolder+file, fs.readFileSync(prefix+file));
+        if (fs.existsSync(file)) { fs.unlinkSync(settings.resultsFolder+file); }
+        fs.writeFileSync(settings.resultsFolder+file, fs.readFileSync(prefix+file));
     });
 }
 
@@ -182,8 +181,8 @@ function performance(options) {
     siteURL = settings.siteURL;
     sitePages = settings.sitePages;
     copyResultsToResultsFolder();
-    logFile = resultsFolder+'/speedtest.txt';
-    fs.writeFile(resultsFolder+'/settings.txt', JSON.stringify(settings), function (err) {if (err) console.log(err);});
+    logFile = settings.resultsFolder+'/speedtest.txt';
+    fs.writeFile(settings.resultsFolder+'/settings.txt', JSON.stringify(settings), function (err) {if (err) console.log(err);});
     if (settings.runDevPerf) {
         GruntTasks(grunt);
         grunt.task.run('customdevperf');
