@@ -25,9 +25,13 @@
         }
     }
     &__credit-wrapper {
-        height: 42px;
         background-color: $black;
-        overflow: hidden;
+
+        .page-frame {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+        }
 
         a {
             color: $white;
@@ -62,26 +66,34 @@
     }
 
     &__credits-menu {
-        float: right;
-        font-size: 14px;
-        vertical-align: middle;
-        line-height: 42px;
+        font-size: 0;
+        margin-left: auto;
 
-        a + a {
-            margin-left: 17px;
+        a {
+            font-size: 14px;
+
+            + a {
+                margin-left: 17px;
+            }
         }
     }
 
     &__credits {
         color: $white;
-        float: left;
-        font-size: 14px;
+        font-size: 0;
 
         img {
-            display: inline-block;
-            margin-right: 15px;
             max-width: 42px;
-            vertical-align: middle;
+        }
+
+        small,
+        a {
+            @include vertical-align();
+            font-size: 14px;
+        }
+
+        a {
+            margin-right: 14px;
         }
     }
 }

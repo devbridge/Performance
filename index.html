@@ -1,109 +1,130 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-
     <title>PerfTool - Collect various information about your website and displays it in an easy-to-digest manner on the
         reports page.</title>
+    <meta charset="utf-8">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico">
-    <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/ff50334d-7692-47b2-913a-6c24a82061e2.css">
-    <link href="content/styles/site-styles.css" rel="stylesheet" type="text/css"/>
-    <link type="text/css" rel="stylesheet" href="content/styles/prism.css">
-    <script type="text/javascript">
-        (function () {
-            'use strict';
-            var el, head;
-            el = document.createElement('script');
-            el.type = 'text/javascript';
-            el.async = true;
-            el.setAttribute("data-main", "scripts/main");
-            el.src = 'scripts/require.js';
-            head = document.getElementsByTagName('script')[0];
-            head.parentNode.insertBefore(el, head);
-        }());
-    </script>
+    <script type="text/javascript" src="//fast.fonts.net/jsapi/ff50334d-7692-47b2-913a-6c24a82061e2.js" async></script>
+    <style type="text/css">
+.btn-primary,body,h1,h2,h3{font-family:"Avenir Next W01",sans-serif}h2,h3{margin:0 0 8px}h1,h2,h3{font-weight:600}.btn-primary,.page-section--center{text-align:center}.header-navigation .twitter-share-button,.header-navigation a,.tool-name{vertical-align:middle}.clearfix:after{clear:both;content:'';display:table;height:0}header,nav,section{display:block}a{background-color:transparent}img{border:0}h1{font-size:72px;margin:0}h2{font-size:40px}h3{font-size:24px}.btn-primary{background:#fbb03b;border:0;border-radius:6px;color:#fff;display:inline-block;font-size:14px;font-weight:700;height:40px;line-height:40px;outline:0;padding:0 30px;text-decoration:none;-webkit-appearance:none}.btn--github:before,.tool-name:before{top:50%;background-size:100%;content:''}.btn--github:before,.promo-banner,.tool-name:before{background-position:center}.btn--github{position:relative}.btn--github:before{position:absolute;left:25px;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);height:24px;width:24px;display:block;margin-right:7px;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTYyIDM1MC41N2ExMC44MSAxMC44MSAwIDAgMCAtMy40MiAyMS4wNiAuNTQgLjU0IDAgMCAwIC43NCAtLjUyYzAtLjI2IDAtLjk0IDAtMS44NC0zIC42NS0zLjY0LTEuNDUtMy42NC0xLjQ1YTIuODYgMi44NiAwIDAgMCAtMS4yIC0xLjU4Yy0xLS42Ny4wNy0uNjYuMDctLjY2YTIuMjcgMi4yNyAwIDAgMSAxLjY2IDEuMTEgMi4zIDIuMyAwIDAgMCAzLjE0IC45IDIuMzEgMi4zMSAwIDAgMSAuNjkgLTEuNDRjLTIuNC0uMjctNC45Mi0xLjItNC45Mi01LjM0YTQuMTggNC4xOCAwIDAgMSAxLjExIC0yLjkgMy44OSAzLjg5IDAgMCAxIC4xMSAtMi44NnMuOTEtLjI5IDMgMS4xMWExMC4yNCAxMC4yNCAwIDAgMSA1LjQxIDBjMi4wNi0xLjQgMy0xLjExIDMtMS4xMWEzLjg4IDMuODggMCAwIDEgLjExIDIuODYgNC4xNyA0LjE3IDAgMCAxIDEuMTEgMi45YzAgNC4xNS0yLjUzIDUuMDYtNC45MyA1LjMzYTIuNTggMi41OCAwIDAgMSAuNzMgMmMwIDEuNDQgMCAyLjYxIDAgM2EuNTQgLjU0IDAgMCAwIC43NCAuNTJBMTAuODEgMTAuODEgMCAwIDAgMTYyIDM1MC41NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE1MS4xOS0zNTAuNTcpIiBmaWxsPSIjMzMzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);background-repeat:no-repeat}.tool-name{display:inline-block;font-size:inherit;letter-spacing:2px;position:relative;padding-left:94px}.tool-name:before{position:absolute;left:0;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);height:82px;width:82px;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MiA4MiIgd2lkdGg9IjgyIiBoZWlnaHQ9IjgyIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHJ4PSI5LjIzIiBmaWxsPSJub25lIiBzdHJva2U9IiNmYmIwM2IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHBhdGggZmlsbD0iI2ZiYjAzYiIgZD0ibTY3LjEgNDUuODl2LTEwaC0yNXYtNmgxMHYtMTBoLTEwdi04aC0ydjhoLTI2djEwaDI2djZoLTI2djEwaDI2djZoLTI2djEwaDI2djEwaDJ2LTEwaDE3di0xMGgtMTd2LTZoMjUiLz48L3N2Zz4=);background-repeat:no-repeat;display:block;margin-right:14px}.tool-text{display:block;font-size:18px;letter-spacing:0}.promo-banner{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAMAAAD/cKfGAAAAJ1BMVEUiIiIjIyMkJCQlJSQlJSUmJiUmJiYnJyYnJycoKCcoKCgpKSgpKSleMmokAAACNklEQVQ4yz2TQbbtKAwD7foVApH3v94ecF/PEg5GQiUqmZnMTDKZTDLJ7/uuzmSSzO+3MrNVqqluTlS7oQFhj1C0IutkajLZUi20a2wEKVGq+wRA2uebnVS+8WSJolmU1d2/CZEoCidb56s82TzJQ+E7dv00ugu6YOUf7ZoIZ3eFb1rOxGbWnwORKoF2TnvySj+haugsG/d837VstVVqV9P4JNe2WVqhnHtW5lOs+v8SUK07Y4ucka403JX+vuSBFm3tqgKcb80GWGM3NYLzYDtwZryCSNuuZDfnaJPTUjUAe9C8gpkj0i3iyYaWWd0GoCoCZnOiBT5nHm1K3zlXiTV2bpA1NtbKygONNM9E5MmsaxGZd48tWLklmgSq6G6ak29N3l9eNOXEBuzKPXiPqNhSYOZbtBZ2A85YoNY0ZTPfR+utkDt5v/xJKDi3D9U1aPGO+esrOyPVO1kWUA3z7VwTNZSSzU4XyJMcscE381w4Z3BONVSNDSfivAV+s7UBoN3zWYWzdOX25jJfdO/RL599EdzUTF57h4LZUJf52VJNvkTBEtFGZWXeeRr7yY+HT1R5Zj5/j4P+gWhwzQ/l+e4E85Z45uwBkUaKAmxlTWYrkq019UbZc942+74ou6X1aszplTzAm39d2Xl07t5nvKDRsrApT2x45tswuypn1peNaJmb+c22bsh5G8A3n8+8lWSO/UPgLG59+o/K+Sikiic5M5XJsRu76fbEO9oF2qzxdysav8x/fFAZnqqYkQ8AAAAASUVORK5CYII=);background-attachment:fixed;background-color:#1e1e1e;background-repeat:repeat}html{height:100%}body,html{margin:0;padding:0;width:100%}body{display:flex;flex-direction:column;font-size:16px;line-height:1.5;min-height:100%}@media screen and (max-width:1024px){body{-webkit-text-size-adjust:100%}}img{display:block;max-width:100%}a{color:#fbb03b;text-decoration:none}.page{flex:1}.page-frame{margin:0 auto;max-width:1180px;padding:0 20px}.page-header__content,.page-section{padding-bottom:4em;padding-top:4em}.page-section__content,.page-section__image{float:left;display:block;margin-right:2.35765%;width:48.82117%}.page-section__content:last-child{margin-right:0}.page-section__content-single{float:left;display:block;margin-right:2.35765%;width:65.88078%;margin-left:17.05961%;font-size:18px}.page-section__content-single:last-child{margin-right:0}.page-section--features .page-frame{display:flex;align-items:center}.page-section--features .page-section__content{box-sizing:border-box;padding-left:50px}.bg-grey{background-color:#efeeea}.bg-white-yellow{background-image:linear-gradient(to right,#fff 50%,#fbb03b 50%)}.page-header{background-color:#333;border-bottom:5px solid #fbb03b}.page-header img{width:36px}.page-header__content{position:relative}.page-header h1{float:left;display:block;margin-right:2.35765%;width:48.82117%;color:#fbb03b}.page-header h1:last-child{margin-right:0}.page-header .btn-primary{color:#333;margin-top:35px;font-size:18px}.page-header .btn--github{padding-left:60px}.hero-image{bottom:0;position:absolute;right:0}.hero-image img{max-width:436px;width:auto}.header-navigation{background-color:#1e1e1e}.header-navigation a{display:inline-block;color:#fff;margin-right:30px}.header-navigation a:last-child{margin-left:auto;margin-right:0}.header-navigation .page-frame{display:flex;min-height:60px;align-items:center}.header-navigation__github img{display:inline-block;vertical-align:middle;margin-left:15px;max-width:22px}
+</style>
+<script id="loadcss">
+(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['content/styles/site-styles.a3b5cd50.css'],document.getElementById("loadcss")));
+</script>
+<noscript>
+<link href="content/styles/site-styles.a3b5cd50.css" rel="stylesheet" type="text/css">
+</noscript>
 </head>
-<body>
+<body style="min-width: 1180px;">
 
 <noscript>
     <div class="noscript-message">Javascript is disabled on your browser. Please enable Javascript to use full
         functionality of this site.
     </div>
 </noscript>
+
 <div class="page">
-    <header class="page-header">
+    <header class="page-header promo-banner">
         <nav class="header-navigation js-scroll-nav">
             <div class="page-frame clearfix">
                 <a href="https://www.devbridge.com/" target="_blank">
-                    <img src="content/images/db-logo.png" alt="Powered by Devbridge"/>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM2IDM2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzNiAzNiI+PHBhdGggZmlsbD0iI2NlMmQyOCIgZD0ibTAgMGgzNnYzNmgtMzZ6Ii8+PGcgZmlsbD0iI2ZmZiI+PHBhdGggZD0ibTI0LjggMTEuNGMtMSAwLTEuOS4yLTIuNy42di02aC0zLjR2MTEuNWMwIDMuNCAyLjcgNi4xIDYuMSA2LjEgMy40IDAgNi4xLTIuNyA2LjEtNi4xIDAtMy40LTIuNy02LjEtNi4xLTYuMW0wIDguOGMtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PHBhdGggZD0ibTE3LjIgMjAuNWMwLS4xIDAtLjItLjEtLjItLjItLjYtLjMtMS4zLS4zLTJ2LTcuN2gtMy40djUuOGMtLjYtLjItMS40LS40LTIuMS0uNC0zLjQgMC02LjEgMi43LTYuMSA2LjEgMCAzLjQgMi43IDYuMSA2LjEgNi4xIDIuMSAwIDMuOS0xIDUtMi42IDEgMS4xIDIuMyAyIDMuNyAyLjZsMS43LTIuOWMtMi4xLS44LTMuOS0yLjYtNC41LTQuOG0tNS45IDQuM2MtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PC9nPjwvc3ZnPg==" alt="Powered by Devbridge">
                 </a>
                 <a href="#features">Features</a>
                 <a href="#installation">Installation</a>
                 <a class="js-outside-link js-event-xx" href="http://performance.devbproto.com/" target="_blank">Demo</a>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-text="Collect various website performance information and display it in an easy-to-digest manner." data-via="devbridge">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                <a href="https://github.com/devbridge/Performance" target="_blank" class="header-navigation__github js-outside-link">github<img
-                        src="content/images/github-small.png"
-                        alt="GitHub repository"/></a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="Collect various website performance information and display it in an easy-to-digest manner." data-via="devbridge">Tweet</a>
+                <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + '://platform.twitter.com/widgets.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'twitter-wjs');</script>
+                <a href="https://github.com/devbridge/Performance" target="_blank" class="header-navigation__github js-outside-link">github<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==" alt="GitHub repository"></a>
             </div>
         </nav>
 
         <div class="page-frame page-header__content">
             <div class="clearfix">
-                <h1><img src="content/images/perf-logo.png" alt="PerfTool"/>PerfTool<span>
-                Collect various information about your website and displays it in an easy-to-digest manner on the
-                reports
-                page</span>
-                </h1>
+                <h1><span class="tool-name">PerfTool</span>
+                <span class="tool-text">Collect various information about your website and displays it in an easy-to-digest manner on the
+                reports page</span></h1>
             </div>
-            <a href="https://github.com/devbridge/Performance#readme" target="_blank" class="btn-primary">Read Installation Instructions</a>
-            <a class="hero-image js-outside-link" href="https://github.com/devbridge/Performance" target="_blank" >
-                <img src="content/images/perf-tool_03.png" alt="PerfTool demo"/>
+            <a href="https://github.com/devbridge/Performance#readme" target="_blank" class="btn-primary btn--github">
+                View on GitHub</a>
+            <a class="hero-image js-outside-link" href="https://github.com/devbridge/Performance" target="_blank">
+                <img src="content/images/perf-tool_03.png" alt="PerfTool demo">
             </a>
         </div>
     </header>
-    <section class="page-section page-section--features" id="features">
+    <div class="page-section bg-grey" id="features">
         <div class="page-frame clearfix">
-            <div class="page-section__image">
-                <img src="content/images/app-demo.png" alt="Application demo"/>
-            </div>
-            <div class="page-section__content">
+            <div class="page-section__content-single page-section--center">
+                <h2>Features</h2>
                 <p>This is a npm package to display statistics about your web pages, including Google PageSpeed Insights
                     score, resources count, recommendations how to fix performace issues, html errors and many more in
                     one
                     custom web page.</p>
-                <p>With PerfTool you can:</p>
-                <ul>
-                    <li>Set your own threshold for scores
-                    </li>
-                    <li>See reports from previous tests
-                    </li>
-                    <li>Compare scores from all pages
-                    </li>
-                    <li>Get HTML error reports</li>
-                </ul>
-                <a class="btn-secondary" href="http://performance.devbproto.com/" target="_blank">View Sample Report</a>
+            </div>
+        </div>
+    </div>
+    <section class="page-section page-section--features bg-white-yellow">
+        <div class="page-frame clearfix">
+            <div class="page-section__image">
+                <img src="content/images/app-data.png" alt="Application demo">
+            </div>
+            <div class="page-section__content">
+                <h3>Test and compare scores from
+                    Google PageSpeed Insights on one page</h3>
+                <p>With PerfTool you can test multiple pages on Google PageSpeed Insights at once. When you can compare
+                    your results with previous tests. In addition you can set your threshold for scores.</p>
+                <a class="btn-tertiary" href="http://performance.devbproto.com/" target="_blank">View Sample Report</a>
             </div>
         </div>
     </section>
-    <section class="page-section page-section--installation" id="installation">
+    <section class="page-section page-section--features bg-white-black">
+        <div class="page-frame clearfix">
+            <div class="page-section__image">
+                <img src="content/images/perf-stats.png" alt="Application demo">
+            </div>
+            <div class="page-section__content text-light">
+                <h3>Check your page’s HTML healt</h3>
+                <p>From html errors to external assets count, check your page’s health. You can customize your results
+                    from over 200 options.</p>
+                <p class="big-text">Over <span>200</span> options</p>
+            </div>
+        </div>
+    </section>
+    <section class="page-section bg-grey" id="installation">
+        <div class="page-frame clearfix">
+            <div class="page-section__content-single page-section--center">
+                <h2>Installation</h2>
+                <p>PrefTool package is combination of three plugins: <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed
+                    Insights</a> - to test page performance, <a href="https://github.com/gmetais/grunt-devperf" target="_blank">dev-perf</a> - to analyse html, and <a href="https://www.npmjs.com/package/w3cjs" target="_blank">w3cjs</a> - html validator.</p>
+            </div>
+        </div>
+    </section>
+    <section class="page-section page-section--installation">
         <div class="page-frame clearfix">
             <div class="page-section__code">
-                <h2>Installation</h2>
-                <code class="language-javascript"><pre class="command-line">npm install devbridge-perf-tool --save-dev</pre></code>
+                <code class="command-line">npm install devbridge-perf-tool --save-dev</code>
                 <br>
-                <code class="language-javascript"><pre>
-require('gulp').task('perf-tool', function () {
+                <code class="command-line">require('gulp').task('perf-tool', function () {
     var options = {
         siteURL:'http://www.google.com',
         sitePages: ['/', '/voice']
     };
-return require('devbridge-perf-tool').performance(options);
+    return require('devbridge-perf-tool').performance(options);
 });
-                </pre>
-                </code>
+</code>
             </div>
             <div class="page-section__content">
-                <img src="content/images/github-big.png" alt="GitHub page"/>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2Ij48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==" alt="GitHub page">
                 <p class="page-section__github">More information about installation process and
                     how to use it on our github page.</p>
                 <a class="btn-secondary js-outside-link" href="https://github.com/devbridge/Performance" target="_blank">View on
@@ -111,44 +132,46 @@ return require('devbridge-perf-tool').performance(options);
             </div>
         </div>
     </section>
-    <footer class="page-footer">
-        <div class="page-frame clearfix">
-            <div class="page-footer__description">
-                <img src="content/images/styleguide-logo.png" alt="Devbridge Styleguide">
-                <h2>Try our Living Styleguide</h2>
-                <p>Devbridge Styleguide helps you create, share, and automate a living
-                    visual style library of your brand. <a href="http://livingstyleguide.devbridge.com/"
-                                                           target="_blank">Learn more.</a></p>
-            </div>
-            <div class="page-footer__decoration">
-                <table>
-                    <tr>
-                        <td style="background-color:#eb2026;">#eb2026</td>
-                        <td style="background-color:#f05a26;">#f05a26</td>
-                        <td style="background-color:#faaf3a;">#faaf3a</td>
-                        <td style="background-color:#29a9e1;">#29a9e1</td>
-                        <td style="background-color:#39b44a;">#39b44a</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="page-footer__credit-wrapper">
-            <div class="page-frame clearfix">
-                <div class="page-footer__credits">
-                    <img src="content/images/db-logo.png" alt="Powered by Devbridge"/>
-                    Brought to you by the creative team at Devbridge Group.
-                </div>
-                <div class="page-footer__credits-menu">
-                    <a href="https://www.devbridge.com/" target="_blank">About Devbridge</a>
-                    <a href="https://www.devbridge.com/chicago-software-development/" target="_blank">Software Development</a>
-                    <a href="https://www.devbridge.com/positions/" target="_blank">Careers</a>
-                    <a href="https://www.devbridge.com/contact-us/" target="_blank">Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>
-<script src="scripts/plugins/prism.js" type="text/javascript"></script>
+<footer class="page-footer">
+    <div class="page-frame clearfix">
+        <div class="page-footer__description">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4Mi40OCA4Mi40OCIgd2lkdGg9IjgyIiBoZWlnaHQ9IjgyIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iODAuNDgiIGhlaWdodD0iODAuNDgiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxnIGZpbGw9IiMxYTFhMWEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjktMjYyOS4xOCkiPjxwYXRoIGQ9Ik0xNzYuMjEsMjY4MC45NGEyOC40MiwyOC40MiwwLDAsMCwxMi41My03TDE2NCwyNjYwLjMzYTMwLjExLDMwLjExLDAsMCwwLTEyLjI4LDcuMVoiLz48cGF0aCBkPSJNMTc5LDI2ODIuNDhhMjkuMjQsMjkuMjQsMCwwLDEtMjkuNDUtNy4yN3YxMy45MWE0MC4yMiw0MC4yMiwwLDAsMCw0MS40Miwwdi0xMy45MUEyOS4zMSwyOS4zMSwwLDAsMSwxNzksMjY4Mi40OFoiLz48cGF0aCBkPSJNMTcwLjI0IDI2NDYuNDlhNDAuMDcgNDAuMDcgMCAwIDAgLTIwLjcxIDUuNzR2MTMuOTFhMjkuMjIgMjkuMjIgMCAwIDEgNDEuNDIgMHYtMTMuOTFBNDAuMDcgNDAuMDcgMCAwIDAgMTcwLjI0IDI2NDYuNDkiLz48L2c+PC9zdmc+" alt="Devbridge Styleguide">
+            <h3>Try our Living Styleguide</h3>
+            <p>Devbridge Styleguide helps you create, share, and automate a living
+                visual style library of your brand. <a href="http://livingstyleguide.devbridge.com/" target="_blank">Learn more.</a></p>
+        </div>
+        <div class="page-footer__decoration">
+            <table>
+                <tr>
+                    <td style="background-color:#eb2026;">#eb2026</td>
+                    <td style="background-color:#f05a26;">#f05a26</td>
+                    <td style="background-color:#faaf3a;">#faaf3a</td>
+                    <td style="background-color:#29a9e1;">#29a9e1</td>
+                    <td style="background-color:#39b44a;">#39b44a</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="page-footer__credit-wrapper">
+        <div class="page-frame clearfix">
+            <div class="page-footer__credits">
+                <a href="https://www.devbridge.com/">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM2IDM2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzNiAzNiI+PHBhdGggZmlsbD0iI2NlMmQyOCIgZD0ibTAgMGgzNnYzNmgtMzZ6Ii8+PGcgZmlsbD0iI2ZmZiI+PHBhdGggZD0ibTI0LjggMTEuNGMtMSAwLTEuOS4yLTIuNy42di02aC0zLjR2MTEuNWMwIDMuNCAyLjcgNi4xIDYuMSA2LjEgMy40IDAgNi4xLTIuNyA2LjEtNi4xIDAtMy40LTIuNy02LjEtNi4xLTYuMW0wIDguOGMtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PHBhdGggZD0ibTE3LjIgMjAuNWMwLS4xIDAtLjItLjEtLjItLjItLjYtLjMtMS4zLS4zLTJ2LTcuN2gtMy40djUuOGMtLjYtLjItMS40LS40LTIuMS0uNC0zLjQgMC02LjEgMi43LTYuMSA2LjEgMCAzLjQgMi43IDYuMSA2LjEgNi4xIDIuMSAwIDMuOS0xIDUtMi42IDEgMS4xIDIuMyAyIDMuNyAyLjZsMS43LTIuOWMtMi4xLS44LTMuOS0yLjYtNC41LTQuOG0tNS45IDQuM2MtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PC9nPjwvc3ZnPg==" alt="Powered by Devbridge">
+                </a>
+                <small>Brought to you by the creative team at Devbridge Group.</small>
+            </div>
+            <div class="page-footer__credits-menu">
+                <a href="https://www.devbridge.com/" target="_blank">About Devbridge</a>
+                <a href="https://www.devbridge.com/chicago-software-development/" target="_blank">Software
+                    Development</a>
+                <a href="https://www.devbridge.com/positions/" target="_blank">Careers</a>
+                <a href="https://www.devbridge.com/contact-us/" target="_blank">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;

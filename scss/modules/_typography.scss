@@ -10,7 +10,7 @@ h1,
 
 h2,
 .heading2 {
-    font-size: 22px;
+    font-size: 40px;
     margin: 0 0 8px 0;
     font-family: $font-primary;
     font-weight: 600;
@@ -18,7 +18,10 @@ h2,
 
 h3,
 .heading3 {
-
+    font-size: 24px;
+    margin: 0 0 8px 0;
+    font-family: $font-primary;
+    font-weight: 600;
 }
 
 h4,
@@ -60,4 +63,14 @@ img {
 
 a {
 
+}
+
+.text-light {
+    color: $color-orange;
+}
+
+.command-line {
+    padding: 2px 14px;
+    background-color: $color-gray;
+    color: $color-orange;
 }

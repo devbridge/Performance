@@ -4,18 +4,24 @@
 // Layout styles can also be divided into major and minor styles based on
 // reuse. Fox example, major layout styles can be dedicated for header and/or footer.
 
+html {
+    height: 100%;
+}
+
 html,
 body {
-    height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-family: $font-primary;
     font-size: $base-font-size;
     line-height: $base-line-height;
+    min-height: 100%;
 
     // To prevent the iPhone and iPad from inflating fonts
     @include respond-to(1024, max) {
@@ -29,8 +35,8 @@ img {
 }
 
 a {
-    text-decoration: none;
     color: $color-orange;
+    text-decoration: none;
 
     &:hover {
         color: #e59b27;
@@ -46,34 +52,61 @@ code {
     @include clearfix($extend: true)
 }
 
+.page {
+    flex: 1;
+}
+
 .page-frame {
-    max-width: 1180px;
     margin: 0 auto;
+    max-width: 1180px;
+    padding: 0 20px;
 }
 
 .page-section {
-    padding: 4em 0;
+    padding-bottom: 4em;
+    padding-top: 4em;
 
     &__content, &__image {
         @include span-columns(6);
     }
 
-    &--features {
-        background-color: $color-body;
+    &__content-single {
+        @include span-columns(8);
+        @include shift(2);
+        font-size: 18px;
+    }
 
-        .page-section__content {
-            padding-left: 50px;
-            box-sizing: border-box;
+    &--center {
+        text-align: center;
+    }
+
+    &--features {
+        .page-frame {
+            display: flex;
+            align-items: center;
         }
 
-        .btn-secondary {
+        + .page-section--features {
+            border-top: 5px solid $color-body;
+        }
+
+        .page-section__content {
+            box-sizing: border-box;
+            padding-left: 50px;
+        }
+
+        .btn-tertiary {
             margin-top: 2em;
-            margin-left: 1.5em;
         }
     }
 
     &--installation {
         background-color: $color-orange;
+
+        .page-frame {
+            display: flex;
+            align-items: center;
+        }
 
         .page-section__code {
             @include span-columns(7);
@@ -85,20 +118,30 @@ code {
 
         .page-section__content {
             @include span-columns(5);
-
             text-align: center;
         }
 
         p {
             color: $white;
-            max-width: 320px;
             margin: 2em auto;
+            max-width: 320px;
         }
 
         img {
+            margin: 0 auto;
             max-width: 56px;
-            margin: 3em auto 0 auto;
         }
-
     }
+}
+
+.bg-grey {
+    background-color: $color-body;
+}
+
+.bg-white-yellow {
+    background-image: linear-gradient(to right, $white 50%, $color-orange 50%);
+}
+
+.bg-white-black {
+    background-image: linear-gradient(to right, $white 50%, $color-gray 50%);
 }

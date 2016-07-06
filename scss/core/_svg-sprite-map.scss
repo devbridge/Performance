@@ -1,7 +1,7 @@
 $icons: (
 	sprite: (
-		width: 32px,
-		height: 28px,
+		width: 164px,
+		height: 110px,
 		pngPath: 'images/sprite.png',
 		svgPath: 'images/sprite.svg'
 	),
@@ -9,6 +9,30 @@ $icons: (
 		width: 32px,
 		height: 27.7px,
 		backgroundX: 0px,
+		backgroundY: -82px
+	),
+	git-dark: (
+		width: 22px,
+		height: 22px,
+		backgroundX: -32px,
+		backgroundY: -82px
+	),
+	git-white: (
+		width: 22px,
+		height: 22px,
+		backgroundX: -54px,
+		backgroundY: -82px
+	),
+	perf-tool: (
+		width: 82px,
+		height: 82px,
+		backgroundX: 0px,
+		backgroundY: 0px
+	),
+	styleguide: (
+		width: 82px,
+		height: 82px,
+		backgroundX: -82px,
 		backgroundY: 0px
 	)
 );

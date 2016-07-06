@@ -1,6 +1,6 @@
 .btn {
     &-primary {
-        @include transition(background .3s);
+        @include transition(background .3s, color .3s);
         background: $color-orange;
         border: 0;
         border-radius: $border-radius;
@@ -24,7 +24,7 @@
     }
 
     &-secondary {
-        @include transition(background .3s);
+        @include transition(background .3s, color .3s);
         background: $white;
         border: 0;
         border-radius: $border-radius;
@@ -44,6 +44,49 @@
 
         &:hover {
             background-color: #fefbf8;
+        }
+    }
+
+    &-tertiary {
+        @include transition(background .3s, color .3s);
+        background: $color-gray;
+        border: 0;
+        border-radius: $border-radius;
+        color: $color-orange;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $font-primary;
+        font-size: 14px;
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration: none;
+        -webkit-appearance: none;
+
+        &:hover {
+            background-color: $black;
+        }
+    }
+}
+
+.btn--github {
+    position: relative;
+
+    &:before {
+        @include position(absolute, 50% null null 25px);
+        @include transform(translateY(-50%));
+        @include size(24px);
+        content: '';
+        display: block;
+        margin-right: 7px;
+        background: {
+            image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTYyIDM1MC41N2ExMC44MSAxMC44MSAwIDAgMCAtMy40MiAyMS4wNiAuNTQgLjU0IDAgMCAwIC43NCAtLjUyYzAtLjI2IDAtLjk0IDAtMS44NC0zIC42NS0zLjY0LTEuNDUtMy42NC0xLjQ1YTIuODYgMi44NiAwIDAgMCAtMS4yIC0xLjU4Yy0xLS42Ny4wNy0uNjYuMDctLjY2YTIuMjcgMi4yNyAwIDAgMSAxLjY2IDEuMTEgMi4zIDIuMyAwIDAgMCAzLjE0IC45IDIuMzEgMi4zMSAwIDAgMSAuNjkgLTEuNDRjLTIuNC0uMjctNC45Mi0xLjItNC45Mi01LjM0YTQuMTggNC4xOCAwIDAgMSAxLjExIC0yLjkgMy44OSAzLjg5IDAgMCAxIC4xMSAtMi44NnMuOTEtLjI5IDMgMS4xMWExMC4yNCAxMC4yNCAwIDAgMSA1LjQxIDBjMi4wNi0xLjQgMy0xLjExIDMtMS4xMWEzLjg4IDMuODggMCAwIDEgLjExIDIuODYgNC4xNyA0LjE3IDAgMCAxIDEuMTEgMi45YzAgNC4xNS0yLjUzIDUuMDYtNC45MyA1LjMzYTIuNTggMi41OCAwIDAgMSAuNzMgMmMwIDEuNDQgMCAyLjYxIDAgM2EuNTQgLjU0IDAgMCAwIC43NCAuNTJBMTAuODEgMTAuODEgMCAwIDAgMTYyIDM1MC41NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE1MS4xOS0zNTAuNTcpIiBmaWxsPSIjMzMzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);
+            repeat: no-repeat;
+            size: 100%;
+            position: center;
         }
     }
 }

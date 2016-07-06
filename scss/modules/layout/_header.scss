@@ -4,54 +4,27 @@
 
     img {
         width: 36px;
-        margin-top: 12px;
     }
 
     &__content {
-        padding: 4em 0;
+        padding-bottom: 4em;
+        padding-top: 4em;
         position: relative;
     }
 
     h1 {
-        color: $color-orange;
         @include span-columns(6);
-
-        img {
-            display: inline-block;
-            vertical-align: middle;
-            width: 58px;
-            margin: -15px 25px 0 0;
-        }
+        color: $color-orange;
     }
 
     .btn-primary {
-        margin-top: 35px;
         color: $color-gray;
-    }
-
-    span {
-        display: block;
-        font-size: 18px;
-        letter-spacing: 0;
-    }
-
-    .btn-primary {
+        margin-top: 35px;
         font-size: 18px;
     }
-}
 
-.header-navigation {
-    a {
-        float: left;
-        margin-right: 30px;
-
-        &:last-child {
-            float: right;
-        }
-    }
-
-    .twitter-share-button {
-        vertical-align: middle;
+    .btn--github {
+        padding-left: 60px;
     }
 }
 
@@ -68,20 +41,33 @@
 
 .header-navigation {
     background-color: $black;
-    height: 60px;
-    line-height: 60px;
-    overflow: hidden;
 
     a {
+        @include vertical-align();
         color: $white;
+        margin-right: 30px;
+
+        &:last-child {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    .page-frame {
+        display: flex;
+        min-height: 60px;
+        align-items: center;
+    }
+
+    .twitter-share-button {
+        vertical-align: middle;
     }
 
     &__github {
         img {
+            @include vertical-align();
+            margin-left: 15px;
             max-width: 22px;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0 0 0 15px;
         }
     }
 }
