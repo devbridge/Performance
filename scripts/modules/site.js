@@ -90,7 +90,7 @@ define(['jquery', 'slickSlider', 'modal'], function ($) {
     };
 
     module.analyticsCustom = function(){
-        $('.js-event-xx').on('click', function() {
+        $('.js-event-demo').on('click', function() {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Demo landing',
@@ -101,9 +101,24 @@ define(['jquery', 'slickSlider', 'modal'], function ($) {
         });
     };
 
+    module.twitter = function () {
+        var d = document,
+            s = 'script',
+            id = 'twitter-wjs',
+            js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    };
+
     module.init = function () {
         module.initScrollTo();
         module.analyticsCustom();
+        module.twitter();
     };
 
     return module;

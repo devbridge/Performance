@@ -70,7 +70,10 @@ a {
 }
 
 .command-line {
-    padding: 2px 14px;
     background-color: $color-gray;
-    color: $color-orange;
+    color: $white;
+    padding: 2px 14px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.8;
 }

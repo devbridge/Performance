@@ -1,0 +1,37 @@
+.banner-styleguide {
+    background: $white;
+    margin-top: -10px;
+
+    .page-frame {
+        background: url($url-styleguide-bg) 100% 100% no-repeat;
+        position: relative;
+        padding: {
+            top: 122px;
+            bottom: 122px;
+        };
+    }
+
+    img {
+        @include position(absolute, null null null 20px);
+    }
+
+    &--promo {
+        margin: 0 490px 0 115px;
+    }
+
+    &--title {
+        margin: 0;
+        font: {
+            size: 22px;
+            weight: 800;
+        };
+    }
+
+    &--desc {
+        margin: 0;
+    }
+
+    a {
+        border-bottom: $color-orange solid 1px;
+    }
+}

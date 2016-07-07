@@ -1,6 +1,7 @@
 .btn {
     &-primary {
         @include transition(background .3s, color .3s);
+        -webkit-appearance: none;
         background: $color-orange;
         border: 0;
         border-radius: $border-radius;
@@ -16,7 +17,6 @@
         padding: 0 30px;
         text-align: center;
         text-decoration: none;
-        -webkit-appearance: none;
 
         &:hover {
             background: $button-default-color-hover;
@@ -70,6 +70,8 @@
             background-color: $black;
         }
     }
+
+
 }
 
 .btn--github {
@@ -87,6 +89,69 @@
             repeat: no-repeat;
             size: 100%;
             position: center;
+        }
+    }
+}
+
+.btn {
+    @include transition(background .3s, color .3s);
+    -webkit-appearance: none;
+    background: $color-orange;
+    border: 0;
+    border-radius: $border-radius;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 700;
+    outline: none;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        background: $white;
+        color: $black;
+    }
+
+    &.btn__cta {
+        color: $black;
+        font-size: 18px;
+        font-weight: 600;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    &.btn__small {
+        background: $black;
+        color: $color-orange;
+        height: 32px;
+        letter-spacing: 2px;
+        line-height: 32px;
+        font: {
+            size: 12px;
+            weight: 600;
+        };
+        text-transform: uppercase;
+
+        &:hover {
+            background: $white;
+            color: $color-orange;
+        }
+    }
+
+    &.btn__inverse {
+        background: $white;
+        color: $color-orange;
+        font-size: 18px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 40px;
+
+        &:hover {
+            background: $black;
+            color: $color-orange;
         }
     }
 }

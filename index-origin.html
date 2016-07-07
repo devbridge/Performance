@@ -6,155 +6,157 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico">
-    <script type="text/javascript" src="//fast.fonts.net/jsapi/ff50334d-7692-47b2-913a-6c24a82061e2.js" async></script>
+    <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/fc9e4e5d-1754-46a6-8ca7-cd10af8017b2.css"/>
     <link href="content/styles/site-styles.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+            var el, head;
+            el = document.createElement('script');
+            el.type = 'text/javascript';
+            el.async = true;
+            el.setAttribute("data-main", "scripts/main");
+            el.src = 'scripts/require.js';
+            head = document.getElementsByTagName('script')[0];
+            head.parentNode.insertBefore(el, head);
+        }());
+    </script>
+
 </head>
 <body>
-
 <noscript>
     <div class="noscript-message">Javascript is disabled on your browser. Please enable Javascript to use full
         functionality of this site.
     </div>
 </noscript>
 
-<div class="page">
-    <header class="page-header promo-banner">
-        <nav class="header-navigation js-scroll-nav">
+<div class="page" style="min-width: 1180px;">
+    <header class="page--header">
+        <nav class="page--nav js-scroll-nav">
             <div class="page-frame clearfix">
                 <a href="https://www.devbridge.com/" target="_blank">
                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM2IDM2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzNiAzNiI+PHBhdGggZmlsbD0iI2NlMmQyOCIgZD0ibTAgMGgzNnYzNmgtMzZ6Ii8+PGcgZmlsbD0iI2ZmZiI+PHBhdGggZD0ibTI0LjggMTEuNGMtMSAwLTEuOS4yLTIuNy42di02aC0zLjR2MTEuNWMwIDMuNCAyLjcgNi4xIDYuMSA2LjEgMy40IDAgNi4xLTIuNyA2LjEtNi4xIDAtMy40LTIuNy02LjEtNi4xLTYuMW0wIDguOGMtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PHBhdGggZD0ibTE3LjIgMjAuNWMwLS4xIDAtLjItLjEtLjItLjItLjYtLjMtMS4zLS4zLTJ2LTcuN2gtMy40djUuOGMtLjYtLjItMS40LS40LTIuMS0uNC0zLjQgMC02LjEgMi43LTYuMSA2LjEgMCAzLjQgMi43IDYuMSA2LjEgNi4xIDIuMSAwIDMuOS0xIDUtMi42IDEgMS4xIDIuMyAyIDMuNyAyLjZsMS43LTIuOWMtMi4xLS44LTMuOS0yLjYtNC41LTQuOG0tNS45IDQuM2MtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PC9nPjwvc3ZnPg==" alt="Powered by Devbridge"/>
                 </a>
                 <a href="#features">Features</a>
                 <a href="#installation">Installation</a>
-                <a class="js-outside-link js-event-xx" href="http://performance.devbproto.com/" target="_blank">Demo</a>
-                <a href="https://twitter.com/share" class="twitter-share-button"
-                   data-text="Collect various website performance information and display it in an easy-to-digest manner."
-                   data-via="devbridge">Tweet</a>
-                <script>!function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                    if (!d.getElementById(id)) {
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = p + '://platform.twitter.com/widgets.js';
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }
-                }(document, 'script', 'twitter-wjs');</script>
-                <a href="https://github.com/devbridge/Performance" target="_blank"
-                   class="header-navigation__github js-outside-link">github<img
-                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=="
-                        alt="GitHub repository"/></a>
+                <a class="js-outside-link js-event-demo" href="http://performance.devbproto.com/" target="_blank">Demo</a>
+                <a href="https://twitter.com/share" class="twitter-share-button js-outside-link" data-text="Collect various website performance information and display it in an easy-to-digest manner." data-via="devbridge">Tweet</a>
+                <a href="https://github.com/devbridge/Performance" target="_blank" class="link-github js-outside-link">
+                    github <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==" alt="GitHub repository"/>
+                </a>
             </div>
         </nav>
-
-        <div class="page-frame page-header__content">
-            <div class="clearfix">
-                <h1><span class="tool-name">PerfTool</span>
-                <span class="tool-text">Collect various information about your website and displays it in an easy-to-digest manner on the
-                reports page</span></h1>
-            </div>
-            <a href="https://github.com/devbridge/Performance#readme" target="_blank" class="btn-primary btn--github">
-                View on GitHub</a>
-            <a class="hero-image js-outside-link" href="https://github.com/devbridge/Performance" target="_blank">
-                <img src="content/images/perf-tool_03.png" alt="PerfTool demo"/>
-            </a>
-        </div>
     </header>
-    <div class="page-section bg-grey" id="features">
-        <div class="page-frame clearfix">
-            <div class="page-section__content-single page-section--center">
-                <h2>Features</h2>
-                <p>This is a npm package to display statistics about your web pages, including Google PageSpeed Insights
-                    score, resources count, recommendations how to fix performace issues, html errors and many more in
-                    one
-                    custom web page.</p>
+    <div class="promo-banner">
+        <div class="page-frame">
+            <div class="promo-banner--intro">
+                <h1 class="promo-banner--title">
+                    <img src="content/images/perf-tool-logo-full.svg" alt="PerfTool">
+                    Collect various information about your website and displays it in an easy-to-digest manner on the reports page
+                </h1>
+                <p class="promo-banner--desc">
+                    <a class="btn btn__cta">
+                        <i class="icon-github"></i> View on GitHub
+                    </a>
+                </p>
+            </div>
+            <div class="promo-banner--visual">
+                <p>
+                    <strong>Three in one:</strong>
+                    <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank"><i class="icon-flame"></i>PageSpeed Insights</a>
+                    <a href="https://github.com/gmetais/grunt-devperf" target="_blank"><i class="icon-flame"></i>dev-perf</a>
+                    <a href="https://www.npmjs.com/package/w3cjs" target="_blank"><i class="icon-flame"></i>w3cjs</a>
+                </p>
             </div>
         </div>
     </div>
-    <section class="page-section page-section--features bg-white-yellow">
-        <div class="page-frame clearfix">
-            <div class="page-section__image">
-                <img src="content/images/app-data.png" alt="Application demo"/>
+
+    <section class="page-section" id="features">
+        <div class="page-frame">
+            <h2 class="page-section--title">Features</h2>
+            <p class="page-section--desc">
+                This is a npm package to display statistics about your web pages, including Google PageSpeed Insights
+                score, resources count, recommendations how to fix performace issues, html errors and many more in
+                one custom web page.
+            </p>
+        </div>
+
+        <div class="section-single section-single__white-yellow">
+            <div class="page-frame">
+                <div class="section-single--image">
+                    <img src="content/images/app-data.png" alt="Test and compare scores from Google PageSpeed Insights on one page"/>
+                </div>
+                <div class="section-single--content">
+                    <h3 class="section-single--title">Test and compare scores from Google PageSpeed Insights on one page</h3>
+                    <p class="section-single--desc">With PerfTool you can test multiple pages on Google PageSpeed Insights at once. When you can compare
+                        your results with previous tests. In addition you can set your threshold for scores.</p>
+                    <a class="btn btn__small js-event-demo" href="http://performance.devbproto.com/" target="_blank">View Sample Report</a>
+                </div>
             </div>
-            <div class="page-section__content">
-                <h3>Test and compare scores from
-                    Google PageSpeed Insights on one page</h3>
-                <p>With PerfTool you can test multiple pages on Google PageSpeed Insights at once. When you can compare
-                    your results with previous tests. In addition you can set your threshold for scores.</p>
-                <a class="btn-tertiary" href="http://performance.devbproto.com/" target="_blank">View Sample Report</a>
+        </div>
+
+        <div class="section-single section-single__white-black">
+            <div class="page-frame">
+                <div class="section-single--image section-single--image__offside">
+                    <img src="content/images/perf-stats.png" alt="Check your page’s HTML healt"/>
+                </div>
+                <div class="section-single--content">
+                    <h3 class="section-single--title">Check your page’s HTML healt</h3>
+                    <p class="section-single--desc">From html errors to external assets count, check your page’s health. You can customize your results
+                        from over 200 options.</p>
+                    <p class="text-big">Over <span>200</span> options</p>
+                </div>
             </div>
         </div>
     </section>
-    <section class="page-section page-section--features bg-white-black">
-        <div class="page-frame clearfix">
-            <div class="page-section__image">
-                <img src="content/images/stats.png" alt="Application demo"/>
-            </div>
-            <div class="page-section__content text-light">
-                <h3>Check your page’s HTML healt</h3>
-                <p>From html errors to external assets count, check your page’s health. You can customize your results
-                    from over 200 options.</p>
-                <p class="big-text">Over <span>200</span> options</p>
-            </div>
+
+    <section class="page-section" id="installation">
+        <div class="page-frame">
+            <h2 class="page-section--title">Installation</h2>
+            <p class="page-section--desc">
+                PrefTool package is combination of three plugins: <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed
+                Insights</a> - to test page performance, <a href="https://github.com/gmetais/grunt-devperf" target="_blank">dev-perf</a> - to analyse html, and <a href="https://www.npmjs.com/package/w3cjs" target="_blank">w3cjs</a> - html validator.
+            </p>
         </div>
-    </section>
-    <section class="page-section bg-grey" id="installation">
-        <div class="page-frame clearfix">
-            <div class="page-section__content-single page-section--center">
-                <h2>Installation</h2>
-                <p>PrefTool package is combination of three plugins: <a
-                        href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed
-                    Insights</a> - to test page performance, <a href="https://github.com/gmetais/grunt-devperf"
-                                                                target="_blank">dev-perf</a> - to analyse html, and <a
-                        href="https://www.npmjs.com/package/w3cjs" target="_blank">w3cjs</a> - html validator.</p>
-            </div>
-        </div>
-    </section>
-    <section class="page-section page-section--installation">
-        <div class="page-frame clearfix">
-            <div class="page-section__code">
-                <code class="command-line">npm install devbridge-perf-tool --save-dev</code>
-                <br>
-                <code class="command-line">require('gulp').task('perf-tool', function () {
+
+        <div class="section-single section-installation">
+            <div class="page-frame">
+                <div class="section-installation--code">
+                    <code class="command-line">npm install devbridge-perf-tool --save-dev</code>
+                    <code class="command-line">require('gulp').task('perf-tool', function () {
     var options = {
         siteURL:'http://www.google.com',
         sitePages: ['/', '/voice']
     };
     return require('devbridge-perf-tool').performance(options);
-});
-</code>
-            </div>
-            <div class="page-section__content">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2Ij48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==" alt="GitHub page"/>
-                <p class="page-section__github">More information about installation process and
-                    how to use it on our github page.</p>
-                <a class="btn-secondary js-outside-link" href="https://github.com/devbridge/Performance"
-                   target="_blank">View on
-                    GitHub</a>
+});</code>
+                </div>
+                <div class="section-installation--desc">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2Ij48cGF0aCBkPSJNMTI5OSAyMC45NUExMC44MSAxMC44MSAwIDAgMCAxMjk1LjU2IDQyYS41NCAuNTQgMCAwIDAgLjc0IC0uNTJjMC0uMjYgMC0uOTQgMC0xLjg0LTMgLjY1LTMuNjQtMS40NS0zLjY0LTEuNDVhMi44NiAyLjg2IDAgMCAwIC0xLjIgLTEuNThjLTEtLjY3LjA3LS42Ni4wNy0uNjZhMi4yNyAyLjI3IDAgMCAxIDEuNjYgMS4xMSAyLjMgMi4zIDAgMCAwIDMuMTQgLjkgMi4zMSAyLjMxIDAgMCAxIC42OSAtMS40NGMtMi40LS4yNy00LjkyLTEuMi00LjkyLTUuMzRhNC4xOCA0LjE4IDAgMCAxIDEuMTEgLTIuOSAzLjg5IDMuODkgMCAwIDEgLjExIC0yLjg2cy45MS0uMjkgMyAxLjExYTEwLjI0IDEwLjI0IDAgMCAxIDUuNDEgMGMyLjA2LTEuNCAzLTEuMTEgMy0xLjExYTMuODggMy44OCAwIDAgMSAuMTEgMi44NiA0LjE3IDQuMTcgMCAwIDEgMS4xMSAyLjljMCA0LjE1LTIuNTMgNS4wNi00LjkzIDUuMzNhMi41OCAyLjU4IDAgMCAxIC43MyAyYzAgMS40NCAwIDIuNjEgMCAzYS41NCAuNTQgMCAwIDAgLjc0IC41MkExMC44MSAxMC44MSAwIDAgMCAxMjk5IDIwLjk1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI4OC4xNy0yMC45NSkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==" alt="GitHub page"/>
+                    <p class="page-section__github">More information about installation process and how to use it on our github page.</p>
+                    <p>
+                        <a class="btn btn__inverse js-outside-link" href="https://github.com/devbridge/Performance" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
+
+    <section class="banner-styleguide">
+        <div class="page-frame">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4Mi40OCA4Mi40OCIgd2lkdGg9IjgyIiBoZWlnaHQ9IjgyIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iODAuNDgiIGhlaWdodD0iODAuNDgiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxnIGZpbGw9IiMxYTFhMWEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjktMjYyOS4xOCkiPjxwYXRoIGQ9Ik0xNzYuMjEsMjY4MC45NGEyOC40MiwyOC40MiwwLDAsMCwxMi41My03TDE2NCwyNjYwLjMzYTMwLjExLDMwLjExLDAsMCwwLTEyLjI4LDcuMVoiLz48cGF0aCBkPSJNMTc5LDI2ODIuNDhhMjkuMjQsMjkuMjQsMCwwLDEtMjkuNDUtNy4yN3YxMy45MWE0MC4yMiw0MC4yMiwwLDAsMCw0MS40Miwwdi0xMy45MUEyOS4zMSwyOS4zMSwwLDAsMSwxNzksMjY4Mi40OFoiLz48cGF0aCBkPSJNMTcwLjI0IDI2NDYuNDlhNDAuMDcgNDAuMDcgMCAwIDAgLTIwLjcxIDUuNzR2MTMuOTFhMjkuMjIgMjkuMjIgMCAwIDEgNDEuNDIgMHYtMTMuOTFBNDAuMDcgNDAuMDcgMCAwIDAgMTcwLjI0IDI2NDYuNDkiLz48L2c+PC9zdmc+" alt="Devbridge Styleguide">
+            <div class="banner-styleguide--promo">
+                <h3 class="banner-styleguide--title">Try our Living Styleguide</h3>
+                <p class="banner-styleguide--desc">Devbridge Styleguide helps you create, share, and automate a living  <br>
+                    visual style library of your brand. <a href="http://livingstyleguide.devbridge.com/" target="_blank">Learn more</a></p>
+            </div>
+        </div>
+    </section>
+
+
 </div>
 <footer class="page-footer">
-    <div class="page-frame clearfix">
-        <div class="page-footer__description">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4Mi40OCA4Mi40OCIgd2lkdGg9IjgyIiBoZWlnaHQ9IjgyIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iODAuNDgiIGhlaWdodD0iODAuNDgiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxnIGZpbGw9IiMxYTFhMWEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjktMjYyOS4xOCkiPjxwYXRoIGQ9Ik0xNzYuMjEsMjY4MC45NGEyOC40MiwyOC40MiwwLDAsMCwxMi41My03TDE2NCwyNjYwLjMzYTMwLjExLDMwLjExLDAsMCwwLTEyLjI4LDcuMVoiLz48cGF0aCBkPSJNMTc5LDI2ODIuNDhhMjkuMjQsMjkuMjQsMCwwLDEtMjkuNDUtNy4yN3YxMy45MWE0MC4yMiw0MC4yMiwwLDAsMCw0MS40Miwwdi0xMy45MUEyOS4zMSwyOS4zMSwwLDAsMSwxNzksMjY4Mi40OFoiLz48cGF0aCBkPSJNMTcwLjI0IDI2NDYuNDlhNDAuMDcgNDAuMDcgMCAwIDAgLTIwLjcxIDUuNzR2MTMuOTFhMjkuMjIgMjkuMjIgMCAwIDEgNDEuNDIgMHYtMTMuOTFBNDAuMDcgNDAuMDcgMCAwIDAgMTcwLjI0IDI2NDYuNDkiLz48L2c+PC9zdmc+" alt="Devbridge Styleguide">
-            <h3>Try our Living Styleguide</h3>
-            <p>Devbridge Styleguide helps you create, share, and automate a living
-                visual style library of your brand. <a href="http://livingstyleguide.devbridge.com/"
-                                                       target="_blank">Learn more.</a></p>
-        </div>
-        <div class="page-footer__decoration">
-            <table>
-                <tr>
-                    <td style="background-color:#eb2026;">#eb2026</td>
-                    <td style="background-color:#f05a26;">#f05a26</td>
-                    <td style="background-color:#faaf3a;">#faaf3a</td>
-                    <td style="background-color:#29a9e1;">#29a9e1</td>
-                    <td style="background-color:#39b44a;">#39b44a</td>
-                </tr>
-            </table>
-        </div>
-    </div>
     <div class="page-footer__credit-wrapper">
         <div class="page-frame clearfix">
             <div class="page-footer__credits">
@@ -189,5 +191,6 @@
     ga('create', 'UA-73039601-5', 'auto');
     ga('send', 'pageview');
 </script>
+
 </body>
 </html>

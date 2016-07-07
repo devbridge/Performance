@@ -25,7 +25,10 @@
 
 // Local modules
 @import 'modules/typography',
-		'modules/buttons';
+		'modules/buttons',
+		'modules/promo-banner',
+		'modules/sections',
+		'modules/banner-styleguide';
 
 // Styles for project pages or similar views - styles that are connected by content
 @import 'print',

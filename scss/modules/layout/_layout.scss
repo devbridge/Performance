@@ -22,6 +22,7 @@ body {
     font-size: $base-font-size;
     line-height: $base-line-height;
     min-height: 100%;
+    background: $color-body;
 
     // To prevent the iPhone and iPad from inflating fonts
     @include respond-to(1024, max) {
@@ -63,8 +64,6 @@ code {
 }
 
 .page-section {
-    padding-bottom: 4em;
-    padding-top: 4em;
 
     &__content, &__image {
         @include span-columns(6);
@@ -132,16 +131,4 @@ code {
             max-width: 56px;
         }
     }
-}
-
-.bg-grey {
-    background-color: $color-body;
-}
-
-.bg-white-yellow {
-    background-image: linear-gradient(to right, $white 50%, $color-orange 50%);
-}
-
-.bg-white-black {
-    background-image: linear-gradient(to right, $white 50%, $color-gray 50%);
 }

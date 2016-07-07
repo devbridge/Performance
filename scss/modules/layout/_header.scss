@@ -1,30 +1,45 @@
-.page-header {
-    background-color: $color-gray;
-    border-bottom: 5px solid $color-orange;
+.page {
+    &--header {
+        @include position(fixed, 0 0 null);
+        background-color: $black;
+        z-index: 10;
+
+        .page-frame {
+            align-items: center;
+            display: flex;
+            height: $header-height;
+        }
+    }
+
+    &--nav {
+
+        a {
+            @include vertical-align();
+            color: $white;
+            margin-right: 30px;
+
+            &:last-child {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        }
+
+        img {
+            width: 36px;
+        }
+        .twitter-share-button {
+            vertical-align: middle;
+        }
+    }
+}
+
+.link-github {
+    padding-left: 60px;
 
     img {
-        width: 36px;
-    }
-
-    &__content {
-        padding-bottom: 4em;
-        padding-top: 4em;
-        position: relative;
-    }
-
-    h1 {
-        @include span-columns(6);
-        color: $color-orange;
-    }
-
-    .btn-primary {
-        color: $color-gray;
-        margin-top: 35px;
-        font-size: 18px;
-    }
-
-    .btn--github {
-        padding-left: 60px;
+        @include vertical-align();
+        margin-left: 15px;
+        max-width: 22px;
     }
 }
 
@@ -36,38 +51,5 @@
     img {
         max-width: 436px;
         width: auto;
-    }
-}
-
-.header-navigation {
-    background-color: $black;
-
-    a {
-        @include vertical-align();
-        color: $white;
-        margin-right: 30px;
-
-        &:last-child {
-            margin-left: auto;
-            margin-right: 0;
-        }
-    }
-
-    .page-frame {
-        display: flex;
-        min-height: 60px;
-        align-items: center;
-    }
-
-    .twitter-share-button {
-        vertical-align: middle;
-    }
-
-    &__github {
-        img {
-            @include vertical-align();
-            margin-left: 15px;
-            max-width: 22px;
-        }
     }
 }
