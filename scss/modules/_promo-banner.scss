@@ -8,6 +8,7 @@
     }
     border-bottom: $color-orange solid 5px;
     margin-top: $header-height;
+    position: relative;
 
     .page-frame {
         @include display(flex);
@@ -109,13 +110,17 @@
         &--title {
             margin-right: auto;
             margin-top: 4em;
+
+            img {
+                width: 85%;
+            }
         }
     }
 
     @include respond-to(535, max) {
         &--intro {
             margin-right: auto;
-            padding: 2em 0;
+            padding: 2em 0 12em;
         }
 
         &--visual {
@@ -124,31 +129,24 @@
             max-width: 430px;
             width: 100%;
 
-            &:before {
-                @include position(absolute, null 0 0 null);
-                @include size(100% 385px);
-                background: {
-                    image: url($icon-graph);
-                    position: 0 100%;
-                    repeat: no-repeat;
-                    size: 100%;
-                }
-                content: '';
-                display: block;
-                z-index: 0;
-            }
-
             p {
-                margin-top: 72%;
+                margin-top: 0;
+                margin-bottom: 80px;
                 position: relative;
-                width: 80%;
             }
 
             a {
-                display: inline-block;
-                margin-bottom: 7px;
+                clear: both;
+                float: left;
+                margin-top: 7px;
                 white-space: nowrap;
+                font-size: 18px;
             }
+
+            strong {
+                font-size: 14px;
+            }
+
         }
     }
 }

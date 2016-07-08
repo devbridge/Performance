@@ -18,7 +18,13 @@ body {
 body {
     @include display(flex);
     @include flex-direction(column);
-    background: $color-body;
+    background: {
+        image: url($icon-promo-bg);
+        attachment: fixed;
+        color: $color-black;
+        repeat: repeat;
+        position: center;
+    }
     font: {
         family: $font-primary;
         size: $base-font-size;

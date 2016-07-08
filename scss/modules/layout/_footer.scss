@@ -85,12 +85,20 @@
 
     @include respond-to(480, max) {
         &__credits-menu {
-            @include flex-direction(column);
+            @include flex-wrap(wrap);
             margin-left: 0;
 
             a {
                 display: inline-block;
                 margin-top: 3px;
+
+                &:nth-child(2) {
+                    @include order(3);
+                }
+
+                &:last-child {
+                    margin-right: 17px;
+                }
             }
         }
 
