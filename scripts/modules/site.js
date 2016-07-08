@@ -3,7 +3,7 @@
 /*jslint regexp: true, nomen: true, sloppy: true */
 /*global require, define, alert, applicationConfig, location, document, window,  setTimeout, Countable */
 
-define(['jquery', 'slickSlider', 'modal'], function ($) {
+define(['jquery'], function ($) {
     var module = {};
 
     // Context is passed to modules. If you will pass it, module will bind to
@@ -31,41 +31,6 @@ define(['jquery', 'slickSlider', 'modal'], function ($) {
                     label.parent().remove();
                 }
             });
-        });
-    };
-
-    module.slickSlider = function(context){
-        // Description: Module will bind slick.js slider functionality
-        // -----------------------------------------------------------------------------------------------
-        // Documentation: http://kenwheeler.github.io/slick/
-        // -----------------------------------------------------------------------------------------------
-        // Element example:
-        //  <div class="js-slick-slider">
-        //      <div>your content</div>
-        //      <div>your content</div>
-        //      <div>your content</div>
-        //  </div>
-
-        $('.js-slick-slider', context).slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3
-        });
-    };
-
-    module.modal = function (context) {
-        // Description: Module will bind modal plugin with it's default configuration
-        // -----------------------------------------------------------------------------------------------
-        // Documentation: https://github.com/tkirda/modal-box
-        // -----------------------------------------------------------------------------------------------
-        // Element example:
-        //  <a href="/content/styles/site-styles.css" class="modal-demo" title="Modal demo" data-modal="">
-        //      View Expense Report
-        //  </a>
-
-        $('[data-modal]', context).on('click', function (e) {
-            e.preventDefault();
-            $(this).openModal();
         });
     };
 

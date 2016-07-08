@@ -16,13 +16,15 @@ body {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    font-family: $font-primary;
-    font-size: $base-font-size;
+    @include display(flex);
+    @include flex-direction(column);
+    background: $color-body;
+    font: {
+        family: $font-primary;
+        size: $base-font-size;
+    }
     line-height: $base-line-height;
     min-height: 100%;
-    background: $color-body;
 
     // To prevent the iPhone and iPad from inflating fonts
     @include respond-to(1024, max) {
@@ -40,7 +42,7 @@ a {
     text-decoration: none;
 
     &:hover {
-        color: #e59b27;
+        color: darken($color-orange, 10%);
     }
 }
 
@@ -54,7 +56,7 @@ code {
 }
 
 .page {
-    flex: 1;
+    @include flex(1);
 }
 
 .page-frame {
@@ -81,8 +83,8 @@ code {
 
     &--features {
         .page-frame {
-            display: flex;
-            align-items: center;
+            @include display(flex);
+            @include align-items(center);
         }
 
         + .page-section--features {
@@ -103,16 +105,12 @@ code {
         background-color: $color-orange;
 
         .page-frame {
-            display: flex;
-            align-items: center;
+            @include display(flex);
+            @include align-items(center);
         }
 
         .page-section__code {
             @include span-columns(7);
-
-            code {
-                white-space: pre;
-            }
         }
 
         .page-section__content {
@@ -121,7 +119,7 @@ code {
         }
 
         p {
-            color: $white;
+            color: $color-white;
             margin: 2em auto;
             max-width: 320px;
         }

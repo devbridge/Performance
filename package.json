@@ -31,6 +31,7 @@
     "gulp-ignore": "^2.0.1",
     "gulp-imagemin": "^2.3.0",
     "gulp-task-loader": "1.2.1",
-    "imagemin-pngquant": "^4.2.0"
+    "imagemin-pngquant": "^4.2.0",
+    "through2": "^2.0.1"
   }
 }

@@ -1,9 +1,27 @@
+//module MAIN COLOR PALETTE
+$color-black: #1e1e1e;
+$color-white: #fff;
+$color-gray: #333;
+$color-text: #000;
+$color-orange: #fbb03b;
+$color-orange-dark: #ef7100;
+$color-body: #efeeea;
+
+//module COMMON COLORS
+
+//module LINK COLORS
+
+//module SELECTION COLORS
+
 //module TYPOGRAPHY
 $base-line-height: 1.5;
 $base-font-size: 16px;
+$font-primary: 'Avenir Next W01', sans-serif; // 400, 500, 600, 700, 800
 
 // widths, heights, sizes, timings, settings
 $header-height: 60px;
-$url-promo-bg: 'images/promo-bg.png';
-$url-graph-bg: 'images/graph.svg';
-$url-styleguide-bg: 'images/styleguide-bg.svg';
+
+// button settings
+$border-radius: 6px;
+$button-default-color-hover: #febd57;
+

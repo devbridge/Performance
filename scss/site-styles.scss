@@ -7,13 +7,12 @@
 @import 'neat';
 
 // Dependencies
-@import 'core/colors', // Only color variables.
-		'core/assets', // Variables for image urls, local web fonts or other assets your might have.
-		'core/variables', // All other variables, including typography, measurements and etc.
+@import 'core/variables', // All other variables, including typography, measurements and etc.
 		'core/mixins', // Mixins, functions, extenders.
 		'core/normalize', // Contains CSS output to fix cross-browser inconsistencies.
 		'core/notifications',
-		'core/svg-sprite';
+		'core/svg-sprite',
+        'core/icons'; // Variables for image urls, local web fonts or other assets your might have.
 
 // Plugins - Styles of third party plugins
 //@import 'plugins/slick';

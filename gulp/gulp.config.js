@@ -13,6 +13,12 @@ module.exports = function () {
             spriteFolder: 'content/styles/images/',
             scssMapFolder: 'scss/core/',
             pngFallback: false
+        },
+        dataUri: {
+            src: ['Scss/assets/base_64/*.{png,jpg,gif,svg}'],
+            dest: 'Scss/core',
+            resultFile: '_icons.scss',
+            varPrefix: '$icon-'
         }
     };
 

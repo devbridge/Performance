@@ -11,12 +11,11 @@ require.config({
             '//cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min',
             'plugins/jquery.validate.min'
         ],
-        slickSlider: [
-            '//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min',
-            'plugins/slick.min'
-        ],
-        modal: 'plugins/jquery.modal',
-        site: 'modules/site'
+        // slickSlider: [
+        //     '//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min',
+        //     'plugins/slick.min'
+        // ],
+        site: 'modules/site.min'
     },
     shim: {
         validation: {
@@ -24,6 +23,7 @@ require.config({
         }
     }
 });
+
 require(['jquery', 'site'], function ($, site) {
     var console = window.console || { log: $.noop, error: $.noop },
         maxData = [];

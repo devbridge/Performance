@@ -3,65 +3,21 @@
         position: relative;
     }
 
-    &__description {
-        box-sizing: border-box;
-        position: relative;
-        padding: 40px 43% 40px 115px;
-
-        img {
-            left: 0;
-            width: 82px;
-            position: absolute;
-            top: 40px;
-        }
-
-        h2 {
-            margin-bottom: 8px;
-        }
-
-        p {
-            color: #666;
-            margin: 0;
-        }
-    }
     &__credit-wrapper {
-        background-color: $black;
+        background-color: $color-black;
 
         .page-frame {
+            @include display(flex);
+            @include align-items(center);
             min-height: 42px;
-            display: flex;
-            align-items: center;
         }
 
         a {
-            color: $white;
+            color: $color-white;
 
             &:hover {
                 color: $color-body;
             }
-        }
-    }
-
-    &__decoration {
-        bottom: 0;
-        max-width: 40%;
-        position: absolute;
-        right: 0;
-
-        table {
-            color: #fff;
-            height: 135px;
-            max-width: 437px;
-            table-layout: fixed;
-            text-align: center;
-            width: 100%;
-        }
-
-        td {
-            border-right: 15px solid $white;
-            font-size: 12px;
-            vertical-align: top;
-            padding-top: 8px;
         }
     }
 
@@ -71,15 +27,16 @@
 
         a {
             font-size: 14px;
+            margin-right: 17px;
 
-            + a {
-                margin-left: 17px;
+            &:last-child {
+                margin-right: 0;
             }
         }
     }
 
     &__credits {
-        color: $white;
+        color: $color-white;
         font-size: 0;
 
         img {
@@ -94,6 +51,51 @@
 
         a {
             margin-right: 14px;
+        }
+    }
+
+    @include respond-to(960, max) {
+        &__credit-wrapper {
+            .page-frame {
+                @include flex-direction(column);
+            }
+        }
+
+        &__credits {
+            @include order(2);
+            margin: 15px auto;
+            width: 430px;
+        }
+
+        &__credits-menu {
+            @include display(flex);
+            margin: 15px auto 0;
+        }
+    }
+
+    @include respond-to(535, max) {
+        &__credits {
+            width: auto;
+
+            small {
+                width: 70%;
+            }
+        }
+    }
+
+    @include respond-to(480, max) {
+        &__credits-menu {
+            @include flex-direction(column);
+            margin-left: 0;
+
+            a {
+                display: inline-block;
+                margin-top: 3px;
+            }
+        }
+
+        &__credits {
+            margin-left: 0;
         }
     }
 }

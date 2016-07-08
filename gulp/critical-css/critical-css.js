@@ -6,8 +6,13 @@ module.exports = function() {
         inline: true,
         base: './',
         src: 'index-origin.html',
-        width: 1300,
-        height: 900,
+        dimensions: [{
+            height: 480,
+            width: 320
+        }, {
+            height: 900,
+            width: 1200
+        }],
         dest: 'index.html',
         minify: true,
         extract: true,

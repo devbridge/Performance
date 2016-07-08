@@ -1,14 +1,24 @@
 .banner-styleguide {
-    background: $white;
+    background: $color-white;
     margin-top: -10px;
 
     .page-frame {
-        background: url($url-styleguide-bg) 100% 100% no-repeat;
         position: relative;
         padding: {
             top: 122px;
             bottom: 122px;
         };
+
+        &:before {
+            @include position(absolute, null 0 0 null);
+            @include size(440px 203px);
+            content: '';
+            background: {
+                image: url($icon-styleguide-bg);
+                size: 100%;
+            };
+            display: block;
+        }
     }
 
     img {
@@ -16,7 +26,9 @@
     }
 
     &--promo {
-        margin: 0 490px 0 115px;
+        margin-left: 115px;
+        margin-right: 48%;
+        max-width: 560px;
     }
 
     &--title {
@@ -33,5 +45,82 @@
 
     a {
         border-bottom: $color-orange solid 1px;
+        white-space: nowrap;
+    }
+
+    @include respond-to(960, max) {
+        overflow: hidden;
+
+        .page-frame {
+            max-width: 475px;
+
+            &:before {
+                right: 20px;
+                left: 20px;
+                bottom: -140px;
+            }
+        }
+
+        img {
+            top: 50%;
+            margin-top: -41px;
+        }
+
+        &--promo {
+            margin-right: 0;
+        }
+    }
+
+    @include respond-to(768, max) {
+        overflow: hidden;
+
+        .page-frame {
+            background: none;
+            position: relative;
+            padding-bottom: 160px;
+            padding-top: 60px;
+
+            &:before {
+                width: auto;
+                bottom: -100px;
+            }
+        }
+
+        img {
+            float: left;
+            left: auto;
+            margin: 0 20px 15px 0;
+            position: relative;
+        }
+
+        &--title {
+            margin-top: 25px;
+        }
+
+        &--promo {
+            margin: auto;
+        }
+
+        &--desc {
+            clear: both;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    @include respond-to(535, max) {
+        &--desc {
+            a {
+                display: inline-block;
+            }
+        }
+    }
+
+    @include respond-to(400, max) {
+        &--title {
+            margin-top: 7px;
+        }
     }
 }

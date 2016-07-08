@@ -1,79 +1,3 @@
-.btn {
-    &-primary {
-        @include transition(background .3s, color .3s);
-        -webkit-appearance: none;
-        background: $color-orange;
-        border: 0;
-        border-radius: $border-radius;
-        color: $white;
-        cursor: pointer;
-        display: inline-block;
-        font-family: $font-primary;
-        font-size: 14px;
-        font-weight: 700;
-        height: 40px;
-        line-height: 40px;
-        outline: none;
-        padding: 0 30px;
-        text-align: center;
-        text-decoration: none;
-
-        &:hover {
-            background: $button-default-color-hover;
-        }
-    }
-
-    &-secondary {
-        @include transition(background .3s, color .3s);
-        background: $white;
-        border: 0;
-        border-radius: $border-radius;
-        color: $color-orange;
-        cursor: pointer;
-        display: inline-block;
-        font-family: $font-primary;
-        font-size: 14px;
-        font-weight: 700;
-        height: 40px;
-        line-height: 40px;
-        outline: none;
-        padding: 0 30px;
-        text-align: center;
-        text-decoration: none;
-        -webkit-appearance: none;
-
-        &:hover {
-            background-color: #fefbf8;
-        }
-    }
-
-    &-tertiary {
-        @include transition(background .3s, color .3s);
-        background: $color-gray;
-        border: 0;
-        border-radius: $border-radius;
-        color: $color-orange;
-        cursor: pointer;
-        display: inline-block;
-        font-family: $font-primary;
-        font-size: 14px;
-        font-weight: 700;
-        height: 40px;
-        line-height: 40px;
-        outline: none;
-        padding: 0 30px;
-        text-align: center;
-        text-decoration: none;
-        -webkit-appearance: none;
-
-        &:hover {
-            background-color: $black;
-        }
-    }
-
-
-}
-
 .btn--github {
     position: relative;
 
@@ -85,7 +9,7 @@
         display: block;
         margin-right: 7px;
         background: {
-            image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMS42MSAyMS4wOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIj48cGF0aCBkPSJNMTYyIDM1MC41N2ExMC44MSAxMC44MSAwIDAgMCAtMy40MiAyMS4wNiAuNTQgLjU0IDAgMCAwIC43NCAtLjUyYzAtLjI2IDAtLjk0IDAtMS44NC0zIC42NS0zLjY0LTEuNDUtMy42NC0xLjQ1YTIuODYgMi44NiAwIDAgMCAtMS4yIC0xLjU4Yy0xLS42Ny4wNy0uNjYuMDctLjY2YTIuMjcgMi4yNyAwIDAgMSAxLjY2IDEuMTEgMi4zIDIuMyAwIDAgMCAzLjE0IC45IDIuMzEgMi4zMSAwIDAgMSAuNjkgLTEuNDRjLTIuNC0uMjctNC45Mi0xLjItNC45Mi01LjM0YTQuMTggNC4xOCAwIDAgMSAxLjExIC0yLjkgMy44OSAzLjg5IDAgMCAxIC4xMSAtMi44NnMuOTEtLjI5IDMgMS4xMWExMC4yNCAxMC4yNCAwIDAgMSA1LjQxIDBjMi4wNi0xLjQgMy0xLjExIDMtMS4xMWEzLjg4IDMuODggMCAwIDEgLjExIDIuODYgNC4xNyA0LjE3IDAgMCAxIDEuMTEgMi45YzAgNC4xNS0yLjUzIDUuMDYtNC45MyA1LjMzYTIuNTggMi41OCAwIDAgMSAuNzMgMmMwIDEuNDQgMCAyLjYxIDAgM2EuNTQgLjU0IDAgMCAwIC43NCAuNTJBMTAuODEgMTAuODEgMCAwIDAgMTYyIDM1MC41NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE1MS4xOS0zNTAuNTcpIiBmaWxsPSIjMzMzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);
+            image: url($icon-git-dark);
             repeat: no-repeat;
             size: 100%;
             position: center;
@@ -95,62 +19,69 @@
 
 .btn {
     @include transition(background .3s, color .3s);
-    -webkit-appearance: none;
     background: $color-orange;
     border: 0;
     border-radius: $border-radius;
-    color: $white;
+    color: $color-white;
     cursor: pointer;
     display: inline-block;
-    font-family: $font-primary;
-    font-size: 14px;
-    font-weight: 700;
+    font: {
+        family: $font-primary;
+        size: 14px;
+        weight: 700;
+    }
     outline: none;
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
+    -webkit-appearance: none;
 
     &:hover {
-        background: $white;
-        color: $black;
+        background: $color-white;
+        color: $color-black;
     }
 
     &.btn__cta {
-        color: $black;
-        font-size: 18px;
-        font-weight: 600;
+        color: $color-black;
+        font: {
+            size: 18px;
+            weight: 600;
+        }
         height: 40px;
+        letter-spacing: .5px;
         line-height: 40px;
     }
 
     &.btn__small {
-        background: $black;
+        background: $color-black;
         color: $color-orange;
         height: 32px;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         line-height: 32px;
         font: {
             size: 12px;
-            weight: 600;
+            weight: 800;
         };
         text-transform: uppercase;
 
         &:hover {
-            background: $white;
+            background: $color-white;
             color: $color-orange;
         }
     }
 
     &.btn__inverse {
-        background: $white;
+        background: $color-white;
         color: $color-orange;
-        font-size: 18px;
-        font-weight: 500;
+        font: {
+            size: 18px;
+            weight: 500;
+        }
         height: 40px;
         line-height: 40px;
 
         &:hover {
-            background: $black;
+            background: $color-black;
             color: $color-orange;
         }
     }

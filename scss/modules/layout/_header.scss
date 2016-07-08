@@ -1,12 +1,12 @@
 .page {
     &--header {
         @include position(fixed, 0 0 null);
-        background-color: $black;
+        background-color: $color-black;
         z-index: 10;
 
         .page-frame {
-            align-items: center;
-            display: flex;
+            @include display(flex);
+            @include align-items(center);
             height: $header-height;
         }
     }
@@ -15,12 +15,19 @@
 
         a {
             @include vertical-align();
-            color: $white;
-            margin-right: 30px;
+            color: $color-white;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            margin-right: 34px;
 
             &:last-child {
+                font-weight: 300;
                 margin-left: auto;
                 margin-right: 0;
+            }
+
+            &:first-child {
+                @include flex-shrink(0);
             }
         }
 
@@ -31,22 +38,34 @@
             vertical-align: middle;
         }
     }
+
+    @include respond-to(768, max) {
+        .scroll-link {
+            display: none;
+        }
+
+        &--nav {
+            a {
+                letter-spacing: 0;
+                margin-right: 20px;
+            }
+        }
+    }
+
 }
 
 .link-github {
-    padding-left: 60px;
+    letter-spacing: 0;
 
     img {
         @include vertical-align();
-        margin-left: 15px;
+        margin-left: 5px;
         max-width: 22px;
     }
 }
 
 .hero-image {
-    bottom: 0;
-    position: absolute;
-    right: 0;
+    @include position(absolute, null 0 0 null);
 
     img {
         max-width: 436px;

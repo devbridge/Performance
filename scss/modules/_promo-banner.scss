@@ -1,8 +1,8 @@
 .promo-banner {
     background: {
-            image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAMAAAD/cKfGAAAAJ1BMVEUiIiIjIyMkJCQlJSQlJSUmJiUmJiYnJyYnJycoKCcoKCgpKSgpKSleMmokAAACNklEQVQ4yz2TQbbtKAwD7foVApH3v94ecF/PEg5GQiUqmZnMTDKZTDLJ7/uuzmSSzO+3MrNVqqluTlS7oQFhj1C0IutkajLZUi20a2wEKVGq+wRA2uebnVS+8WSJolmU1d2/CZEoCidb56s82TzJQ+E7dv00ugu6YOUf7ZoIZ3eFb1rOxGbWnwORKoF2TnvySj+haugsG/d837VstVVqV9P4JNe2WVqhnHtW5lOs+v8SUK07Y4ucka403JX+vuSBFm3tqgKcb80GWGM3NYLzYDtwZryCSNuuZDfnaJPTUjUAe9C8gpkj0i3iyYaWWd0GoCoCZnOiBT5nHm1K3zlXiTV2bpA1NtbKygONNM9E5MmsaxGZd48tWLklmgSq6G6ak29N3l9eNOXEBuzKPXiPqNhSYOZbtBZ2A85YoNY0ZTPfR+utkDt5v/xJKDi3D9U1aPGO+esrOyPVO1kWUA3z7VwTNZSSzU4XyJMcscE381w4Z3BONVSNDSfivAV+s7UBoN3zWYWzdOX25jJfdO/RL599EdzUTF57h4LZUJf52VJNvkTBEtFGZWXeeRr7yY+HT1R5Zj5/j4P+gWhwzQ/l+e4E85Z45uwBkUaKAmxlTWYrkq019UbZc942+74ou6X1aszplTzAm39d2Xl07t5nvKDRsrApT2x45tswuypn1peNaJmb+c22bsh5G8A3n8+8lWSO/UPgLG59+o/K+Sikiic5M5XJsRu76fbEO9oF2qzxdysav8x/fFAZnqqYkQ8AAAAASUVORK5CYII=);
+            image: url($icon-promo-bg);
             attachment: fixed;
-            color: $black;
+            color: $color-black;
             repeat: repeat;
             position: center;
     }
@@ -20,28 +20,19 @@
         margin-right: 480px;
 
         .icon-github {
-            display: inline-block;
+            @include vertical-align();
+            @include size(22px);
+            background-image: url($icon-git-dark);
             font-size: 18px;
-            height: 22px;
             margin-right: 5px;
             margin-top: -3px;
-            vertical-align: middle;
-            width: 22px;
-
-            &:after {
-                content: '';
-                @include svg-sprite('git-dark');
-                display: block;
-
-            }
         }
     }
 
     &--visual {
         @include position(absolute, null 20px 0 null);
-        background: url($url-graph-bg) 0 100% no-repeat;
-        height: 385px;
-        width: 430px;
+        @include size(430px 385px);
+        background: url($icon-graph) 0 100% no-repeat;
 
         p {
             margin-top: 225px;
@@ -54,32 +45,33 @@
                 size: 11px;
                 weight: 400;
             };
-            text-transform: uppercase;
             margin-bottom: 2px;
+            text-transform: uppercase;
         }
 
         a {
-            color: $white;
-            text-transform: uppercase;
+            color: $color-white;
             font-size: 14px;
+            margin-right: 20px;
+            text-transform: uppercase;
 
-             + a {
-                 margin-left: 20px;
-             }
+            &:last-child {
+                margin-right: 0;
+            }
         }
 
         .icon-flame {
+            @include size(13px 17px);
+            @include vertical-align();
             margin-right: 5px;
-
-            &:after {
-                content: '';
-                @include svg-sprite('icon-flame');
+            background: {
+                image: url($icon-flame);
+                repeat: no-repeat;
             }
         }
     }
 
     &--title {
-
         font: {
             family: $font-primary;
             size: 18px;
@@ -87,11 +79,76 @@
         };
         color: $color-orange;
         line-height: 1.4;
-        margin-right: 15%;
         margin-bottom: 27px;
+        margin-right: 20%;
 
         img {
             margin-bottom: 20px;
+        }
+    }
+
+    @include respond-to(900, max) {
+        .page-frame {
+            @include flex-direction(column);
+            height: auto;
+        }
+
+        &--intro {
+            margin: auto;
+            max-width: 430px;
+            padding: 2em 0;
+        }
+
+        &--visual {
+            @include position(relative, null auto auto null);
+            background: {
+                size: 100%;
+            }
+        }
+
+        &--title {
+            margin-right: auto;
+            margin-top: 4em;
+        }
+    }
+
+    @include respond-to(535, max) {
+        &--intro {
+            margin-right: auto;
+            padding: 2em 0;
+        }
+
+        &--visual {
+            background: none;
+            height: auto;
+            max-width: 430px;
+            width: 100%;
+
+            &:before {
+                @include position(absolute, null 0 0 null);
+                @include size(100% 385px);
+                background: {
+                    image: url($icon-graph);
+                    position: 0 100%;
+                    repeat: no-repeat;
+                    size: 100%;
+                }
+                content: '';
+                display: block;
+                z-index: 0;
+            }
+
+            p {
+                margin-top: 72%;
+                position: relative;
+                width: 80%;
+            }
+
+            a {
+                display: inline-block;
+                margin-bottom: 7px;
+                white-space: nowrap;
+            }
         }
     }
 }

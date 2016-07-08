@@ -5,6 +5,7 @@
         reports page.</title>
     <meta charset="utf-8">
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/fc9e4e5d-1754-46a6-8ca7-cd10af8017b2.css"/>
     <link href="content/styles/site-styles.css" rel="stylesheet" type="text/css"/>
@@ -16,8 +17,8 @@
             el = document.createElement('script');
             el.type = 'text/javascript';
             el.async = true;
-            el.setAttribute("data-main", "scripts/main");
-            el.src = 'scripts/require.js';
+            el.setAttribute("data-main", "scripts/main.min");
+            el.src = 'scripts/require.min.js';
             head = document.getElementsByTagName('script')[0];
             head.parentNode.insertBefore(el, head);
         }());
@@ -31,15 +32,15 @@
     </div>
 </noscript>
 
-<div class="page" style="min-width: 1180px;">
+<div class="page">
     <header class="page--header">
         <nav class="page--nav js-scroll-nav">
             <div class="page-frame clearfix">
                 <a href="https://www.devbridge.com/" target="_blank">
                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM2IDM2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzNiAzNiI+PHBhdGggZmlsbD0iI2NlMmQyOCIgZD0ibTAgMGgzNnYzNmgtMzZ6Ii8+PGcgZmlsbD0iI2ZmZiI+PHBhdGggZD0ibTI0LjggMTEuNGMtMSAwLTEuOS4yLTIuNy42di02aC0zLjR2MTEuNWMwIDMuNCAyLjcgNi4xIDYuMSA2LjEgMy40IDAgNi4xLTIuNyA2LjEtNi4xIDAtMy40LTIuNy02LjEtNi4xLTYuMW0wIDguOGMtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PHBhdGggZD0ibTE3LjIgMjAuNWMwLS4xIDAtLjItLjEtLjItLjItLjYtLjMtMS4zLS4zLTJ2LTcuN2gtMy40djUuOGMtLjYtLjItMS40LS40LTIuMS0uNC0zLjQgMC02LjEgMi43LTYuMSA2LjEgMCAzLjQgMi43IDYuMSA2LjEgNi4xIDIuMSAwIDMuOS0xIDUtMi42IDEgMS4xIDIuMyAyIDMuNyAyLjZsMS43LTIuOWMtMi4xLS44LTMuOS0yLjYtNC41LTQuOG0tNS45IDQuM2MtMS41IDAtMi43LTEuMi0yLjctMi43IDAtMS41IDEuMi0yLjcgMi43LTIuNyAxLjUgMCAyLjcgMS4yIDIuNyAyLjcgMCAxLjUtMS4yIDIuNy0yLjcgMi43Ii8+PC9nPjwvc3ZnPg==" alt="Powered by Devbridge"/>
                 </a>
-                <a href="#features">Features</a>
-                <a href="#installation">Installation</a>
+                <a href="#features" class="scroll-link">Features</a>
+                <a href="#installation" class="scroll-link">Installation</a>
                 <a class="js-outside-link js-event-demo" href="http://performance.devbproto.com/" target="_blank">Demo</a>
                 <a href="https://twitter.com/share" class="twitter-share-button js-outside-link" data-text="Collect various website performance information and display it in an easy-to-digest manner." data-via="devbridge">Tweet</a>
                 <a href="https://github.com/devbridge/Performance" target="_blank" class="link-github js-outside-link">
@@ -62,7 +63,7 @@
                 </p>
             </div>
             <div class="promo-banner--visual">
-                <p>
+                <p class="clearfix">
                     <strong>Three in one:</strong>
                     <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank"><i class="icon-flame"></i>PageSpeed Insights</a>
                     <a href="https://github.com/gmetais/grunt-devperf" target="_blank"><i class="icon-flame"></i>dev-perf</a>
@@ -75,7 +76,7 @@
     <section class="page-section" id="features">
         <div class="page-frame">
             <h2 class="page-section--title">Features</h2>
-            <p class="page-section--desc">
+            <p class="page-section--desc page-section__intro">
                 This is a npm package to display statistics about your web pages, including Google PageSpeed Insights
                 score, resources count, recommendations how to fix performace issues, html errors and many more in
                 one custom web page.
@@ -87,9 +88,10 @@
                 <div class="section-single--image">
                     <img src="content/images/app-data.png" alt="Test and compare scores from Google PageSpeed Insights on one page"/>
                 </div>
-                <div class="section-single--content">
-                    <h3 class="section-single--title">Test multiple pages on Google PageSpeed Insights at once</h3>
-                    <p class="section-single--desc">With PerfTool you can run multiple tests for Google PageSpeed Insights report. Then, compare results from previous tests, set score threshold and get detailed report about your tests.</p>
+                <div class="section-single--content section-single__yellow">
+                    <h3 class="section-single--title">Test and compare scores from Google PageSpeed Insights on one page</h3>
+                    <p class="section-single--desc">With PerfTool you can test multiple pages on Google PageSpeed Insights at once. When you can compare
+                        your results with previous tests. In addition you can set your threshold for scores.</p>
                     <a class="btn btn__small js-event-demo" href="http://performance.devbproto.com/" target="_blank">View Sample Report</a>
                 </div>
             </div>
@@ -98,11 +100,12 @@
         <div class="section-single section-single__white-black">
             <div class="page-frame">
                 <div class="section-single--image section-single--image__offside">
-                    <img src="content/images/perf-stats.png" alt="Check your page’s HTML healt"/>
+                    <img src="content/images/perf-stats.png" alt="Check your page’s HTML health"/>
                 </div>
-                <div class="section-single--content">
-                    <h3 class="section-single--title">Get your page statistics</h3>
-                    <p class="section-single--desc">Check your page for html errors, get external resources count and sizes, check loading times and many more.</p>
+                <div class="section-single--content section-single__black">
+                    <h3 class="section-single--title">Check your page’s HTML healt</h3>
+                    <p class="section-single--desc">From html errors to external assets count, check your page’s health. You can customize your results
+                        from over 200 options.</p>
                     <p class="text-big">Over <span>200</span> options</p>
                 </div>
             </div>
@@ -146,7 +149,7 @@
             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4Mi40OCA4Mi40OCIgd2lkdGg9IjgyIiBoZWlnaHQ9IjgyIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iODAuNDgiIGhlaWdodD0iODAuNDgiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxnIGZpbGw9IiMxYTFhMWEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjktMjYyOS4xOCkiPjxwYXRoIGQ9Ik0xNzYuMjEsMjY4MC45NGEyOC40MiwyOC40MiwwLDAsMCwxMi41My03TDE2NCwyNjYwLjMzYTMwLjExLDMwLjExLDAsMCwwLTEyLjI4LDcuMVoiLz48cGF0aCBkPSJNMTc5LDI2ODIuNDhhMjkuMjQsMjkuMjQsMCwwLDEtMjkuNDUtNy4yN3YxMy45MWE0MC4yMiw0MC4yMiwwLDAsMCw0MS40Miwwdi0xMy45MUEyOS4zMSwyOS4zMSwwLDAsMSwxNzksMjY4Mi40OFoiLz48cGF0aCBkPSJNMTcwLjI0IDI2NDYuNDlhNDAuMDcgNDAuMDcgMCAwIDAgLTIwLjcxIDUuNzR2MTMuOTFhMjkuMjIgMjkuMjIgMCAwIDEgNDEuNDIgMHYtMTMuOTFBNDAuMDcgNDAuMDcgMCAwIDAgMTcwLjI0IDI2NDYuNDkiLz48L2c+PC9zdmc+" alt="Devbridge Styleguide">
             <div class="banner-styleguide--promo">
                 <h3 class="banner-styleguide--title">Try our Living Styleguide</h3>
-                <p class="banner-styleguide--desc">Devbridge Styleguide helps you create, share, and automate a living  <br>
+                <p class="banner-styleguide--desc">Devbridge Styleguide helps you create, share, and automate a living
                     visual style library of your brand. <a href="http://livingstyleguide.devbridge.com/" target="_blank">Learn more</a></p>
             </div>
         </div>

@@ -2,26 +2,32 @@
 
 h1,
 .heading1 {
-    font-size: 72px;
     margin: 0;
-    font-family: $font-primary;
-    font-weight: 600;
+    font: {
+        size: 72px;
+        family: $font-primary;
+        weight: 600;
+    }
 }
 
 h2,
 .heading2 {
-    font-size: 40px;
+    font: {
+        size: 40px;
+        family: $font-primary;
+        weight: 600;
+    }
     margin: 0 0 8px 0;
-    font-family: $font-primary;
-    font-weight: 600;
 }
 
 h3,
 .heading3 {
-    font-size: 24px;
+    font: {
+        size: 24px;
+        family: $font-primary;
+        weight: 600;
+    }
     margin: 0 0 8px 0;
-    font-family: $font-primary;
-    font-weight: 600;
 }
 
 h4,
@@ -65,15 +71,11 @@ a {
 
 }
 
-.text-light {
-    color: $color-orange;
-}
-
 .command-line {
     background-color: $color-gray;
-    color: $white;
-    padding: 2px 14px;
-    margin-bottom: 5px;
+    color: $color-white;
     font-size: 14px;
     line-height: 1.8;
+    margin-bottom: 5px;
+    padding: 2px 14px;
 }
