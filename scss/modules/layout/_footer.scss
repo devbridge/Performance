@@ -69,7 +69,7 @@
 
         &__credits-menu {
             @include display(flex);
-            margin: 15px auto 0;
+            margin: 15px auto 7px;
         }
     }
 
@@ -79,6 +79,12 @@
 
             small {
                 width: 70%;
+            }
+        }
+
+        &__credits-menu {
+            a {
+                color: $color-orange;
             }
         }
     }

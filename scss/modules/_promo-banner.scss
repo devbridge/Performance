@@ -120,7 +120,7 @@
     @include respond-to(535, max) {
         &--intro {
             margin-right: auto;
-            padding: 2em 0 12em;
+            padding: 0 0 2em;
         }
 
         &--visual {
@@ -130,9 +130,7 @@
             width: 100%;
 
             p {
-                margin-top: 0;
-                margin-bottom: 80px;
-                position: relative;
+                display: none;
             }
 
             a {

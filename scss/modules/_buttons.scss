@@ -85,4 +85,11 @@
             color: $color-orange;
         }
     }
+
+    @include respond-to(535, max) {
+        &.btn__inverse {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
 }
