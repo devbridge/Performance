@@ -112,4 +112,11 @@
             margin-left: 0;
         }
     }
+
+    @media print {
+
+        &__credits-menu {
+            display: none;
+        }
+    }
 }

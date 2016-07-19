@@ -136,3 +136,9 @@ code {
         }
     }
 }
+
+@media print {
+    .page--header {
+        position: relative !important;
+    }
+}

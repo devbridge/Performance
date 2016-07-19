@@ -123,4 +123,25 @@
             margin-top: 7px;
         }
     }
+
+    @media print {
+        .page-frame {
+            height: auto;
+            padding: 10px 0 60px;
+
+            &:before {
+                display: none;
+            }
+
+            img {
+                left: 20px;
+            }
+        }
+
+        &--promo {
+            max-width: none;
+            width: auto;
+            margin-right: 0;
+        }
+    }
 }

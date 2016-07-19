@@ -153,4 +153,50 @@
 
         }
     }
+
+
+    @media print {
+
+        border: 0;
+        margin-top: 0;
+
+        .page-frame {
+            display: block;
+            height: auto;
+            padding: 50px 20px;
+        }
+
+        &--intro {
+            margin: 0;
+        }
+
+        &--title {
+            width: auto;
+            font-weight: 700;
+
+            img {
+                max-width: 20% !important;
+            }
+        }
+
+        .promo-banner--visual {
+            @include position(relative, auto);
+            height: auto;
+            width: auto;
+
+            p {
+                margin: 0;
+            }
+
+            a i{
+                display: none;
+            }
+        }
+
+        .btn.btn__cta {
+            display: none;
+        }
+
+    }
 }
+

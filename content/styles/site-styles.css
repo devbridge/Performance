@@ -1,4 +1,4 @@
-.clearfix:after {
+.section-single .page-frame:after, .clearfix:after {
   clear: both;
   content: '';
   display: table;
@@ -400,6 +400,35 @@ img {
         font-size: 18px; }
       .promo-banner--visual strong {
         font-size: 14px; } }
+  @media print {
+    .promo-banner {
+      border: 0;
+      margin-top: 0; }
+      .promo-banner .page-frame {
+        display: block;
+        height: auto;
+        padding: 50px 20px; }
+      .promo-banner--intro {
+        margin: 0; }
+      .promo-banner--title {
+        width: auto;
+        font-weight: 700; }
+        .promo-banner--title img {
+          max-width: 20% !important; }
+      .promo-banner .promo-banner--visual {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        height: auto;
+        width: auto; }
+        .promo-banner .promo-banner--visual p {
+          margin: 0; }
+        .promo-banner .promo-banner--visual a i {
+          display: none; }
+      .promo-banner .btn.btn__cta {
+        display: none; } }
 
 .page-section {
   background-color: #efeeea;
@@ -431,6 +460,14 @@ img {
   @media screen and (max-width: 535px) {
     .page-section--desc {
       max-width: 430px; } }
+  @media print {
+    .page-section--title {
+      text-align: left;
+      margin: 30px 0 10px;
+      font-size: 26px; }
+    .page-section--desc {
+      text-align: left;
+      width: auto; } }
 
 .section-single {
   margin-bottom: 10px; }
@@ -551,6 +588,30 @@ img {
         position: relative; }
     .section-single .text-big {
       font-size: 26px; } }
+  @media print {
+    .section-single .page-frame {
+      min-height: auto !important;
+      display: block; }
+    .section-single--image {
+      float: right;
+      display: none; }
+    .section-single--content {
+      margin-left: 0;
+      padding-left: 0;
+      width: auto;
+      max-width: none; }
+    .section-single--title {
+      font-size: 16px;
+      margin: 20px 0 10px; }
+    .section-single--desc {
+      margin-bottom: 0; }
+    .section-single .btn {
+      display: none; }
+    .section-single .text-big {
+      font-size: 14px;
+      padding: 0; }
+      .section-single .text-big:before {
+        display: none; } }
 
 .section-installation {
   background: #fbb03b; }
@@ -590,6 +651,29 @@ img {
         float: left;
         padding-right: 20px;
         padding-left: 20px; } }
+
+@media print {
+  #installation {
+    display: block;
+    page-break-before: always; }
+  .section-installation--desc {
+    width: auto;
+    text-align: left; }
+    .section-installation--desc img {
+      display: none; }
+    .section-installation--desc p {
+      padding: 0;
+      margin: 40px 0 0;
+      width: auto;
+      font-weight: 700; }
+    .section-installation--desc .btn {
+      display: block;
+      text-align: left;
+      padding: 0;
+      margin-top: -40px; }
+      .section-installation--desc .btn:after {
+        content: " - " attr(href);
+        color: #2a6496; } }
 
 .banner-styleguide {
   background: #fff; }
@@ -668,6 +752,18 @@ img {
   @media screen and (max-width: 400px) {
     .banner-styleguide--title {
       margin-top: 7px; } }
+  @media print {
+    .banner-styleguide .page-frame {
+      height: auto;
+      padding: 10px 0 60px; }
+      .banner-styleguide .page-frame:before {
+        display: none; }
+      .banner-styleguide .page-frame img {
+        left: 20px; }
+    .banner-styleguide--promo {
+      max-width: none;
+      width: auto;
+      margin-right: 0; } }
 
 @media print {
   * {
@@ -678,10 +774,6 @@ img {
   a,
   a:visited {
     text-decoration: underline; }
-  a[href]:after {
-    content: ' (" attr(href) ")'; }
-  abbr[title]:after {
-    content: ' (" attr(title) ")'; }
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
@@ -866,6 +958,10 @@ code {
   .page-section--installation img {
     margin: 0 auto;
     max-width: 56px; }
+
+@media print {
+  .page--header {
+    position: relative !important; } }
 
 .page--header {
   position: fixed;
@@ -1054,5 +1150,9 @@ code {
         margin-right: 17px; }
   .page-footer__credits {
     margin-left: 0; } }
+
+@media print {
+  .page-footer__credits-menu {
+    display: none; } }
 
 /*# sourceMappingURL=site-styles.css.map */
