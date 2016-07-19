@@ -246,9 +246,20 @@
     }
 
     @include respond-to(535, max) {
+
+        .page-frame {
+            padding: 0;
+        }
+
         &--code {
-            margin-right: -20px;
-            padding-right: 20px;
+            width: 100%;
+            max-width: 535px;
+
+            > div {
+                float: left;
+                padding-right: 20px;
+                padding-left: 20px;
+            }
         }
     }
 }

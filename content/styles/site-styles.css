@@ -348,10 +348,12 @@ img {
     font-weight: 400;
     color: #fbb03b;
     line-height: 1.4;
-    margin-bottom: 27px;
-    margin-right: 20%; }
+    margin-bottom: 27px; }
     .promo-banner--title img {
       margin-bottom: 20px; }
+  @media screen and (max-width: 1024px) {
+    .promo-banner br {
+      display: none; } }
   @media screen and (max-width: 900px) {
     .promo-banner .page-frame {
       -webkit-box-orient: vertical;
@@ -579,13 +581,18 @@ img {
       padding-bottom: 0;
       width: 100%; } }
   @media screen and (max-width: 535px) {
+    .section-installation .page-frame {
+      padding: 0; }
     .section-installation--code {
-      margin-right: -20px;
-      padding-right: 20px; } }
+      width: 100%;
+      max-width: 535px; }
+      .section-installation--code > div {
+        float: left;
+        padding-right: 20px;
+        padding-left: 20px; } }
 
 .banner-styleguide {
-  background: #fff;
-  margin-top: -10px; }
+  background: #fff; }
   .banner-styleguide .page-frame {
     position: relative;
     padding-top: 122px;
