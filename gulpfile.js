@@ -67,7 +67,7 @@ gulp.task('watch', function() {
 
 function speedtest() {
     console.log('(Google page speed) Job started.');
-    var googleAPIURL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?filter_third_party_resources=false&locale=en_GB&screenshot=false&strategy={selected_strategy}&url=',
+    var googleAPIURL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?filter_third_party_resources=false&locale=en_GB&screenshot=false&strategy={selected_strategy}',
     strategies = ['desktop', 'mobile'],
 
     results = { oldresults: { mobile: null, desktop: null }, newresults: {} },
@@ -92,7 +92,7 @@ function speedtest() {
             function (currentValue, index, array) {
                         var selectedStrategy = strategies[strategy];
                 setTimeout(function(){
-                    var url = googleAPIURL.replace('{selected_strategy}', selectedStrategy) + encodeURIComponent(currentValue);
+                    var url = googleAPIURL.replace('{selected_strategy}', selectedStrategy) + '&url=' + encodeURIComponent(currentValue);
                     var response = httpGet(url);
                     if (response.status == 200) {
                         var pageSpeedResults = JSON.parse(response.responseText);
